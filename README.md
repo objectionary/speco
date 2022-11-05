@@ -97,6 +97,23 @@ for `cat` and `dog` correspondingly.
 
 It will generate a collection of modified .xmir files as an output.
 
+## Usage
+
+Build the app locally:
+```bash
+$ make build
+```
+
+and run:
+```bash
+$ java -jar speco.jar --help
+```
+
+or use make commands:
+```bash
+$ make run help
+```
+
 ## How to Contribute
 
 Fork repository, make changes, send us a pull request.
