@@ -23,30 +23,21 @@
  */
 package org.eolang.speco;
 
-import java.util.concurrent.Callable;
-import picocli.CommandLine;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
- * Main entrance.
+ * Test to test the operation of the command line tool.
  *
  * @since 0.0.1
  */
-@CommandLine.Command(name = "speco",
-    mixinStandardHelpOptions = true,
-    version = "Version 0.0.1",
-    description = "Specializes objects in EO programs")
-public final class Main implements Callable<Integer> {
+public final class MainTest {
 
-    @Override
-    public Integer call() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Speco is not implemented yet");
-    }
-
-    /**
-     * Main entrance for Java command line.
-     * @param args The args from the command line.
-     */
-    public static void main(final String[] args) {
-        new CommandLine(new Main()).execute(args);
+    @Test
+    public void fullRun() {
+        Assertions.assertThrows(
+            UnsupportedOperationException.class,
+            () -> new Main().call()
+        );
     }
 }

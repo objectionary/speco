@@ -21,32 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.eolang.speco;
-
-import java.util.concurrent.Callable;
-import picocli.CommandLine;
 
 /**
- * Main entrance.
+ * EO speco.
  *
+ * @author Objectionary
  * @since 0.0.1
  */
-@CommandLine.Command(name = "speco",
-    mixinStandardHelpOptions = true,
-    version = "Version 0.0.1",
-    description = "Specializes objects in EO programs")
-public final class Main implements Callable<Integer> {
-
-    @Override
-    public Integer call() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Speco is not implemented yet");
-    }
-
-    /**
-     * Main entrance for Java command line.
-     * @param args The args from the command line.
-     */
-    public static void main(final String[] args) {
-        new CommandLine(new Main()).execute(args);
-    }
-}
+package org.eolang.speco;
