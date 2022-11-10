@@ -23,6 +23,9 @@
  */
 package org.eolang.speco;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,11 +36,29 @@ import org.junit.jupiter.api.Test;
  */
 public final class MainTest {
 
+    /**
+     * Relative path to the directory with input files.
+     */
+    private final String input = "./tmp/xmir";
+
+    /**
+     * Relative path to the directory with output files.
+     */
+    private final String output = "./tmp/xmir2";
+
     @Test
-    public void fullRun() {
-        Assertions.assertThrows(
-            UnsupportedOperationException.class,
-            () -> new Main().call()
-        );
+    public void fullRun() throws IOException {
+        FileUtils.cleanDirectory(new File(this.output));
+        new Speco(this.input, this.output).exec();
+        final File[] source = new File(this.input).listFiles();
+        for (int index = 0; index < source.length; index = index + 1) {
+            source[index] = new File(source[index].getName());
+        }
+        final File[] target = new File(this.output).listFiles();
+        for (int index = 0; index < target.length; index = index + 1) {
+            target[index] = new File(target[index].getName());
+        }
+        Assertions.assertArrayEquals(source, target);
+        FileUtils.cleanDirectory(new File(this.output));
     }
 }

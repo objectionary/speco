@@ -17,3 +17,6 @@ build: ##@Application Rebuild app
 
 run: ##@Application Run command line tool
 	java -jar speco.jar $(MAKECMDGOALS)
+
+trans:
+	java -jar speco.jar --dir=./tmp/xmir --target=./tmp/xmir2

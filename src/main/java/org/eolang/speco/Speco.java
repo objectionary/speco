@@ -23,6 +23,10 @@
  */
 package org.eolang.speco;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+
 /**
  * The class encapsulating specialization logic.
  *
@@ -31,12 +35,12 @@ package org.eolang.speco;
 public final class Speco {
 
     /**
-     * Relative path to the directory with input files.
+     * Absolute path to the directory with input files.
      */
     private final String input;
 
     /**
-     * Relative path to the directory with output files.
+     * Absolute path to the directory with output files.
      */
     private final String output;
 
@@ -47,16 +51,16 @@ public final class Speco {
      * @param output Path to the directory with output files
      */
     public Speco(final String input, final String output) {
-        this.input = input;
-        this.output = output;
+        this.input = new File(input).getAbsolutePath();
+        this.output = new File(output).getAbsolutePath();
     }
 
     /**
      * Will do specialization.
      *
-     * @throws UnsupportedOperationException Always before implemantation
+     * @throws IOException Always before implemantation
      */
-    public void exec() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Speco is not implemented yet");
+    public void exec() throws IOException {
+        FileUtils.copyDirectory(new File(this.input), new File(this.output));
     }
 }

@@ -23,7 +23,7 @@
  */
 package org.eolang.speco;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 
@@ -53,7 +53,7 @@ public final class Main implements Callable<Integer> {
     private String output;
 
     @Override
-    public Integer call() throws UnsupportedOperationException {
+    public Integer call() throws IOException {
         new Speco(this.input, this.output).exec();
         return 0;
     }
