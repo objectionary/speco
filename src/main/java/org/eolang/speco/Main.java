@@ -23,6 +23,7 @@
  */
 package org.eolang.speco;
 
+import java.io.File;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 
@@ -36,6 +37,20 @@ import picocli.CommandLine;
     version = "Version 0.0.1",
     description = "Specializes objects in EO programs")
 public final class Main implements Callable<Integer> {
+
+    /**
+     * Relative path to the directory with input files.
+     */
+    @CommandLine.Option(names = { "--dir" },
+        description = "Directory with input .xmir files")
+    private File input;
+
+    /**
+     * Relative path to the directory with output files.
+     */
+    @CommandLine.Option(names = { "--target" },
+        description = "Directory for modified .xmir files")
+    private File output;
 
     @Override
     public Integer call() throws UnsupportedOperationException {
