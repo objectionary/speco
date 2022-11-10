@@ -23,46 +23,40 @@
  */
 package org.eolang.speco;
 
-import java.io.File;
-import java.util.concurrent.Callable;
-import picocli.CommandLine;
-
 /**
- * Main entrance.
+ * The class encapsulating specialization logic.
  *
  * @since 0.0.1
  */
-@CommandLine.Command(name = "speco",
-    mixinStandardHelpOptions = true,
-    version = "Version 0.0.1",
-    description = "Specializes objects in EO programs")
-public final class Main implements Callable<Integer> {
+public final class Speco {
 
     /**
      * Relative path to the directory with input files.
      */
-    @CommandLine.Option(names = { "--dir" },
-        description = "Directory with input .xmir files")
-    private String input;
+    private final String input;
 
     /**
      * Relative path to the directory with output files.
      */
-    @CommandLine.Option(names = { "--target" },
-        description = "Directory for modified .xmir files")
-    private String output;
+    private final String output;
 
-    @Override
-    public Integer call() throws UnsupportedOperationException {
-        new Speco(this.input, this.output).exec();
-        return 0;
+    /**
+     * Ctor.
+     *
+     * @param input Path to the directory with input files
+     * @param output Path to the directory with output files
+     */
+    public Speco(final String input, final String output) {
+        this.input = input;
+        this.output = output;
     }
 
     /**
-     * Main entrance for Java command line.
-     * @param args The args from the command line.
+     * Will do specialization.
+     *
+     * @throws UnsupportedOperationException Always before implemantation
      */
-    public static void main(final String[] args) {
-        new CommandLine(new Main()).execute(args);
+    public void exec() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Speco is not implemented yet");
     }
 }
