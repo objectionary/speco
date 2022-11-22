@@ -24,13 +24,25 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Simple goto + adding "seq > @" inside "goto"
+    Simple specialization.
     -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-  <xsl:template match="node()|@*">
+  <xsl:template match="@*|node()" name="specialize">
+    <xsl:param name="obj_name"/>
+    <xsl:element name="SPECIALIZED">
+    </xsl:element>
+  </xsl:template>
+  <xsl:template match="inferred">
+    <xsl:for-each select="obj">
+      <xsl:call-template name="specialize">
+        <xsl:with-param name="obj_name">some_object</xsl:with-param>                 
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template match="@*|node()">
     <xsl:copy>
-      <xsl:apply-templates select="node()|@*"/>
+      <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>

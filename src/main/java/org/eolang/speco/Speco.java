@@ -83,17 +83,14 @@ public final class Speco {
      */
     public void exec() throws IOException {
         final File[] dir = new File(this.input).listFiles();
-        for (int index = 0; index < dir.length; index = index + 1) {
-            final File source = new File(dir[index].getPath());
-            final XML document = new XMLDocument(Files.readString(source.toPath()));
+        for (final File file : dir) {
+            final XML document = new XMLDocument(Files.readString(file.toPath()));
             final XML before = Speco.getParsedXml(document);
             final XML after = Speco.applyTrain(before);
-            final String ret = after.toString();
-            final File target;
-            target = new File(this.output, dir[index].getName());
+            final File target = new File(this.output, file.getName());
             target.createNewFile();
             try (FileWriter out = new FileWriter(target.getPath())) {
-                out.write(ret);
+                out.write(after.toString());
                 out.flush();
             }
         }
