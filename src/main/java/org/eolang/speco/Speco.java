@@ -72,7 +72,9 @@ public final class Speco {
      */
     public static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
-            .with(new StEndless(new StClasspath("/org/eolang/speco/simple-transformation.xsl")));
+            .with(new StEndless(new StClasspath("/org/eolang/speco/preparation.xsl")))
+            .with(new StEndless(new StClasspath("/org/eolang/speco/simple-transformation.xsl")))
+            .with(new StEndless(new StClasspath("/org/eolang/speco/formatting.xsl")));
         return new Xsline(train).pass(xml);
     }
 

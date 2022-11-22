@@ -28,37 +28,9 @@ SOFTWARE.
     -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-  <xsl:template match="@*|node()" name="specialize">
-    <xsl:param name="name"/>
-    <xsl:param name="var"/>
-    <xsl:param name="spec"/>
-    <xsl:element name='version'>
-      <xsl:attribute name="name">
-        <xsl:value-of select="$name"/>
-      </xsl:attribute>
-      <xsl:attribute name="var">
-        <xsl:value-of select="$var"/>
-      </xsl:attribute>
-      <xsl:attribute name="spec">
-        <xsl:value-of select="$spec"/>
-      </xsl:attribute>
-      <xsl:copy-of select="/program/objects/o[@name=$name]" />
-    </xsl:element>
-  </xsl:template>
-  <xsl:template match="obj/inferred">
-    <xsl:element name='specialized'>
-      <xsl:for-each select="obj">
-        <xsl:call-template name="specialize">
-          <xsl:with-param name="name" select="substring-before(../@fqn, '.')"/>
-          <xsl:with-param name="var" select="substring-after(../@fqn, '.')"/>
-          <xsl:with-param name="spec" select="@fqn"/>                
-        </xsl:call-template>
-      </xsl:for-each>
-    </xsl:element>
-  </xsl:template>
   <xsl:template match="@* | node()">
     <xsl:copy>
-      <xsl:apply-templates select="@* |node()"/>
+      <xsl:apply-templates select="../@fqn | @* |node()"/>
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>
