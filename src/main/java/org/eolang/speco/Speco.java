@@ -23,9 +23,18 @@
  */
 package org.eolang.speco;
 
+import com.jcabi.xml.XML;
+import com.jcabi.xml.XMLDocument;
+import com.yegor256.xsline.Shift;
+import com.yegor256.xsline.StClasspath;
+import com.yegor256.xsline.StEndless;
+import com.yegor256.xsline.TrDefault;
+import com.yegor256.xsline.Train;
+import com.yegor256.xsline.Xsline;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
+import java.nio.file.Files;
 
 /**
  * The class encapsulating specialization logic.
@@ -56,11 +65,50 @@ public final class Speco {
     }
 
     /**
+     * Applies train of XSL-transformations.
+     *
+     * @param xml XML
+     * @return XML
+     */
+    public static XML applyTrain(final XML xml) {
+        final Train<Shift> train = new TrDefault<Shift>()
+            .with(new StEndless(new StClasspath("/org/eolang/speco/simple-transformation.xsl")));
+        return new Xsline(train).pass(xml);
+    }
+
+    /**
      * Will do specialization.
      *
      * @throws IOException Always before implemantation
      */
     public void exec() throws IOException {
-        FileUtils.copyDirectory(new File(this.input), new File(this.output));
+        final File[] dir = new File(this.input).listFiles();
+        for (int index = 0; index < dir.length; index = index + 1) {
+            final File source = new File(dir[index].getPath());
+            final XML document = new XMLDocument(Files.readString(source.toPath()));
+            final XML before = Speco.getParsedXml(document);
+            final XML after = Speco.applyTrain(before);
+            final String ret = after.toString();
+            final File target;
+            target = new File(this.output, dir[index].getName());
+            target.createNewFile();
+            try (FileWriter out = new FileWriter(target.getPath())) {
+                out.write(ret);
+                out.flush();
+            }
+        }
+    }
+
+    /**
+     * Parses EO-xmir documents.
+     *
+     * @param input XML input
+     * @return XML
+     * @throws IOException When Parsing EO fails
+     */
+    public static XML getParsedXml(final XML input) throws IOException {
+        return new Xsline(
+            new TrDefault<Shift>().with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
+        ).pass(input);
     }
 }

@@ -20,3 +20,6 @@ run: ##@Application Run command line tool
 
 trans:
 	java -jar speco.jar --dir=./tmp/xmir --target=./tmp/xmir2
+
+dep-tree:
+	mvn dependency:tree
