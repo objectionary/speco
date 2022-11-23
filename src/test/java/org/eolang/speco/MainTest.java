@@ -25,6 +25,7 @@ package org.eolang.speco;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -37,28 +38,36 @@ import org.junit.jupiter.api.Test;
 public final class MainTest {
 
     /**
+     * Relative path to the directory with tests.
+     */
+    private final String tests = "./src/test/resources/";
+
+    /**
      * Relative path to the directory with input files.
      */
-    private final String input = "./tmp/xmir";
+    private final String input = this.tests.concat("in");
 
     /**
      * Relative path to the directory with output files.
      */
-    private final String output = "./tmp/xmir2";
+    private final String output = this.tests.concat("out");
+
+    /**
+     * Relative path to the directory with temporary files.
+     */
+    private final String temp = this.tests.concat("temp");
 
     @Test
     public void fullRun() throws IOException {
-        FileUtils.cleanDirectory(new File(this.output));
-        new Speco(this.input, this.output).exec();
-        final File[] source = new File(this.input).listFiles();
-        for (int index = 0; index < source.length; index = index + 1) {
-            source[index] = new File(source[index].getName());
+        FileUtils.cleanDirectory(new File(this.temp));
+        new Speco(this.input, this.temp).exec();
+        final File[] reference = new File(this.output).listFiles();
+        final File[] target = new File(this.temp).listFiles();
+        for (int index = 0; index < reference.length; index = index + 1) {
+            final List<String> expected = FileUtils.readLines(reference[index]);
+            final List<String> produced = FileUtils.readLines(target[index]);
+            Assertions.assertEquals(expected, produced);
         }
-        final File[] target = new File(this.output).listFiles();
-        for (int index = 0; index < target.length; index = index + 1) {
-            target[index] = new File(target[index].getName());
-        }
-        Assertions.assertArrayEquals(source, target);
-        FileUtils.cleanDirectory(new File(this.output));
+        FileUtils.cleanDirectory(new File(this.temp));
     }
 }
