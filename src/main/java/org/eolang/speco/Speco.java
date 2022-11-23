@@ -79,9 +79,9 @@ public final class Speco {
     }
 
     /**
-     * Will do specialization.
+     * Starts the specialization process.
      *
-     * @throws IOException Always before implemantation
+     * @throws IOException In case of errors when working with files or parsing a document
      */
     public void exec() throws IOException {
         final File[] dir = new File(this.input).listFiles();
@@ -103,9 +103,8 @@ public final class Speco {
      *
      * @param input XML input
      * @return XML
-     * @throws IOException When Parsing EO fails
      */
-    public static XML getParsedXml(final XML input) throws IOException {
+    public static XML getParsedXml(final XML input) {
         return new Xsline(
             new TrDefault<Shift>().with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
         ).pass(input);

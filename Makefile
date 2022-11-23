@@ -18,8 +18,8 @@ build: ##@Application Rebuild app
 run: ##@Application Run command line tool
 	java -jar speco.jar $(MAKECMDGOALS)
 
-trans:
+trans: ##@Application Run speco on test data
 	java -jar speco.jar --dir=./tmp/xmir --target=./tmp/xmir2
 
-dep-tree:
+dep-tree: ##@Help Draws the maven dependency tree
 	mvn dependency:tree
