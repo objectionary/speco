@@ -1,6 +1,12 @@
 ---
 name: pdd
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
   pdd:
     runs-on: ubuntu-20.04
