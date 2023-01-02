@@ -61,7 +61,7 @@ public final class MainTest {
     @Test
     public void fullRun() throws IOException {
         FileUtils.cleanDirectory(this.temp.toFile());
-        new Speco(this.input.toString(), this.temp.toString()).exec();
+        new Speco(this.input.toString(), this.temp.toString(), false).exec();
         final File[] reference = this.output.toFile().listFiles();
         final File[] target = this.temp.toFile().listFiles();
         for (int index = 0; index < reference.length; index = index + 1) {

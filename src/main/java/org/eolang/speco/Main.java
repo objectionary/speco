@@ -52,9 +52,17 @@ public final class Main implements Callable<Integer> {
         description = "Directory for modified .xmir files.")
     private String output;
 
+    /**
+     * Flag indicating whether the input files is EO-program.
+     */
+    @CommandLine.Option(names = { "--eo" },
+        defaultValue = "false",
+        description = "If the input program is in EO")
+    private Boolean eolang;
+
     @Override
     public Integer call() throws IOException {
-        new Speco(this.input, this.output).exec();
+        new Speco(this.input, this.output, this.eolang).exec();
         return 0;
     }
 

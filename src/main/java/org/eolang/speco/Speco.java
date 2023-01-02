@@ -31,10 +31,14 @@ import com.yegor256.xsline.StEndless;
 import com.yegor256.xsline.TrDefault;
 import com.yegor256.xsline.Train;
 import com.yegor256.xsline.Xsline;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import org.cactoos.io.InputOf;
+import org.cactoos.io.OutputTo;
+import org.eolang.parser.Syntax;
 
 /**
  * The class encapsulating specialization logic.
@@ -54,14 +58,21 @@ public final class Speco {
     private final String output;
 
     /**
+     * Flag indicating whether the input files is EO-program.
+     */
+    private final Boolean eolang;
+
+    /**
      * Ctor.
      *
      * @param input Path to the directory with input files
      * @param output Path to the directory with output files
+     * @param eolang Iff the input program is in EO
      */
-    public Speco(final String input, final String output) {
+    public Speco(final String input, final String output, final Boolean eolang) {
         this.input = new File(input).getAbsolutePath();
         this.output = new File(output).getAbsolutePath();
+        this.eolang = eolang;
     }
 
     /**
@@ -86,8 +97,13 @@ public final class Speco {
     public void exec() throws IOException {
         final File[] dir = new File(this.input).listFiles();
         for (final File file : dir) {
-            final XML document = new XMLDocument(Files.readString(file.toPath()));
-            final XML before = Speco.getParsedXml(document);
+            final XML before;
+            if (this.eolang) {
+                before = Speco.getParsedXml(Files.readString(file.toPath()));
+            } else {
+                final XML document = new XMLDocument(Files.readString(file.toPath()));
+                before = Speco.getParsedXml(document);
+            }
             final XML after = Speco.applyTrain(before);
             final File target = new File(this.output, file.getName());
             target.createNewFile();
@@ -108,5 +124,28 @@ public final class Speco {
         return new Xsline(
             new TrDefault<Shift>().with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
         ).pass(input);
+    }
+
+    /**
+     * Takes EO-source as input,
+     * converts it to ".xmir" and applies "wrap-method-calls.xsl".
+     *
+     * @param source String EO-source
+     * @return XML
+     * @throws IOException When Parsing EO fails
+     */
+    public static XML getParsedXml(final String source) throws IOException {
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        new Syntax(
+            "scenario",
+            new InputOf(String.format("%s\n", source)),
+            new OutputTo(baos)
+        ).parse();
+        final XML xml = new XMLDocument(baos.toByteArray());
+        baos.close();
+        return new Xsline(
+            new TrDefault<Shift>()
+                .with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
+        ).pass(xml);
     }
 }

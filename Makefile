@@ -19,7 +19,10 @@ run: ##@Application Run command line tool
 	java -jar speco.jar $(MAKECMDGOALS)
 
 trans: ##@Application Run speco on test data
-	java -jar speco.jar --dir=./tmp/xmir --target=./tmp/xmir2
+	java -jar speco.jar --dir=./tmp/xmir-in --target=./tmp/xmir-out
+
+trans-eo: ##@Application Run speco on test data with --eo flag
+	java -jar speco.jar --dir=./tmp/eo-in --target=./tmp/eo-out --eo
 
 dep-tree: ##@Help Draws the maven dependency tree
 	mvn dependency:tree
