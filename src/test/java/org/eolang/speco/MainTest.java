@@ -25,6 +25,7 @@ package org.eolang.speco;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
@@ -40,34 +41,34 @@ public final class MainTest {
     /**
      * Relative path to the directory with tests.
      */
-    private final String tests = "./src/test/resources/";
+    private final Path tests = Path.of("./src/test/resources/");
 
     /**
      * Relative path to the directory with input files.
      */
-    private final String input = this.tests.concat("in");
+    private final Path input = this.tests.resolve("in");
 
     /**
      * Relative path to the directory with output files.
      */
-    private final String output = this.tests.concat("out");
+    private final Path output = this.tests.resolve("out");
 
     /**
      * Relative path to the directory with temporary files.
      */
-    private final String temp = this.tests.concat("temp");
+    private final Path temp = this.tests.resolve("temp");
 
     @Test
     public void fullRun() throws IOException {
-        FileUtils.cleanDirectory(new File(this.temp));
-        new Speco(this.input, this.temp).exec();
-        final File[] reference = new File(this.output).listFiles();
-        final File[] target = new File(this.temp).listFiles();
+        FileUtils.cleanDirectory(this.temp.toFile());
+        new Speco(this.input.toString(), this.temp.toString()).exec();
+        final File[] reference = this.output.toFile().listFiles();
+        final File[] target = this.temp.toFile().listFiles();
         for (int index = 0; index < reference.length; index = index + 1) {
             final List<String> expected = FileUtils.readLines(reference[index]);
             final List<String> produced = FileUtils.readLines(target[index]);
             Assertions.assertEquals(expected, produced);
         }
-        FileUtils.cleanDirectory(new File(this.temp));
+        FileUtils.cleanDirectory(this.temp.toFile());
     }
 }
