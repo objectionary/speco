@@ -33,12 +33,16 @@ import com.yegor256.xsline.Train;
 import com.yegor256.xsline.Xsline;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import org.apache.commons.io.FileUtils;
 import org.cactoos.io.InputOf;
 import org.cactoos.io.OutputTo;
 import org.eolang.parser.Syntax;
+import org.objectionary.aoi.launch.LauncherKt;
 
 /**
  * The class encapsulating specialization logic.
@@ -95,15 +99,17 @@ public final class Speco {
      * @throws IOException In case of errors when working with files or parsing a document
      */
     public void exec() throws IOException {
-        final File[] dir = new File(this.input).listFiles();
+        final String source;
+        if (this.eolang) {
+            source = parse(this.input);
+        } else {
+            source = this.input;
+        }
+        final File[] dir = new File(source).listFiles();
         for (final File file : dir) {
             final XML before;
-            if (this.eolang) {
-                before = Speco.getParsedXml(Files.readString(file.toPath()));
-            } else {
-                final XML document = new XMLDocument(Files.readString(file.toPath()));
-                before = Speco.getParsedXml(document);
-            }
+            final XML document = new XMLDocument(Files.readString(file.toPath()));
+            before = Speco.getParsedXml(document);
             final XML after = Speco.applyTrain(before);
             final File target = new File(this.output, file.getName());
             target.createNewFile();
@@ -127,25 +133,32 @@ public final class Speco {
     }
 
     /**
-     * Takes EO-source as input,
-     * converts it to ".xmir" and applies "wrap-method-calls.xsl".
+     * Takes source codes on EO, converts to xmir and applies the AOI tool.
      *
-     * @param source String EO-source
-     * @return XML
+     * @param input Path of the source directory
+     * @return Path to the directory with the parsed files
      * @throws IOException When Parsing EO fails
      */
-    public static XML getParsedXml(final String source) throws IOException {
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        new Syntax(
-            "scenario",
-            new InputOf(String.format("%s\n", source)),
-            new OutputTo(baos)
-        ).parse();
-        final XML xml = new XMLDocument(baos.toByteArray());
-        baos.close();
-        return new Xsline(
-            new TrDefault<Shift>()
-                .with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
-        ).pass(xml);
+    public static String parse(final String input) throws IOException {
+        String source = input.concat("_prs");
+        FileUtils.copyDirectory(new File(input), new File(source));
+        final File[] dir = new File(source).listFiles();
+        for (final File file : dir) {
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            final String content = Files.readString(file.toPath());
+            new Syntax(
+                "scenario",
+                new InputOf(String.format("%s\n", content)),
+                new OutputTo(baos)
+            ).parse();
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                out.write(baos.toByteArray());
+                out.flush();
+            }
+            baos.close();
+        }
+        LauncherKt.launch(source.toString());
+        source = source.concat("_aoi");
+        return source.toString();
     }
 }

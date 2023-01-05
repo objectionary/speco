@@ -26,3 +26,9 @@ trans-eo: ##@Application Run speco on test data with --eo flag
 
 dep-tree: ##@Help Draws the maven dependency tree
 	mvn dependency:tree
+
+clear: ##@Application Clear tmp directory
+	-rm tmp/eo-in_prs/*
+	-rm tmp/eo-in_prs_aoi/*
+	-rm tmp/eo-out/*
+	-rm tmp/xmir-out/*
