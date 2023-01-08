@@ -25,9 +25,13 @@ package org.eolang.speco;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -41,34 +45,60 @@ public final class MainTest {
     /**
      * Relative path to the directory with tests.
      */
-    private final Path tests = Path.of("./src/test/resources/");
+    private final Path tests = Path.of("./src/test/resources");
 
     /**
-     * Relative path to the directory with input files.
+     * Relative path to the directory with .xmir files.
      */
-    private final Path input = this.tests.resolve("in");
+    private final Path xmirs = this.tests.resolve("xmir");
 
     /**
-     * Relative path to the directory with output files.
+     * Relative path to the directory with .eo files.
      */
-    private final Path output = this.tests.resolve("out");
-
-    /**
-     * Relative path to the directory with temporary files.
-     */
-    private final Path temp = this.tests.resolve("temp");
+    private final Path eos = this.tests.resolve("eo");
 
     @Test
-    public void fullRun() throws IOException {
-        FileUtils.cleanDirectory(this.temp.toFile());
-        new Speco(this.input.toString(), this.temp.toString(), false).exec();
-        final File[] reference = this.output.toFile().listFiles();
-        final File[] target = this.temp.toFile().listFiles();
+    public void testXmir() throws IOException {
+        final Path input = this.xmirs.resolve("in");
+        final Path output = this.xmirs.resolve("out");
+        final Path temp = this.xmirs.resolve("temp");
+        temp.toFile().mkdir();
+        new Speco(input.toString(), temp.toString(), false).exec();
+        final File[] reference = output.toFile().listFiles();
+        final File[] target = temp.toFile().listFiles();
         for (int index = 0; index < reference.length; index = index + 1) {
             final List<String> expected = FileUtils.readLines(reference[index]);
             final List<String> produced = FileUtils.readLines(target[index]);
             Assertions.assertEquals(expected, produced);
         }
-        FileUtils.cleanDirectory(this.temp.toFile());
+        FileUtils.cleanDirectory(temp.toFile());
+    }
+
+    @Test
+    public void testEo() throws IOException {
+        final Path input = this.eos.resolve("in");
+        final Path output = this.eos.resolve("out");
+        final Path temp = this.eos.resolve("temp");
+        temp.toFile().mkdir();
+        new Speco(input.toString(), temp.toString(), true).exec();
+        final File[] reference = output.toFile().listFiles();
+        final File[] target = temp.toFile().listFiles();
+        for (int index = 0; index < reference.length; index = index + 1) {
+            final List<String> expected = FileUtils.readLines(reference[index]);
+            final List<String> produced = this.exec(target[index].getParent());
+            Assertions.assertEquals(expected, produced);
+        }
+        FileUtils.cleanDirectory(temp.toFile());
+    }
+
+    private List<String> exec(final String target) throws IOException {
+        final String command = "cmd /c eoc link -s %s && eoc --alone dataize app && eoc clean";
+        final Process process = Runtime.getRuntime().exec(String.format(command, target));
+        final StringWriter writer = new StringWriter();
+        IOUtils.copy(process.getInputStream(), writer);
+        final String string = writer.toString();
+        final String[] full = string.split("\\r?\\n");
+        final String[] result = Arrays.copyOfRange(full, 11, full.length - 1);
+        return Arrays.asList(result);
     }
 }

@@ -37,11 +37,11 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import org.apache.commons.io.FileUtils;
 import org.cactoos.io.InputOf;
 import org.cactoos.io.OutputTo;
 import org.eolang.parser.Syntax;
+import org.eolang.parser.XMIR;
 import org.objectionary.aoi.launch.LauncherKt;
 
 /**
@@ -110,11 +110,18 @@ public final class Speco {
             final XML before;
             final XML document = new XMLDocument(Files.readString(file.toPath()));
             before = Speco.getParsedXml(document);
-            final XML after = Speco.applyTrain(before);
+            final String after;
+            if (this.eolang) {
+                after = new XMIR(
+                    Speco.applyTrain(before).toString()
+                ).toEO();
+            } else {
+                after = Speco.applyTrain(before).toString();
+            }
             final File target = new File(this.output, file.getName());
             target.createNewFile();
             try (FileWriter out = new FileWriter(target.getPath())) {
-                out.write(after.toString());
+                out.write(after);
                 out.flush();
             }
         }
