@@ -31,12 +31,10 @@ import com.yegor256.xsline.StEndless;
 import com.yegor256.xsline.TrDefault;
 import com.yegor256.xsline.Train;
 import com.yegor256.xsline.Xsline;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import org.apache.commons.io.FileUtils;
 import org.cactoos.io.InputOf;
 import org.cactoos.io.OutputTo;
@@ -49,22 +47,22 @@ import org.objectionary.aoi.launch.LauncherKt;
  *
  * @since 0.0.1
  */
-public final class Speco {
+final class Speco {
 
     /**
      * Absolute path to the directory with input files.
      */
-    private final String input;
+    private final Path input;
 
     /**
      * Absolute path to the directory with output files.
      */
-    private final String output;
+    private final Path output;
 
     /**
      * Flag indicating whether the input files is EO-program.
      */
-    private final Boolean eolang;
+    private final boolean eolang;
 
     /**
      * Ctor.
@@ -73,10 +71,41 @@ public final class Speco {
      * @param output Path to the directory with output files
      * @param eolang Iff the input program is in EO
      */
-    public Speco(final String input, final String output, final Boolean eolang) {
-        this.input = new File(input).getAbsolutePath();
-        this.output = new File(output).getAbsolutePath();
+    Speco(final Path input, final Path output, final boolean eolang) {
+        this.input = input.toAbsolutePath();
+        this.output = output.toAbsolutePath();
         this.eolang = eolang;
+    }
+
+    /**
+     * Starts the specialization process.
+     *
+     * @throws IOException In case of errors when working with files or parsing a document
+     */
+    public void exec() throws IOException {
+        final Path source;
+        if (this.eolang) {
+            source = parse(this.input);
+        } else {
+            source = this.input;
+        }
+        for (final Path path : Files.newDirectoryStream(source)) {
+            final XML before;
+            before = Speco.getParsedXml(new XMLDocument(Files.readString(path)));
+            final String after;
+            if (this.eolang) {
+                after = new XMIR(
+                    Speco.applyTrain(before).toString()
+                ).toEO();
+            } else {
+                after = Speco.applyTrain(before).toString();
+            }
+            Files.createDirectories(this.output);
+            Files.write(this.output.resolve(path.getFileName()), after.getBytes());
+        }
+        if (this.eolang) {
+            FileUtils.deleteDirectory(source.toFile());
+        }
     }
 
     /**
@@ -85,7 +114,7 @@ public final class Speco {
      * @param xml XML
      * @return XML
      */
-    public static XML applyTrain(final XML xml) {
+    private static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
             .with(new StEndless(new StClasspath("/org/eolang/speco/coping.xsl")))
             .with(new StEndless(new StClasspath("/org/eolang/speco/preparation.xsl")))
@@ -95,46 +124,12 @@ public final class Speco {
     }
 
     /**
-     * Starts the specialization process.
-     *
-     * @throws IOException In case of errors when working with files or parsing a document
-     */
-    public void exec() throws IOException {
-        final String source;
-        if (this.eolang) {
-            source = parse(this.input);
-        } else {
-            source = this.input;
-        }
-        final File[] dir = new File(source).listFiles();
-        for (final File file : dir) {
-            final XML before;
-            final XML document = new XMLDocument(Files.readString(file.toPath()));
-            before = Speco.getParsedXml(document);
-            final String after;
-            if (this.eolang) {
-                after = new XMIR(
-                    Speco.applyTrain(before).toString()
-                ).toEO();
-            } else {
-                after = Speco.applyTrain(before).toString();
-            }
-            final File target = new File(this.output, file.getName());
-            target.createNewFile();
-            try (FileWriter out = new FileWriter(target.getPath())) {
-                out.write(after);
-                out.flush();
-            }
-        }
-    }
-
-    /**
      * Parses EO-xmir documents.
      *
      * @param input XML input
      * @return XML
      */
-    public static XML getParsedXml(final XML input) {
+    private static XML getParsedXml(final XML input) {
         return new Xsline(
             new TrDefault<Shift>().with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
         ).pass(input);
@@ -147,26 +142,19 @@ public final class Speco {
      * @return Path to the directory with the parsed files
      * @throws IOException When Parsing EO fails
      */
-    public static String parse(final String input) throws IOException {
-        String source = input.concat("_prs");
-        FileUtils.copyDirectory(new File(input), new File(source));
-        final File[] dir = new File(source).listFiles();
-        for (final File file : dir) {
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            final String content = Files.readString(file.toPath());
+    private static Path parse(final Path input) throws IOException {
+        final StringBuilder name = new StringBuilder(input.toString());
+        final Path source = Path.of(name.append("_prs").toString());
+        FileUtils.copyDirectory(input.toFile(), source.toFile());
+        for (final Path path : Files.newDirectoryStream(source)) {
             new Syntax(
                 "scenario",
-                new InputOf(String.format("%s\n", content)),
-                new OutputTo(baos)
+                new InputOf(String.format("%s\n", Files.readString(path))),
+                new OutputTo(new FileOutputStream(path.toFile()))
             ).parse();
-            try (FileOutputStream out = new FileOutputStream(file)) {
-                out.write(baos.toByteArray());
-                out.flush();
-            }
-            baos.close();
         }
         LauncherKt.launch(source.toString());
-        source = source.concat("_aoi");
-        return source.toString();
+        FileUtils.deleteDirectory(source.toFile());
+        return Path.of(name.append("_aoi").toString());
     }
 }

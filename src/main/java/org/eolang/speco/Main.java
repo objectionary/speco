@@ -24,6 +24,7 @@
 package org.eolang.speco;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 
@@ -43,14 +44,14 @@ public final class Main implements Callable<Integer> {
      */
     @CommandLine.Option(names = { "--dir" },
         description = "Directory with input .xmir files.")
-    private String input;
+    private Path input;
 
     /**
      * Relative path to the directory with output files.
      */
     @CommandLine.Option(names = { "--target" },
         description = "Directory for modified .xmir files.")
-    private String output;
+    private Path output;
 
     /**
      * Flag indicating whether the input files is EO-program.
@@ -58,7 +59,7 @@ public final class Main implements Callable<Integer> {
     @CommandLine.Option(names = { "--eo" },
         defaultValue = "false",
         description = "If the input program is in EO")
-    private Boolean eolang;
+    private boolean eolang;
 
     @Override
     public Integer call() throws IOException {

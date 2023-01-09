@@ -23,18 +23,17 @@
  */
 package org.eolang.speco;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test to test the operation of the command line tool.
@@ -59,43 +58,53 @@ public final class MainTest {
     private final Path eos = this.tests.resolve("eo");
 
     @Test
-    public void testXmir() throws IOException {
-        final Path input = this.xmirs.resolve("in");
-        final Path output = this.xmirs.resolve("out");
-        final Path temp = this.xmirs.resolve("temp");
-        temp.toFile().mkdir();
-        new Speco(input.toString(), temp.toString(), false).exec();
-        final File[] reference = output.toFile().listFiles();
-        Arrays.sort(reference);
-        final File[] target = temp.toFile().listFiles();
-        Arrays.sort(target);
-        for (int index = 0; index < reference.length; index = index + 1) {
-            final List<String> expected = FileUtils.readLines(reference[index]);
-            final List<String> produced = FileUtils.readLines(target[index]);
+    public void convertsFromXmir(@TempDir final Path temp) throws IOException {
+        final Path output = this.runSpeco(false, temp);
+        for (final Path path : Files.newDirectoryStream(output)) {
+            final List<String> expected = Files.readAllLines(path);
+            final List<String> produced = Files.readAllLines(temp.resolve(path.getFileName()));
             Assertions.assertEquals(expected, produced);
         }
-        FileUtils.cleanDirectory(temp.toFile());
     }
 
     @Test
-    public void testEo() throws IOException {
-        final Path input = this.eos.resolve("in");
-        final Path output = this.eos.resolve("out");
-        final Path temp = this.eos.resolve("temp");
-        temp.toFile().mkdir();
-        new Speco(input.toString(), temp.toString(), true).exec();
-        final File[] reference = output.toFile().listFiles();
-        Arrays.sort(reference);
-        final File[] target = temp.toFile().listFiles();
-        Arrays.sort(target);
-        for (int index = 0; index < reference.length; index = index + 1) {
-            final List<String> expected = FileUtils.readLines(reference[index]);
-            final List<String> produced = this.exec(target[index].getParent());
+    public void convertsFromEo(@TempDir final Path temp) throws IOException {
+        final Path output = this.runSpeco(true, temp);
+        for (final Path path : Files.newDirectoryStream(output)) {
+            final List<String> expected = Files.readAllLines(path);
+            final List<String> produced = this.exec(temp.toString());
             Assertions.assertEquals(expected, produced);
         }
-        FileUtils.cleanDirectory(temp.toFile());
     }
 
+    /**
+     * Runs Speco.
+     *
+     * @param eolang Iff input is EO
+     * @param temp Path to the temporary output dir
+     * @return Path to the reference output dir
+     * @throws IOException Iff IO error
+     */
+    private Path runSpeco(final boolean eolang, final Path temp) throws IOException {
+        final Path base;
+        if (eolang) {
+            base = this.eos;
+        } else {
+            base = this.xmirs;
+        }
+        final Path input = base.resolve("in");
+        final Path output = base.resolve("out");
+        new Speco(input, temp, eolang).exec();
+        return output;
+    }
+
+    /**
+     * Compiles EO program.
+     *
+     * @param target Path to the dir with target EO program
+     * @return List of lines in output
+     * @throws IOException
+     */
     private List<String> exec(final String target) throws IOException {
         final String command;
         if (SystemUtils.IS_OS_WINDOWS) {
@@ -106,12 +115,8 @@ public final class MainTest {
         final Process process = Runtime.getRuntime().exec(String.format(command, target));
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer);
-        final String string = writer.toString();
-        final String[] full = string.split("\\r?\\n");
-        for (final String line : full) {
-            System.out.println(line);
-        }
-        final String[] result = Arrays.copyOfRange(full, 11, full.length - 1);
+        final String[] output = writer.toString().split("\\r?\\n");
+        final String[] result = Arrays.copyOfRange(output, 11, output.length - 1);
         return Arrays.asList(result);
     }
 }
