@@ -108,10 +108,8 @@ public final class MainTest {
         IOUtils.copy(process.getInputStream(), writer);
         final String string = writer.toString();
         final String[] full = string.split("\\r?\\n");
-        if (full.length < 12) {
-            for (final String line : full) {
-                System.out.println(line);
-            }
+        for (final String line : full) {
+            System.out.println(line);
         }
         final String[] result = Arrays.copyOfRange(full, 11, full.length - 1);
         return Arrays.asList(result);
