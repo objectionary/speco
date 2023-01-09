@@ -15,6 +15,11 @@ build: ##@Application Rebuild app
 	mvn clean install -Pqulice
 	cp target/speco-1.0-SNAPSHOT-jar-with-dependencies.jar speco.jar
 
+build-force: ##@Application Rebuild app without linting and tests
+	-rm speco.jar
+	mvn clean install -Dmaven.test.skip
+	cp target/speco-1.0-SNAPSHOT-jar-with-dependencies.jar speco.jar
+
 run: ##@Application Run command line tool
 	java -jar speco.jar $(MAKECMDGOALS)
 

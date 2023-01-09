@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<program ms="316"
+          name="scenario"
+          time="2023-01-09T11:38:08.466066100Z"
+          version="0.28.10">
+   <listing>[] &gt; cat
+  [] &gt; talk
+    QQ.io.stdout &gt; @
+      "Meow!\n"
+
+[] &gt; dog
+  [] &gt; talk
+    QQ.io.stdout &gt; @
+      "Woof!\n"
+  [] &gt; smth
+    QQ.io.stdout &gt; @
+      "smth\n"
+
+[x] &gt; some_object
+  x.talk &gt; @
+
+[x] &gt; other_object
+  seq &gt; @
+    x.talk
+    x.smth
+
+[] &gt; app
+  seq &gt; @
+    some_object cat
+    other_object dog
+</listing>
+   <errors/>
+   <sheets>
+      <sheet>add-refs</sheet>
+      <sheet>expand-aliases</sheet>
+      <sheet>resolve-aliases</sheet>
+   </sheets>
+   <objects>
+      <o abstract="" line="1" name="cat" pos="0">
+         <o abstract="" line="2" name="talk" pos="2">
+            <o base="QQ" line="3" pos="4"/>
+            <o base=".io" line="3" method="" pos="6"/>
+            <o base=".stdout" line="3" method="" name="@" pos="9">
+               <o base="string" data="string" line="4" pos="6">Meow!\n</o>
+            </o>
+         </o>
+      </o>
+      <o abstract="" line="6" name="dog" pos="0">
+         <o abstract="" line="7" name="talk" pos="2">
+            <o base="QQ" line="8" pos="4"/>
+            <o base=".io" line="8" method="" pos="6"/>
+            <o base=".stdout" line="8" method="" name="@" pos="9">
+               <o base="string" data="string" line="9" pos="6">Woof!\n</o>
+            </o>
+         </o>
+         <o abstract="" line="10" name="smth" pos="2">
+            <o base="QQ" line="11" pos="4"/>
+            <o base=".io" line="11" method="" pos="6"/>
+            <o base=".stdout" line="11" method="" name="@" pos="9">
+               <o base="string" data="string" line="12" pos="6">smth\n</o>
+            </o>
+         </o>
+      </o>
+      <o abstract="" line="14" name="some_object" pos="0">
+         <o line="14" name="x" pos="1"/>
+         <o base="x" line="15" pos="2" ref="14"/>
+         <o base=".talk" line="15" method="" name="@" pos="3"/>
+      </o>
+      <o abstract="" line="17" name="other_object" pos="0">
+         <o line="17" name="x" pos="1"/>
+         <o base="seq" line="18" name="@" pos="2">
+            <o base="x" line="19" pos="4" ref="17"/>
+            <o base=".talk" line="19" method="" pos="5"/>
+            <o base="x" line="20" pos="4" ref="17"/>
+            <o base=".smth" line="20" method="" pos="5"/>
+         </o>
+      </o>
+      <o abstract="" line="22" name="app" pos="0">
+         <o base="seq" line="23" name="@" pos="2">
+            <o base="some_object" line="24" pos="4" ref="14">
+               <o base="cat" line="24" pos="16" ref="1"/>
+            </o>
+            <o base="other_object" line="25" pos="4" ref="17">
+               <o base="dog" line="25" pos="17" ref="6"/>
+            </o>
+         </o>
+      </o>
+   </objects>
+   <aoi>
+      <obj fqn="some_object.x">
+         <inferred>
+            <obj fqn="cat"/>
+            <obj fqn="dog"/>
+         </inferred>
+      </obj>
+      <obj fqn="other_object.x">
+         <inferred>
+            <obj fqn="cat"/>
+            <obj fqn="cat.talk"/>
+            <obj fqn="dog"/>
+            <obj fqn="dog.talk"/>
+            <obj fqn="dog.smth"/>
+            <obj fqn="some_object"/>
+            <obj fqn="other_object"/>
+            <obj fqn="app"/>
+         </inferred>
+      </obj>
+   </aoi>
+</program>

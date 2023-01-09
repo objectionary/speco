@@ -32,6 +32,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +66,9 @@ public final class MainTest {
         temp.toFile().mkdir();
         new Speco(input.toString(), temp.toString(), false).exec();
         final File[] reference = output.toFile().listFiles();
+        Arrays.sort(reference);
         final File[] target = temp.toFile().listFiles();
+        Arrays.sort(target);
         for (int index = 0; index < reference.length; index = index + 1) {
             final List<String> expected = FileUtils.readLines(reference[index]);
             final List<String> produced = FileUtils.readLines(target[index]);
@@ -82,7 +85,9 @@ public final class MainTest {
         temp.toFile().mkdir();
         new Speco(input.toString(), temp.toString(), true).exec();
         final File[] reference = output.toFile().listFiles();
+        Arrays.sort(reference);
         final File[] target = temp.toFile().listFiles();
+        Arrays.sort(target);
         for (int index = 0; index < reference.length; index = index + 1) {
             final List<String> expected = FileUtils.readLines(reference[index]);
             final List<String> produced = this.exec(target[index].getParent());
@@ -92,7 +97,12 @@ public final class MainTest {
     }
 
     private List<String> exec(final String target) throws IOException {
-        final String command = "cmd /c eoc link -s %s && eoc --alone dataize app && eoc clean";
+        final String command;
+        if (SystemUtils.IS_OS_WINDOWS) {
+            command = "cmd /c eoc link -s %s && eoc --alone dataize app && eoc clean";
+        } else {
+            command = "eoc link -s %s && eoc --alone dataize app && eoc clean";
+        }
         final Process process = Runtime.getRuntime().exec(String.format(command, target));
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer);

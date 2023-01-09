@@ -112,6 +112,19 @@
    </objects>
    <aoi>
       <obj fqn="some_object.x">
+         <inferred>
+            <obj fqn="cat"/>
+            <obj fqn="dog"/>
+         </inferred>
+      </obj>
+      <obj fqn="other_object.x">
+         <inferred>
+            <obj fqn="dog"/>
+         </inferred>
+      </obj>
+   </aoi>
+   <speco>
+      <obj fqn="some_object.x">
          <specialized>
             <version name="some_object" spec="cat" var="x">
                <o abstract="" line="20" name="some_object_spec_x=cat" pos="0">
@@ -154,5 +167,5 @@
             </version>
          </specialized>
       </obj>
-   </aoi>
+   </speco>
 </program>
