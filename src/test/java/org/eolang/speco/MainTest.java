@@ -45,7 +45,7 @@ public final class MainTest {
     /**
      * Relative path to the directory with tests.
      */
-    private final Path tests = Path.of("./src/test/resources");
+    private final Path tests = Path.of("src", "test", "resources");
 
     /**
      * Relative path to the directory with .xmir files.

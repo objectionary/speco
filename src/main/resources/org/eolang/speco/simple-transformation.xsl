@@ -44,15 +44,13 @@ SOFTWARE.
   </xsl:template>
 
   <xsl:template match="speco/obj/inferred">
-    <xsl:element name='specialized'>
-      <xsl:for-each select="obj">
-        <xsl:call-template name="specialize">
-          <xsl:with-param name="name" select="substring-before(../@fqn, '.')"/>
-          <xsl:with-param name="var" select="substring-after(../@fqn, '.')"/>
-          <xsl:with-param name="spec" select="@fqn"/>                
-        </xsl:call-template>
-      </xsl:for-each>
-    </xsl:element>
+    <xsl:for-each select="obj">
+      <xsl:call-template name="specialize">
+        <xsl:with-param name="name" select="substring-before(../@fqn, '.')"/>
+        <xsl:with-param name="var" select="substring-after(../@fqn, '.')"/>
+        <xsl:with-param name="spec" select="@fqn"/>                
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="@* | node()">
