@@ -104,7 +104,11 @@ final class Speco {
             Files.write(this.output.resolve(path.getFileName()), after.getBytes());
         }
         if (this.eolang) {
-            FileUtils.deleteDirectory(source.toFile());
+            try {
+                FileUtils.deleteDirectory(source.toFile());
+            } catch (final IOException exception) {
+                exception.printStackTrace();
+            }
         }
     }
 
