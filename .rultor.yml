@@ -7,7 +7,7 @@ assets:
   pubring.gpg: yegor256/objectionary-secrets#pubring.gpg
   secring.gpg: yegor256/objectionary-secrets#secring.gpg
 install: |
-  npm install -g eolang
+  sudo npm install -g eolang
   pdd --file=/dev/null
 merge:
   script: |
