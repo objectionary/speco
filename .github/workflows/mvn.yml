@@ -30,7 +30,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g eolang
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '3.1'
       - run: java -version
       - run: mvn -version
+      - run: npm install -g eolang
+      - run: gem install xcop
       - run: mvn --errors --batch-mode clean install -Pqulice
