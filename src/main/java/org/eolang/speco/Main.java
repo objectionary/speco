@@ -23,6 +23,8 @@
  */
 package org.eolang.speco;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 
@@ -37,9 +39,32 @@ import picocli.CommandLine;
     description = "Specializes objects in EO programs")
 public final class Main implements Callable<Integer> {
 
+    /**
+     * Relative path to the directory with input files.
+     */
+    @CommandLine.Option(names = { "--dir" },
+        description = "Directory with input .xmir files.")
+    private Path input;
+
+    /**
+     * Relative path to the directory with output files.
+     */
+    @CommandLine.Option(names = { "--target" },
+        description = "Directory for modified .xmir files.")
+    private Path output;
+
+    /**
+     * Flag indicating whether the input files is EO-program.
+     */
+    @CommandLine.Option(names = { "--eo" },
+        defaultValue = "false",
+        description = "If the input program is in EO")
+    private boolean eolang;
+
     @Override
-    public Integer call() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Speco is not implemented yet");
+    public Integer call() throws IOException {
+        new Speco(this.input, this.output, this.eolang).exec();
+        return 0;
     }
 
     /**
