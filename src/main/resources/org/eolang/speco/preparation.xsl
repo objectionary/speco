@@ -28,19 +28,16 @@ SOFTWARE.
     -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-
   <xsl:template match="temp">
-      <program>
-        <xsl:apply-templates select="node()"/>
-      </program> 
-   </xsl:template>
-
+    <program>
+      <xsl:apply-templates select="node()"/>
+    </program>
+  </xsl:template>
   <xsl:template match="speco/obj/inferred">
     <xsl:copy>
       <xsl:apply-templates select="../@fqn | @* |node()"/>
     </xsl:copy>
   </xsl:template>
-
   <xsl:template match="@* | node()">
     <xsl:copy>
       <xsl:apply-templates select="@* |node()"/>

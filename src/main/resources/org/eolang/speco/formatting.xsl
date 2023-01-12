@@ -28,13 +28,11 @@ SOFTWARE.
     -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-
   <xsl:template match="version/o/@name">
     <xsl:attribute name="name">
       <xsl:value-of select="concat(../../@name, '_spec_', ../../@var, '=', ../../@spec)"/>
     </xsl:attribute>
   </xsl:template>
-
   <xsl:template match="version/o/o">
     <xsl:copy>
       <xsl:attribute name="spec">
@@ -43,7 +41,6 @@ SOFTWARE.
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
-
   <xsl:template match="@* | node()">
     <xsl:copy>
       <xsl:apply-templates select="@* |node()"/>
