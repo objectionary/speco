@@ -60,19 +60,35 @@ public final class MainTest {
     @Test
     public void convertsFromXmir(@TempDir final Path temp) throws IOException {
         final Path output = this.runSpeco(false, temp);
-        for (final Path path : Files.newDirectoryStream(output)) {
-            final List<String> expected = Files.readAllLines(path);
-            final List<String> produced = Files.readAllLines(temp.resolve(path.getFileName()));
-            Assertions.assertEquals(expected, produced);
+        for (final Path prog : Files.newDirectoryStream(output)) {
+            this.compare(temp, prog);
         }
     }
 
     @Test
     public void convertsFromEo(@TempDir final Path temp) throws IOException {
         final Path output = this.runSpeco(true, temp);
-        for (final Path path : Files.newDirectoryStream(output)) {
+        for (final Path prog : Files.newDirectoryStream(output.resolve("prog"))) {
+            final Path program = temp.resolve(prog.getFileName());
+            this.compare(temp, output.resolve("speco").resolve(prog.getFileName()));
+            final List<String> expected = Files.readAllLines(prog.resolve("app"));
+            final List<String> produced = this.exec(program.toString());
+            Assertions.assertEquals(expected, produced);
+        }
+    }
+
+    /**
+     * Compares two directpries.
+     *
+     * @param first Directory
+     * @param second Directory
+     * @throws IOException Iff IO error
+     */
+    private void compare(final Path first, final Path second) throws IOException {
+        for (final Path path : Files.newDirectoryStream(second)) {
             final List<String> expected = Files.readAllLines(path);
-            final List<String> produced = this.exec(temp.toString());
+            final Path out = first.resolve(second.getFileName()).resolve(path.getFileName());
+            final List<String> produced = Files.readAllLines(out);
             Assertions.assertEquals(expected, produced);
         }
     }
@@ -94,7 +110,10 @@ public final class MainTest {
         }
         final Path input = base.resolve("in");
         final Path output = base.resolve("out");
-        new Speco(input, temp, eolang).exec();
+        for (final Path shift : Files.newDirectoryStream(input)) {
+            final Path abs = shift.getFileName();
+            new Speco(input.resolve(abs), temp.resolve(abs), eolang).exec();
+        }
         return output;
     }
 

@@ -1,0 +1,24 @@
+[] > first
+  [] > boom
+    QQ
+    .io
+    .stdout > @
+      "First!\n"
+
+[] > second
+  [] > boom
+    QQ
+    .io
+    .stdout > @
+      "Second!\n"
+
+[x] > foo
+  x
+  .boom > @
+
+[] > app
+  seq > @
+    foo
+      first
+    foo
+      second
