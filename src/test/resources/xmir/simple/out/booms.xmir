@@ -51,10 +51,10 @@
       </o>
       <o abstract="" line="12" name="app" pos="0">
          <o base="seq" line="13" name="@" pos="2">
-            <o base="foo" line="14" pos="4" ref="9">
+            <o base="foo_spec_x_first" line="14" pos="4" ref="9">
                <o base="first" line="14" pos="8" ref="1"/>
             </o>
-            <o base="foo" line="15" pos="4" ref="9">
+            <o base="foo_spec_x_second" line="15" pos="4" ref="9">
                <o base="second" line="15" pos="8" ref="5"/>
             </o>
          </o>

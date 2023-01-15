@@ -104,7 +104,11 @@
          </o>
       </o>
       <o abstract="" line="28" name="app" pos="0">
-         <o base="some_object" line="29" name="so" pos="2" ref="20">
+         <o base="some_object_spec_x_dog"
+             line="29"
+             name="so"
+             pos="2"
+             ref="20">
             <o base="dog" line="29" pos="14" ref="9"/>
          </o>
          <o base="so" line="30" name="@" pos="2" ref="29"/>

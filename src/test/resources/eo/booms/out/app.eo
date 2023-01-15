@@ -18,9 +18,9 @@
 
 [] > app
   seq > @
-    foo
+    foo_spec_x_first
       first
-    foo
+    foo_spec_x_second
       second
 
 [x] > foo_spec_x_first

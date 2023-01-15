@@ -30,9 +30,9 @@
 
 [] > app
   seq > @
-    some_object
+    some_object_spec_x_cat
       cat
-    other_object
+    other_object_spec_x_dog
       dog
 
 [x] > some_object_spec_x_cat
