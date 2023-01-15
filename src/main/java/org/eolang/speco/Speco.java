@@ -120,10 +120,11 @@ final class Speco {
      */
     private static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
-            .with(new StEndless(new StClasspath("/org/eolang/speco/coping.xsl")))
+            .with(new StClasspath("/org/eolang/speco/coping.xsl"))
             .with(new StEndless(new StClasspath("/org/eolang/speco/preparation.xsl")))
             .with(new StEndless(new StClasspath("/org/eolang/speco/simple-transformation.xsl")))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/formatting.xsl")));
+            .with(new StEndless(new StClasspath("/org/eolang/speco/formatting.xsl")))
+            .with(new StClasspath("/org/eolang/speco/to-objects.xsl"));
         return new Xsline(train).pass(xml);
     }
 

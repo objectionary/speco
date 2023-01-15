@@ -22,3 +22,11 @@
       first
     foo
       second
+
+[x] > foo_spec_x_first
+  x
+  .boom > @
+
+[x] > foo_spec_x_second
+  x
+  .boom > @

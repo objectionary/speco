@@ -34,3 +34,18 @@
       cat
     other_object
       dog
+
+[x] > some_object_spec_x_cat
+  x
+  .talk > @
+
+[x] > some_object_spec_x_dog
+  x
+  .talk > @
+
+[x] > other_object_spec_x_dog
+  seq > @
+    x
+    .talk
+    x
+    .smth

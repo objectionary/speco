@@ -29,12 +29,12 @@ SOFTWARE.
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
   <xsl:template match="program">
-    <temp>
-      <xsl:apply-templates select="node()"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
       <xsl:element name="speco">
         <xsl:copy-of select="/program/aoi/node()"/>
       </xsl:element>
-    </temp>
+    </xsl:copy>
   </xsl:template>
   <xsl:template match="@*|node()">
     <xsl:copy>
