@@ -34,6 +34,8 @@ import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test to test the operation of the command line tool.
@@ -57,24 +59,22 @@ public final class MainTest {
      */
     private final Path eos = this.tests.resolve("eo");
 
-    @Test
-    public void convertsFromXmir(@TempDir final Path temp) throws IOException {
-        final Path output = this.runSpeco(false, temp);
-        for (final Path prog : Files.newDirectoryStream(output)) {
-            this.compare(temp, prog);
-        }
+    @ParameterizedTest
+    @ValueSource(strings = {"simple"})
+    public void convertsFromXmir(final String name, @TempDir final Path temp) throws IOException {
+        final Path output = this.runSpeco(this.xmirs.resolve(name), temp, false);
+        this.compare(temp, output);
     }
 
-    @Test
-    public void convertsFromEo(@TempDir final Path temp) throws IOException {
-        final Path output = this.runSpeco(true, temp);
-        for (final Path prog : Files.newDirectoryStream(output.resolve("prog"))) {
-            final Path program = temp.resolve(prog.getFileName());
-            this.compare(temp, output.resolve("speco").resolve(prog.getFileName()));
-            final List<String> expected = Files.readAllLines(prog.resolve("app"));
-            final List<String> produced = this.exec(program.toString());
-            Assertions.assertEquals(expected, produced);
-        }
+    @ParameterizedTest
+    @ValueSource(strings = {"booms", "pets"})
+    public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
+        final Path base = this.eos.resolve(name);
+        final Path output = this.runSpeco(base, temp, true);
+        this.compare(temp, output);
+        final List<String> expected = Files.readAllLines(base.resolve("result.txt"));
+        final List<String> produced = this.exec(temp.toString());
+        Assertions.assertEquals(expected, produced);
     }
 
     /**
@@ -87,7 +87,7 @@ public final class MainTest {
     private void compare(final Path first, final Path second) throws IOException {
         for (final Path path : Files.newDirectoryStream(second)) {
             final List<String> expected = Files.readAllLines(path);
-            final Path out = first.resolve(second.getFileName()).resolve(path.getFileName());
+            final Path out = first.resolve(path.getFileName());
             final List<String> produced = Files.readAllLines(out);
             Assertions.assertEquals(expected, produced);
         }
@@ -96,24 +96,16 @@ public final class MainTest {
     /**
      * Runs Speco.
      *
-     * @param eolang Iff input is EO
+     * @param base Path to the base input dir
      * @param temp Path to the temporary output dir
+     * @param iseo Iff input is EO
      * @return Path to the reference output dir
      * @throws IOException Iff IO error
      */
-    private Path runSpeco(final boolean eolang, final Path temp) throws IOException {
-        final Path base;
-        if (eolang) {
-            base = this.eos;
-        } else {
-            base = this.xmirs;
-        }
+    private Path runSpeco(final Path base, final Path temp, final boolean iseo) throws IOException {
         final Path input = base.resolve("in");
         final Path output = base.resolve("out");
-        for (final Path shift : Files.newDirectoryStream(input)) {
-            final Path abs = shift.getFileName();
-            new Speco(input.resolve(abs), temp.resolve(abs), eolang).exec();
-        }
+        new Speco(input, temp, iseo).exec();
         return output;
     }
 
