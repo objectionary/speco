@@ -40,7 +40,9 @@ import org.junit.jupiter.params.provider.ValueSource;
  * Test to test the operation of the command line tool.
  *
  * @since 0.0.1
- * @todo #22:90min add separate unit-test.
+ * @todo #22:90min add separate unit-test for each transformation,
+ * which would run step by step and check the intermediate results,
+ * for example, use yml packs as in dejump.
  */
 public final class MainTest {
 
