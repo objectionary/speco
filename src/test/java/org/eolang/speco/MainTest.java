@@ -41,8 +41,8 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  * @since 0.0.1
  * @todo #22:90min add separate unit-test for each transformation,
- * which would run step by step and check the intermediate results,
- * for example, use yml packs as in dejump.
+ *  which would run step by step and check the intermediate results,
+ *  for example, use yml packs as in dejump.
  */
 public final class MainTest {
 

@@ -90,14 +90,14 @@ final class Speco {
             source = this.input;
         }
         for (final Path path : Files.newDirectoryStream(source)) {
-            final XML before = Speco.getParsedXml(new XMLDocument(Files.readString(path)));
+            final String transformed = Speco.applyTrain(
+                Speco.getParsedXml(new XMLDocument(Files.readString(path)))
+            ).toString();
             final String after;
             if (this.eolang) {
-                after = new XMIR(
-                    Speco.applyTrain(before).toString()
-                ).toEO();
+                after = new XMIR(transformed).toEO();
             } else {
-                after = Speco.applyTrain(before).toString();
+                after = transformed;
             }
             Files.createDirectories(this.output);
             Files.write(this.output.resolve(path.getFileName()), after.getBytes());
