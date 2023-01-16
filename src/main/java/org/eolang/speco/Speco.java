@@ -90,8 +90,7 @@ final class Speco {
             source = this.input;
         }
         for (final Path path : Files.newDirectoryStream(source)) {
-            final XML before;
-            before = Speco.getParsedXml(new XMLDocument(Files.readString(path)));
+            final XML before = Speco.getParsedXml(new XMLDocument(Files.readString(path)));
             final String after;
             if (this.eolang) {
                 after = new XMIR(

@@ -36,6 +36,6 @@ jobs:
           ruby-version: '3.1'
       - run: java -version
       - run: mvn -version
-      - run: npm install -g eolang@0.10.0
+      - run: npm install -g eolang
       - run: gem install xcop
       - run: mvn --errors --batch-mode clean install -Pqulice
