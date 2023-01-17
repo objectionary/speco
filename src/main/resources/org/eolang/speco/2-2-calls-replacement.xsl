@@ -24,21 +24,25 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Simple specialization.
+    Replaces object calls to their specialized versions.
     -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-  <xsl:template match="version/o/@name">
-    <xsl:attribute name="name">
-      <xsl:value-of select="concat(../../@name, '_spec_', ../../@var, '=', ../../@spec)"/>
-    </xsl:attribute>
-  </xsl:template>
-  <xsl:template match="version/o/o">
+  <xsl:template match="/program/objects//o">
+    <xsl:variable name="name" select="@base"/>
+    <xsl:variable name="spec" select="o[1]/@base"/>
     <xsl:copy>
-      <xsl:attribute name="spec">
-        <xsl:value-of select="../../@spec"/>
-      </xsl:attribute>
-      <xsl:apply-templates select="@*|node()"/>
+      <xsl:if test="@base">
+        <xsl:attribute name="base">
+          <xsl:value-of select="$name"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:for-each select="/program/speco/obj/version[@name=$name and @spec=$spec]/o">
+        <xsl:attribute name="base">
+          <xsl:value-of select="@name"/>
+        </xsl:attribute>
+      </xsl:for-each>
+      <xsl:apply-templates select="@* except @base |node()"/>
     </xsl:copy>
   </xsl:template>
   <xsl:template match="@* | node()">

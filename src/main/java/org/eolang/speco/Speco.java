@@ -90,15 +90,14 @@ final class Speco {
             source = this.input;
         }
         for (final Path path : Files.newDirectoryStream(source)) {
-            final XML before;
-            before = Speco.getParsedXml(new XMLDocument(Files.readString(path)));
+            final String transformed = Speco.applyTrain(
+                Speco.getParsedXml(new XMLDocument(Files.readString(path)))
+            ).toString();
             final String after;
             if (this.eolang) {
-                after = new XMIR(
-                    Speco.applyTrain(before).toString()
-                ).toEO();
+                after = new XMIR(transformed).toEO();
             } else {
-                after = Speco.applyTrain(before).toString();
+                after = transformed;
             }
             Files.createDirectories(this.output);
             Files.write(this.output.resolve(path.getFileName()), after.getBytes());
@@ -120,10 +119,12 @@ final class Speco {
      */
     private static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
-            .with(new StEndless(new StClasspath("/org/eolang/speco/coping.xsl")))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/preparation.xsl")))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/simple-transformation.xsl")))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/formatting.xsl")));
+            .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
+            .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-preparation.xsl")))
+            .with(new StEndless(new StClasspath("/org/eolang/speco/1-3-simple-transformation.xsl")))
+            .with(new StEndless(new StClasspath("/org/eolang/speco/1-4-formatting.xsl")))
+            .with(new StClasspath("/org/eolang/speco/2-1-to-objects.xsl"))
+            .with(new StClasspath("/org/eolang/speco/2-2-calls-replacement.xsl"));
         return new Xsline(train).pass(xml);
     }
 

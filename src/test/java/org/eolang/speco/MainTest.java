@@ -32,13 +32,17 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test to test the operation of the command line tool.
  *
  * @since 0.0.1
+ * @todo #22:90min add separate unit-test for each transformation,
+ *  which would run step by step and check the intermediate results,
+ *  for example, use yml packs as in dejump.
  */
 public final class MainTest {
 
@@ -57,45 +61,53 @@ public final class MainTest {
      */
     private final Path eos = this.tests.resolve("eo");
 
-    @Test
-    public void convertsFromXmir(@TempDir final Path temp) throws IOException {
-        final Path output = this.runSpeco(false, temp);
-        for (final Path path : Files.newDirectoryStream(output)) {
-            final List<String> expected = Files.readAllLines(path);
-            final List<String> produced = Files.readAllLines(temp.resolve(path.getFileName()));
-            Assertions.assertEquals(expected, produced);
-        }
+    @ParameterizedTest
+    @ValueSource(strings = {"simple"})
+    public void convertsFromXmir(final String name, @TempDir final Path temp) throws IOException {
+        MainTest.compare(temp, MainTest.runSpeco(this.xmirs.resolve(name), temp, false));
     }
 
-    @Test
-    public void convertsFromEo(@TempDir final Path temp) throws IOException {
-        final Path output = this.runSpeco(true, temp);
-        for (final Path path : Files.newDirectoryStream(output)) {
-            final List<String> expected = Files.readAllLines(path);
-            final List<String> produced = this.exec(temp.toString());
-            Assertions.assertEquals(expected, produced);
+    @ParameterizedTest
+    @ValueSource(strings = {"booms", "pets"})
+    public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
+        final Path base = this.eos.resolve(name);
+        MainTest.compare(temp, MainTest.runSpeco(base, temp, true));
+        Assertions.assertEquals(
+            Files.readAllLines(base.resolve("result.txt")),
+            this.exec(temp.toString())
+        );
+    }
+
+    /**
+     * Compares two directories according to the RIGHT JOIN sql principle.
+     * Checks that in second only files from first and the content of these files match.
+     *
+     * @param base First directory to be compared (base part of RIGHT JOIN)
+     * @param joining First directory to be compared (joining part of RIGHT JOIN)
+     * @throws IOException Iff IO error
+     */
+    private static void compare(final Path base, final Path joining) throws IOException {
+        for (final Path path : Files.newDirectoryStream(joining)) {
+            Assertions.assertEquals(
+                Files.readAllLines(path),
+                Files.readAllLines(base.resolve(path.getFileName()))
+            );
         }
     }
 
     /**
      * Runs Speco.
      *
-     * @param eolang Iff input is EO
+     * @param base Path to the base input dir
      * @param temp Path to the temporary output dir
+     * @param iseo Iff input is EO
      * @return Path to the reference output dir
      * @throws IOException Iff IO error
      */
-    private Path runSpeco(final boolean eolang, final Path temp) throws IOException {
-        final Path base;
-        if (eolang) {
-            base = this.eos;
-        } else {
-            base = this.xmirs;
-        }
-        final Path input = base.resolve("in");
-        final Path output = base.resolve("out");
-        new Speco(input, temp, eolang).exec();
-        return output;
+    private static Path runSpeco(final Path base, final Path temp, final boolean iseo)
+        throws IOException {
+        new Speco(base.resolve("in"), temp, iseo).exec();
+        return base.resolve("out");
     }
 
     /**
@@ -103,11 +115,9 @@ public final class MainTest {
      *
      * @param target Path to the dir with target EO program
      * @return List of lines in output
-     * @throws IOException
+     * @throws IOException Iff IO error
      */
     private List<String> exec(final String target) throws IOException {
-        final String pattern = "eoc link -s %s && eoc --alone dataize app && eoc clean";
-        final String command = String.format(pattern, target);
         final String executor;
         final String flag;
         if (SystemUtils.IS_OS_WINDOWS) {
@@ -117,11 +127,14 @@ public final class MainTest {
             executor = "bash";
             flag = "-c";
         }
-        final Process process = new ProcessBuilder(executor, flag, command).start();
+        final Process process = new ProcessBuilder(
+            executor,
+            flag,
+            String.format("eoc link -s %s && eoc --alone dataize app && eoc clean", target)
+        ).start();
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer);
         final String[] output = writer.toString().split("\\r?\\n");
-        final String[] result = Arrays.copyOfRange(output, 11, output.length - 1);
-        return Arrays.asList(result);
+        return Arrays.asList(Arrays.copyOfRange(output, 11, output.length - 1));
     }
 }

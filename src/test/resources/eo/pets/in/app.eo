@@ -1,0 +1,36 @@
+[] > cat
+  [] > talk
+    QQ
+    .io
+    .stdout > @
+      "Meow!\n"
+
+[] > dog
+  [] > talk
+    QQ
+    .io
+    .stdout > @
+      "Woof!\n"
+  [] > smth
+    QQ
+    .io
+    .stdout > @
+      "smth\n"
+
+[x] > some_object
+  x
+  .talk > @
+
+[x] > other_object
+  seq > @
+    x
+    .talk
+    x
+    .smth
+
+[] > app
+  seq > @
+    some_object
+      cat
+    other_object
+      dog
