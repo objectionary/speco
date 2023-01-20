@@ -68,7 +68,7 @@ public final class MainTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"booms", "pets"})
+    @ValueSource(strings = {"base/booms", "base/pets", "multiple-params/boom", "multiple-params/pets"})
     public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
         final Path base = this.eos.resolve(name);
         MainTest.compare(temp, MainTest.runSpeco(base, temp, true));
