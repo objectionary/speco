@@ -102,13 +102,13 @@ final class Speco {
             Files.createDirectories(this.output);
             Files.write(this.output.resolve(path.getFileName()), after.getBytes());
         }
-        if (this.eolang) {
-            try {
-                FileUtils.deleteDirectory(source.toFile());
-            } catch (final IOException exception) {
-                exception.printStackTrace();
-            }
-        }
+        // if (this.eolang) {
+        //     try {
+        //         FileUtils.deleteDirectory(source.toFile());
+        //     } catch (final IOException exception) {
+        //         exception.printStackTrace();
+        //     }
+        // }
     }
 
     /**

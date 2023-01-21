@@ -1,23 +1,23 @@
 [] > first
-  [] > boom
+  [] > bar
     QQ
     .io
     .stdout > @
-      "First!\n"
+      "1\n"
 
 [] > second
-  [] > boom
+  [] > bar
     QQ
     .io
     .stdout > @
-      "Second!\n"
+      "2\n"
 
 [x y] > foo
   seq > @
     x
-    .boom
+    .bar
     y
-    .boom
+    .bar
 
 [] > app
   seq > @
@@ -25,5 +25,11 @@
       first
       first
     foo
+      first
+      second
+    foo
       second
       first
+    foo
+      second
+      second

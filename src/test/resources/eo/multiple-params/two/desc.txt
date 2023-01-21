@@ -1,0 +1,1 @@
+With 2 parameters and 2 inferred from each, we should get 2^2=4 specialized versions
