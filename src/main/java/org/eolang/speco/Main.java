@@ -42,7 +42,7 @@ public final class Main implements Callable<Integer> {
     /**
      * Relative path to the directory with input files.
      */
-    @CommandLine.Option(names = { "--dir" },
+    @CommandLine.Option(names = { "--source" },
         description = "Directory with input .xmir files.")
     private Path input;
 
