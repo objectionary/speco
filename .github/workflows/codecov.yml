@@ -1,6 +1,6 @@
 ---
 name: codecov
-on: [push]
+on: [push, pull_request]
 jobs:
   codecov:
     runs-on: ubuntu-20.04
