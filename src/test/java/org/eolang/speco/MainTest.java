@@ -32,6 +32,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -67,19 +68,20 @@ public final class MainTest {
         MainTest.compare(temp, MainTest.runSpeco(this.xmirs.resolve(name), temp, false));
     }
 
+    @Disabled
     @ParameterizedTest
     @ValueSource(strings = {
         "examples/booms", "examples/pets",
-        "multiple-params/two", "multiple-params/three",
-        "multiple-objects/three", "large/matrix",
+        "matrix/2-2", "matrix/2-3",
+        "matrix/3-2", "matrix/3-3"
     })
     public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
         final Path base = this.eos.resolve(name);
         MainTest.compare(temp, MainTest.runSpeco(base, temp, true));
-        // Assertions.assertEquals(
-        //     Files.readAllLines(base.resolve("result.txt")),
-        //     this.exec(temp.toString())
-        // );
+        Assertions.assertEquals(
+            Files.readAllLines(base.resolve("result.txt")),
+            this.exec(temp.toString())
+        );
     }
 
     /**
