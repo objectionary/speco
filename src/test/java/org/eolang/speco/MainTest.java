@@ -28,13 +28,17 @@ import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /**
@@ -68,32 +72,41 @@ public final class MainTest {
         MainTest.compare(temp, MainTest.runSpeco(this.xmirs.resolve(name), temp, false));
     }
 
-    @Disabled
     @ParameterizedTest
-    @ValueSource(strings = {
-        "examples/booms", "examples/pets",
-        "matrix/2-2", "matrix/2-3",
-        "matrix/3-2", "matrix/3-3",
-        "noise-objects/non-specialized", "noise-objects/unused"
-    })
+    @MethodSource("getEoTests")
     public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
         MainTest.compare(temp, MainTest.runSpeco(this.eos.resolve(name), temp, true));
     }
 
-    @Disabled
     @ParameterizedTest
-    @ValueSource(strings = {
-        "examples/booms", "examples/pets",
-        "matrix/2-2", "matrix/2-3",
-        "matrix/3-2", "matrix/3-3",
-        "noise-objects/non-specialized", "noise-objects/unused"
-    })
+    @MethodSource("getEoTests")
     public void compilesFromEo(final String name, @TempDir final Path temp) throws IOException {
         Assertions.assertEquals(
             Files.readAllLines(this.eos.resolve(name).resolve("result.txt")),
             this.exec(temp.toString()),
             String.format("Program %s produced an incorrect result", name)
         );
+    }
+
+    @SuppressWarnings("PMD.UnusedPrivateMethod")
+    /**
+     * Generates full names of eo test cases.
+     *
+     * @return Collection of test cases names
+     */
+    private static Collection<String> getEoTests() {
+        final Map<String, String[]> groups = Map.of(
+            "examples", new String[] {"booms", "pets"},
+            "matrix", new String[] {"2-2", "2-3", "3-2", "3-3"},
+            "noise-objects", new String[] {"non-specialized", "unused"}
+        );
+        final Collection<String> cases = new LinkedList<>();
+        for (final Map.Entry<String, String[]> entry : groups.entrySet()) {
+            for (final String name : entry.getValue()) {
+                cases.add(Path.of(entry.getKey()).resolve(name).toString());
+            }
+        }
+        return cases;
     }
 
     /**
