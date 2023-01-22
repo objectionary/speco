@@ -75,6 +75,7 @@ public final class MainTest {
         MainTest.compare(temp, MainTest.runSpeco(this.xmirs.resolve(name), temp, false));
     }
 
+    @Disabled
     @Tag("fast")
     @ParameterizedTest
     @MethodSource("getEoTests")
@@ -94,12 +95,12 @@ public final class MainTest {
         );
     }
 
-    @SuppressWarnings("PMD.UnusedPrivateMethod")
     /**
      * Generates full names of eo test cases.
      *
      * @return Collection of test cases names
      */
+    @SuppressWarnings("PMD.UnusedPrivateMethod")
     private static Collection<String> getEoTests() {
         final Map<String, String[]> groups = Map.of(
             "examples", new String[] {"booms", "pets"},

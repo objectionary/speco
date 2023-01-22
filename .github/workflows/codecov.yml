@@ -1,6 +1,12 @@
 ---
 name: codecov
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
   codecov:
     runs-on: ubuntu-20.04
