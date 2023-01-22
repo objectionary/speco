@@ -160,6 +160,13 @@ SOFTWARE.
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <groups>${tests}</groups>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <profiles>
@@ -183,6 +190,12 @@ SOFTWARE.
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+      <id>allTests</id>
+      <properties>
+        <tests>fast,slow</tests>
+      </properties>
     </profile>
   </profiles>
 </project>

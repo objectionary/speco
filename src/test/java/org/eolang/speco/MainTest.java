@@ -34,8 +34,10 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
+import org.intellij.lang.annotations.JdkConstants.TabPlacement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -66,21 +68,25 @@ public final class MainTest {
      */
     private final Path eos = this.tests.resolve("eo");
 
+    @Tag("fast")
     @ParameterizedTest
     @ValueSource(strings = {"simple"})
     public void convertsFromXmir(final String name, @TempDir final Path temp) throws IOException {
         MainTest.compare(temp, MainTest.runSpeco(this.xmirs.resolve(name), temp, false));
     }
 
+    @Tag("fast")
     @ParameterizedTest
     @MethodSource("getEoTests")
     public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
         MainTest.compare(temp, MainTest.runSpeco(this.eos.resolve(name), temp, true));
     }
 
+    @Tag("slow")
     @ParameterizedTest
     @MethodSource("getEoTests")
     public void compilesFromEo(final String name, @TempDir final Path temp) throws IOException {
+        MainTest.runSpeco(this.eos.resolve(name), temp, true);
         Assertions.assertEquals(
             Files.readAllLines(this.eos.resolve(name).resolve("result.txt")),
             this.exec(temp.toString()),

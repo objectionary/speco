@@ -3,7 +3,7 @@ dep-tree: ##@Help Draws the maven dependency tree
 
 build: ##@Dev Rebuild app
 	-rm speco.jar
-	mvn clean install -Pqulice
+	mvn clean install -Dtests=fast -Pqulice
 	cp target/speco-1.0-SNAPSHOT-jar-with-dependencies.jar speco.jar
 
 build-force: ##@Dev Rebuild app without linting and tests
@@ -14,6 +14,9 @@ build-force: ##@Dev Rebuild app without linting and tests
 lint: ##@Dev Runs Qulice
 	mvn clean install -Dmaven.test.skip -Pqulice
 	cp target/speco-1.0-SNAPSHOT-jar-with-dependencies.jar speco.jar
+
+test: ##@Dev Runs all tests
+	mvn -PallTests test
 
 trans: ##@Usage Run speco on test data
 	java -jar speco.jar --dir=./tmp/xmir-in --target=./tmp/xmir-out
