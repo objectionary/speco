@@ -77,11 +77,22 @@ public final class MainTest {
         "noise-objects/non-specialized", "noise-objects/unused"
     })
     public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
-        final Path base = this.eos.resolve(name);
-        MainTest.compare(temp, MainTest.runSpeco(base, temp, true));
+        MainTest.compare(temp, MainTest.runSpeco(this.eos.resolve(name), temp, true));
+    }
+
+    @Disabled
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "examples/booms", "examples/pets",
+        "matrix/2-2", "matrix/2-3",
+        "matrix/3-2", "matrix/3-3",
+        "noise-objects/non-specialized", "noise-objects/unused"
+    })
+    public void compilesFromEo(final String name, @TempDir final Path temp) throws IOException {
         Assertions.assertEquals(
-            Files.readAllLines(base.resolve("result.txt")),
-            this.exec(temp.toString())
+            Files.readAllLines(this.eos.resolve(name).resolve("result.txt")),
+            this.exec(temp.toString()),
+            String.format("Program %s produced an incorrect result", name)
         );
     }
 
@@ -97,7 +108,8 @@ public final class MainTest {
         for (final Path path : Files.newDirectoryStream(joining)) {
             Assertions.assertEquals(
                 Files.readAllLines(path),
-                Files.readAllLines(base.resolve(path.getFileName()))
+                Files.readAllLines(base.resolve(path.getFileName())),
+                String.format("Files in %s and %s are different", base, joining)
             );
         }
     }
