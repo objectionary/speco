@@ -111,12 +111,11 @@ $ java -jar speco.jar --help
 
 To run a transformation:
 ```bash
-$ java -jar speco.jar --dir=<input> --target=<output>
+$ java -jar speco.jar --source=<input> --target=<output>
 ```
 
-or use make commands:
+or use make command:
 ```bash
-$ make run help
 $ make trans
 ```
 
