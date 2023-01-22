@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
-import org.intellij.lang.annotations.JdkConstants.TabPlacement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
@@ -50,6 +49,9 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @todo #22:90min add separate unit-test for each transformation,
  *  which would run step by step and check the intermediate results,
  *  for example, use yml packs as in dejump.
+ * @todo #32:90min fix disabled convertsFromEo tests for a group with matrices,
+ *  the reason is that only one parameter is processed for specialization,
+ *  but it is necessary to process all.
  */
 public final class MainTest {
 
