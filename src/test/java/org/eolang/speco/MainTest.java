@@ -73,7 +73,8 @@ public final class MainTest {
     @ValueSource(strings = {
         "examples/booms", "examples/pets",
         "matrix/2-2", "matrix/2-3",
-        "matrix/3-2", "matrix/3-3"
+        "matrix/3-2", "matrix/3-3",
+        "noise-objects/non-specialized", "noise-objects/unused"
     })
     public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
         final Path base = this.eos.resolve(name);
