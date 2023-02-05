@@ -37,6 +37,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.io.CleanupMode;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.yaml.snakeyaml.Yaml;
@@ -54,9 +55,8 @@ class PacksTest {
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     public void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
-        final Path output = PacksTest.runSpeco(script, temp);
         MatcherAssert.assertThat(
-            Files.readString(output.resolve("app.eo")),
+            Files.readString(PacksTest.runSpeco(script, temp).resolve("app.eo")),
             Matchers.equalTo(
                 script.get("after").toString()
             )
@@ -66,11 +66,12 @@ class PacksTest {
     @Tag("slow")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void compilesFromEo(final String pack, @TempDir final Path temp) throws IOException {
+    public void compilesFromEo(
+        final String pack,
+        @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
-        final Path output = PacksTest.runSpeco(script, temp);
         MatcherAssert.assertThat(
-            this.exec(output.toString()),
+            this.exec(PacksTest.runSpeco(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
