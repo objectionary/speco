@@ -102,9 +102,6 @@ final class Speco {
             Files.createDirectories(this.output);
             Files.write(this.output.resolve(path.getFileName()), after.getBytes());
         }
-        if (this.eolang) {
-            FileUtils.deleteQuietly(source.toFile());
-        }
     }
 
     /**
@@ -155,7 +152,6 @@ final class Speco {
             ).parse();
         }
         LauncherKt.launch(source.toString());
-        FileUtils.deleteQuietly(source.toFile());
         return Path.of(name.append("_aoi").toString());
     }
 }
