@@ -35,11 +35,13 @@ import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.io.CleanupMode;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.yaml.snakeyaml.Yaml;
 
 /**
@@ -47,16 +49,48 @@ import org.yaml.snakeyaml.Yaml;
  *
  * @since 0.0.1
  */
-class PacksTest {
+class SpecoTest {
+
+    @Tag("fast")
+    @ParameterizedTest
+    @ValueSource(strings = {"simple"})
+    public void convertsFromXmir(
+        final String title,
+        @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
+        final Path base = Path.of(
+            "src", "test", "resources",
+            "org", "eolang", "speco",
+            "xmir", title
+        );
+        new Speco(base.resolve("in"), temp, false).exec();
+        final Path reference = base.resolve("out");
+        for (final Path path : Files.newDirectoryStream(reference)) {
+            MatcherAssert.assertThat(
+                String.format(
+                    "Files %s in %s and %s are different",
+                    path.getFileName(),
+                    temp,
+                    reference
+                ),
+                Files.readAllLines(temp.resolve(path.getFileName())),
+                Matchers.equalTo(
+                    Files.readAllLines(path)
+                )
+            );
+        }
+    }
 
     @Disabled
     @Tag("fast")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
+    public void convertsFromEo(
+        final String pack,
+        @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
-            Files.readString(PacksTest.runSpeco(script, temp).resolve("app.eo")),
+            "Unexpected transformation result",
+            Files.readString(SpecoTest.runSpeco(script, temp).resolve("app.eo")),
             Matchers.equalTo(
                 script.get("after").toString()
             )
@@ -71,7 +105,8 @@ class PacksTest {
         @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
-            this.exec(PacksTest.runSpeco(script, temp).toString()),
+            "Unexpected execution result",
+            SpecoTest.exec(SpecoTest.runSpeco(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
@@ -107,7 +142,7 @@ class PacksTest {
     * @return List of lines in output
     * @throws IOException Iff IO error
     */
-    private String[] exec(final String target) throws IOException {
+    private static String[] exec(final String target) throws IOException {
         final String executor;
         final String flag;
         if (SystemUtils.IS_OS_WINDOWS) {
