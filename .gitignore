@@ -8,3 +8,4 @@ target/
 .classpath
 .recommenders
 speco.jar
+*.eoc

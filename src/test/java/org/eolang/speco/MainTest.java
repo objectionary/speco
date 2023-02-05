@@ -24,22 +24,12 @@
 package org.eolang.speco;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /**
@@ -58,64 +48,18 @@ public final class MainTest {
     /**
      * Relative path to the directory with tests.
      */
-    private final Path tests = Path.of("src", "test", "resources");
+    private final Path tests = Path.of("src", "test", "resources", "org", "eolang", "speco");
 
     /**
      * Relative path to the directory with .xmir files.
      */
     private final Path xmirs = this.tests.resolve("xmir");
 
-    /**
-     * Relative path to the directory with .eo files.
-     */
-    private final Path eos = this.tests.resolve("eo");
-
     @Tag("fast")
     @ParameterizedTest
     @ValueSource(strings = {"simple"})
     public void convertsFromXmir(final String name, @TempDir final Path temp) throws IOException {
         MainTest.compare(temp, MainTest.runSpeco(this.xmirs.resolve(name), temp, false));
-    }
-
-    @Disabled
-    @Tag("fast")
-    @ParameterizedTest
-    @MethodSource("getEoTests")
-    public void convertsFromEo(final String name, @TempDir final Path temp) throws IOException {
-        MainTest.compare(temp, MainTest.runSpeco(this.eos.resolve(name), temp, true));
-    }
-
-    @Tag("slow")
-    @ParameterizedTest
-    @MethodSource("getEoTests")
-    public void compilesFromEo(final String name, @TempDir final Path temp) throws IOException {
-        MainTest.runSpeco(this.eos.resolve(name), temp, true);
-        Assertions.assertEquals(
-            Files.readAllLines(this.eos.resolve(name).resolve("result.txt")),
-            this.exec(temp.toString()),
-            String.format("Program %s produced an incorrect result", name)
-        );
-    }
-
-    /**
-     * Generates full names of eo test cases.
-     *
-     * @return Collection of test cases names
-     */
-    @SuppressWarnings("PMD.UnusedPrivateMethod")
-    private static Collection<String> getEoTests() {
-        final Map<String, String[]> groups = Map.of(
-            "examples", new String[] {"booms", "pets"},
-            "matrix", new String[] {"2-2", "2-3", "3-2", "3-3"},
-            "noise-objects", new String[] {"non-specialized", "unused"}
-        );
-        final Collection<String> cases = new LinkedList<>();
-        for (final Map.Entry<String, String[]> entry : groups.entrySet()) {
-            for (final String name : entry.getValue()) {
-                cases.add(Path.of(entry.getKey()).resolve(name).toString());
-            }
-        }
-        return cases;
     }
 
     /**
@@ -149,33 +93,5 @@ public final class MainTest {
         throws IOException {
         new Speco(base.resolve("in"), temp, iseo).exec();
         return base.resolve("out");
-    }
-
-    /**
-     * Compiles EO program.
-     *
-     * @param target Path to the dir with target EO program
-     * @return List of lines in output
-     * @throws IOException Iff IO error
-     */
-    private List<String> exec(final String target) throws IOException {
-        final String executor;
-        final String flag;
-        if (SystemUtils.IS_OS_WINDOWS) {
-            executor = "cmd";
-            flag = "/c";
-        } else {
-            executor = "bash";
-            flag = "-c";
-        }
-        final Process process = new ProcessBuilder(
-            executor,
-            flag,
-            String.format("eoc link -s %s && eoc --alone dataize app && eoc clean", target)
-        ).start();
-        final StringWriter writer = new StringWriter();
-        IOUtils.copy(process.getInputStream(), writer);
-        final String[] output = writer.toString().split("\\r?\\n");
-        return Arrays.asList(Arrays.copyOfRange(output, 11, output.length - 1));
     }
 }

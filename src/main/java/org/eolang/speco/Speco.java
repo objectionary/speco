@@ -117,7 +117,7 @@ final class Speco {
      * @param xml XML
      * @return XML
      */
-    private static XML applyTrain(final XML xml) {
+    public static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
             .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
             .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-preparation.xsl")))
