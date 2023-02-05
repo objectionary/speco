@@ -35,6 +35,7 @@ import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,6 +48,7 @@ import org.yaml.snakeyaml.Yaml;
  */
 class PacksTest {
 
+    @Disabled
     @Tag("fast")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")

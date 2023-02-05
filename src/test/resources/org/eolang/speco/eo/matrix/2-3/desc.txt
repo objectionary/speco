@@ -1,1 +1,0 @@
-With 2 parameters and 3 inferred from each, we should get 3^2=9 specialized versions

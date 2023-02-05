@@ -1,1 +1,0 @@
-With 3 parameters and 3 inferred from each, we should get 3^3=27 specialized versions

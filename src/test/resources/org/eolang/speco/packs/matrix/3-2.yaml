@@ -1,0 +1,172 @@
+before: |
+  [] > first
+    [] > bar
+      QQ
+      .io
+      .stdout > @
+        "1\n"
+  
+  [] > second
+    [] > bar
+      QQ
+      .io
+      .stdout > @
+        "2\n"
+  
+  [x y z] > foo
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [] > app
+    seq > @
+      foo
+        first
+        first
+        first
+      foo
+        first
+        second
+        second
+      foo
+        second
+        second
+        first
+      foo
+        first
+        second
+        first
+
+
+after: |
+  [] > first
+    [] > bar
+      QQ
+      .io
+      .stdout > @
+        "1\n"
+  
+  [] > second
+    [] > bar
+      QQ
+      .io
+      .stdout > @
+        "2\n"
+  
+  [x y z] > foo
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [] > app
+    seq > @
+      foo_spec_x_first_spec_y_first_spec_z_first
+        first
+        first
+        first
+      foo_spec_x_first_spec_y_second_spec_z_second
+        first
+        second
+        second
+      foo_spec_x_second_spec_y_second_spec_z_first
+        second
+        second
+        first
+      foo_spec_x_first_spec_y_second_spec_z_first
+        first
+        second
+        first
+  
+  [x y z] > foo_spec_x_first_spec_y_first_spec_z_first
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_first_spec_y_first_spec_z_second
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_first_spec_y_second_spec_z_first
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_first_spec_y_second_spec_z_second
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_second_spec_y_first_spec_z_first
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_second_spec_y_first_spec_z_second
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_second_spec_y_second_spec_z_first
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+  
+  [x y z] > foo_spec_x_second_spec_y_second_spec_z_second
+    seq > @
+      x
+      .bar
+      y
+      .bar
+      z
+      .bar
+
+result: |
+  1
+  1
+  1
+  1
+  2
+  2
+  2
+  2
+  1
+  1
+  2
+  1

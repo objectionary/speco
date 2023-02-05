@@ -1,1 +1,0 @@
-Speco should save non-specialized objects in their original form
