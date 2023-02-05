@@ -159,7 +159,11 @@ final class Speco {
             ).parse();
         }
         LauncherKt.launch(source.toString());
-        FileUtils.deleteDirectory(source.toFile());
+        try {
+            FileUtils.deleteDirectory(source.toFile());
+        } catch (final IOException exception) {
+            exception.printStackTrace();
+        }
         return Path.of(name.append("_aoi").toString());
     }
 }
