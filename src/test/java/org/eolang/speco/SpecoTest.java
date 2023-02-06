@@ -121,7 +121,7 @@ class SpecoTest {
             "Unexpected execution result",
             SpecoTest.exec(SpecoTest.runSpeco(script, temp).toString()),
             Matchers.equalTo(
-                script.get("result").toString().split(System.lineSeparator())
+                script.get("result").toString().split("\\r?\\n")
             )
         );
     }
@@ -172,7 +172,7 @@ class SpecoTest {
         ).start();
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer);
-        final String[] output = writer.toString().split(System.lineSeparator());
+        final String[] output = writer.toString().split("\\r?\\n");
         return Arrays.copyOfRange(output, SpecoTest.INTENT, output.length - 1);
     }
 }
