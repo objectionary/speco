@@ -35,7 +35,6 @@ import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.io.CleanupMode;
@@ -50,6 +49,11 @@ import org.yaml.snakeyaml.Yaml;
  * @since 0.0.1
  */
 class SpecoTest {
+
+    /**
+     * The number of lines that the command "eoc link" outputs.
+     */
+    private static final int INTENT = 11;
 
     @Tag("fast")
     @ParameterizedTest
@@ -80,6 +84,15 @@ class SpecoTest {
         }
     }
 
+    /**
+     * Integration test for conversation from EO.
+     * @todo 90min fix disabled convertsFromEo tests for a group with matrices,
+     *  the reason is that only one parameter is processed for specialization,
+     *  but it is necessary to process all.
+     * @param pack Pack this test data
+     * @param temp Temporary test dir
+     * @throws IOException Iff IO error
+     */
     @Disabled
     @Tag("fast")
     @ParameterizedTest
@@ -108,7 +121,7 @@ class SpecoTest {
             "Unexpected execution result",
             SpecoTest.exec(SpecoTest.runSpeco(script, temp).toString()),
             Matchers.equalTo(
-                script.get("result").toString().split("\\r?\\n")
+                script.get("result").toString().split(System.lineSeparator())
             )
         );
     }
@@ -159,7 +172,7 @@ class SpecoTest {
         ).start();
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer);
-        final String[] output = writer.toString().split("\\r?\\n");
-        return Arrays.copyOfRange(output, 11, output.length - 1);
+        final String[] output = writer.toString().split(System.lineSeparator());
+        return Arrays.copyOfRange(output, SpecoTest.INTENT, output.length - 1);
     }
 }
