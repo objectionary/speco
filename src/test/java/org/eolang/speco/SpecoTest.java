@@ -25,6 +25,7 @@ package org.eolang.speco;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -165,9 +166,10 @@ class SpecoTest {
             String.format("eoc link -s %s && eoc --alone dataize app && eoc clean", target)
         ).start();
         final StringWriter writer = new StringWriter();
-        IOUtils.copy(process.getInputStream(), writer);
+        IOUtils.copy(process.getInputStream(), writer, Charset.defaultCharset());
         process.getInputStream().close();
         final String[] output = writer.toString().split("\\r?\\n");
+        writer.close();
         return Arrays.copyOfRange(output, SpecoTest.INTENT, output.length - 1);
     }
 }
