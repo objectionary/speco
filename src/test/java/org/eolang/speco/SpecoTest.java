@@ -58,9 +58,7 @@ class SpecoTest {
     @Tag("fast")
     @ParameterizedTest
     @ValueSource(strings = {"simple"})
-    public void convertsFromXmir(
-        final String title,
-        @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
+    public void convertsFromXmir(final String title, @TempDir final Path temp) throws IOException {
         final Path base = Path.of(
             "src", "test", "resources",
             "org", "eolang", "speco",
@@ -97,13 +95,11 @@ class SpecoTest {
     @Tag("fast")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void convertsFromEo(
-        final String pack,
-        @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
+    public void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected transformation result",
-            Files.readString(SpecoTest.runSpeco(script, temp).resolve("app.eo")),
+            Files.readString(SpecoTest.run(script, temp).resolve("app.eo")),
             Matchers.equalTo(
                 script.get("after").toString()
             )
@@ -113,13 +109,11 @@ class SpecoTest {
     @Tag("slow")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void compilesFromEo(
-        final String pack,
-        @TempDir(cleanup = CleanupMode.NEVER) final Path temp) throws IOException {
+    public void compilesFromEo(final String pack, @TempDir final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected execution result",
-            SpecoTest.exec(SpecoTest.runSpeco(script, temp).toString()),
+            SpecoTest.exec(SpecoTest.run(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
@@ -134,7 +128,7 @@ class SpecoTest {
      * @return Path to the output dir
      * @throws IOException Iff IO error
      */
-    private static Path runSpeco(final Map<String, Object> script, final Path temp)
+    private static Path run(final Map<String, Object> script, final Path temp)
         throws IOException {
         final Path input = temp.resolve("input");
         final Path output = temp.resolve("output");
@@ -172,6 +166,7 @@ class SpecoTest {
         ).start();
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer);
+        process.getInputStream().close();
         final String[] output = writer.toString().split("\\r?\\n");
         return Arrays.copyOfRange(output, SpecoTest.INTENT, output.length - 1);
     }
