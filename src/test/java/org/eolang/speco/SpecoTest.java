@@ -38,7 +38,6 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.io.CleanupMode;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -110,11 +109,12 @@ class SpecoTest {
     @Tag("slow")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void compilesFromEo(final String pack, @TempDir final Path temp) throws IOException {
+    public void compilesFromEo(final String pack, @TempDir final Path temp)
+        throws IOException, InterruptedException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected execution result",
-            SpecoTest.exec(SpecoTest.run(script, temp).toString()),
+            SpecoTest.dataize(SpecoTest.run(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
@@ -150,7 +150,7 @@ class SpecoTest {
     * @return List of lines in output
     * @throws IOException Iff IO error
     */
-    private static String[] exec(final String target) throws IOException {
+    private static String[] dataize(final String target) throws IOException, InterruptedException {
         final String executor;
         final String flag;
         if (SystemUtils.IS_OS_WINDOWS) {
@@ -165,6 +165,7 @@ class SpecoTest {
             flag,
             String.format("eoc link -s %s && eoc --alone dataize app && eoc clean", target)
         ).start();
+        process.waitFor();
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer, Charset.defaultCharset());
         process.getInputStream().close();
