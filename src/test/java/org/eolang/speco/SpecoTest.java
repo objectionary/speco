@@ -168,6 +168,7 @@ class SpecoTest {
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer, Charset.defaultCharset());
         process.getInputStream().close();
+        process.destroy();
         final String[] output = writer.toString().split("\\r?\\n");
         writer.close();
         return Arrays.copyOfRange(output, SpecoTest.INTENT, output.length - 1);
