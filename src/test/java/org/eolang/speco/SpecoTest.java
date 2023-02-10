@@ -108,6 +108,16 @@ class SpecoTest {
         );
     }
 
+    /**
+     * Integration test for compilation and result checking program converted from EO.
+     * @todo #32:30min investigate problem with @DisableOnOs(OS.Windows),
+     *  this is an issue of junit -- https://github.com/junit-team/junit5/issues/2811,
+     *  maybe try to manually delete each created file or use a pat
+     *  or get rid of the @TempDir.
+     * @param pack Pack this test data
+     * @param temp Temporary test dir
+     * @throws IOException Iff IO error
+     */
     @Tag("slow")
     @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
