@@ -102,13 +102,6 @@ final class Speco {
             Files.createDirectories(this.output);
             Files.write(this.output.resolve(path.getFileName()), after.getBytes());
         }
-        if (this.eolang) {
-            try {
-                FileUtils.deleteDirectory(source.toFile());
-            } catch (final IOException exception) {
-                exception.printStackTrace();
-            }
-        }
     }
 
     /**
@@ -117,7 +110,7 @@ final class Speco {
      * @param xml XML
      * @return XML
      */
-    private static XML applyTrain(final XML xml) {
+    public static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
             .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
             .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-preparation.xsl")))
@@ -159,7 +152,6 @@ final class Speco {
             ).parse();
         }
         LauncherKt.launch(source.toString());
-        FileUtils.deleteDirectory(source.toFile());
         return Path.of(name.append("_aoi").toString());
     }
 }

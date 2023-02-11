@@ -1,0 +1,60 @@
+before: |
+  [] > first
+    [] > boom
+      QQ
+      .io
+      .stdout > @
+        "First!\n"
+  [] > second
+    [] > boom
+      QQ
+      .io
+      .stdout > @
+        "Second!\n"
+  [x] > foo
+    x
+    .boom > @
+  [] > app
+    seq > @
+      foo
+        first
+      foo
+        second
+
+after: |
+  [] > first
+    [] > boom
+      QQ
+      .io
+      .stdout > @
+        "First!\n"
+
+  [] > second
+    [] > boom
+      QQ
+      .io
+      .stdout > @
+        "Second!\n"
+
+  [x] > foo
+    x
+    .boom > @
+
+  [] > app
+    seq > @
+      foo_spec_x_first
+        first
+      foo_spec_x_second
+        second
+
+  [x] > foo_spec_x_first
+    x
+    .boom > @
+
+  [x] > foo_spec_x_second
+    x
+    .boom > @
+
+result: |
+  First!
+  Second!
