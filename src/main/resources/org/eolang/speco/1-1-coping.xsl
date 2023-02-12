@@ -24,10 +24,14 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-     Coping of <aoi></aoi> node.
-     -->
+    Rule #1: extend the program by creating specialized object
+    based on AOI.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
+  <!--
+     Recursively copies the <aoi/> node to the new <speco/> node.
+  -->
   <xsl:template match="program">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>

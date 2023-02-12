@@ -24,26 +24,23 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Simple specialization.
-    -->
+    Rule #1: extend the program by creating specialized object
+    based on AOI.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-  <xsl:template match="version/o/@name">
-    <xsl:attribute name="name">
-      <xsl:value-of select="concat(../../@name, '_spec_', ../../@var, '_', ../../@spec)"/>
-    </xsl:attribute>
-  </xsl:template>
-  <xsl:template match="version/o/o">
+  <!--
+    Copies specialized versions to the <objects/> node.
+  -->
+  <xsl:template match="/program/objects">
     <xsl:copy>
-      <xsl:attribute name="spec">
-        <xsl:value-of select="../../@spec"/>
-      </xsl:attribute>
       <xsl:apply-templates select="@*|node()"/>
+      <xsl:copy-of select="/program/speco/obj/version/o"/>
     </xsl:copy>
   </xsl:template>
-  <xsl:template match="@* | node()">
+  <xsl:template match="@*|node()">
     <xsl:copy>
-      <xsl:apply-templates select="@* |node()"/>
+      <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>

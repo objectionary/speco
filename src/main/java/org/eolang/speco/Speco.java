@@ -27,7 +27,6 @@ import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
 import com.yegor256.xsline.Shift;
 import com.yegor256.xsline.StClasspath;
-import com.yegor256.xsline.StEndless;
 import com.yegor256.xsline.TrDefault;
 import com.yegor256.xsline.Train;
 import com.yegor256.xsline.Xsline;
@@ -112,9 +111,10 @@ final class Speco {
      */
     public static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
-            .with(new StClasspath("/org/eolang/speco/1-extend.xsl"))
-            .with(new StClasspath("/org/eolang/speco/2-1-to-objects.xsl"))
-            .with(new StClasspath("/org/eolang/speco/2-2-calls-replacement.xsl"));
+            .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
+            .with(new StClasspath("/org/eolang/speco/1-2-specialization.xsl"))
+            .with(new StClasspath("/org/eolang/speco/1-3-extension.xsl"))
+            .with(new StClasspath("/org/eolang/speco/2-1-calls-replacement.xsl"));
         return new Xsline(train).pass(xml);
     }
 

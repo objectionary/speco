@@ -24,10 +24,26 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Simple specialization.
-    -->
+    Rule #1: extend the program by creating specialized object
+    based on AOI.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
+  <!--
+    Iterates through the objects that need to be specialized.
+  -->
+  <xsl:template match="/program/speco/obj/inferred">
+    <xsl:for-each select="obj">
+      <xsl:call-template name="specialize">
+        <xsl:with-param name="name" select="substring-before(../../@fqn, '.')"/>
+        <xsl:with-param name="var" select="substring-after(../../@fqn, '.')"/>
+        <xsl:with-param name="spec" select="@fqn"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+  <!--
+    Copies the contents of the corresponding objects from the <objects/> node.
+  -->
   <xsl:template match="@*|node()" name="specialize">
     <xsl:param name="name"/>
     <xsl:param name="var"/>
@@ -43,23 +59,14 @@ SOFTWARE.
         <xsl:value-of select="$spec"/>
       </xsl:attribute>
       <xsl:for-each select="/program/objects/o[@name=$name]">
-          <xsl:call-template name="format">
-            <xsl:with-param name="name" select="concat($name, '_spec_', $var, '_', $spec)"/>
-          </xsl:call-template>
+        <xsl:call-template name="format">
+          <xsl:with-param name="name" select="concat($name, '_spec_', $var, '_', $spec)"/>
+        </xsl:call-template>
       </xsl:for-each>
     </xsl:element>
   </xsl:template>
-  <xsl:template match="aoi/obj/inferred">
-    <xsl:for-each select="obj">
-      <xsl:call-template name="specialize">
-        <xsl:with-param name="name" select="substring-before(../../@fqn, '.')"/>
-        <xsl:with-param name="var" select="substring-after(../../@fqn, '.')"/>
-        <xsl:with-param name="spec" select="@fqn"/>
-      </xsl:call-template>
-    </xsl:for-each>
-  </xsl:template>
   <!--
-
+    Modifies the name of the specialized version.
   -->
   <xsl:template match="@*|node()" name="format">
     <xsl:param name="name"/>
@@ -70,20 +77,9 @@ SOFTWARE.
       <xsl:apply-templates select="@* except @name |node()"/>
     </xsl:copy>
   </xsl:template>
-  <xsl:template match="version/o/o">
+  <xsl:template match="@*|node()">
     <xsl:copy>
-      <xsl:attribute name="spec">
-        <xsl:value-of select="../../@spec"/>
-      </xsl:attribute>
       <xsl:apply-templates select="@*|node()"/>
-    </xsl:copy>
-  </xsl:template>
-  <!--
-
-  -->
-  <xsl:template match="@* | node()">
-    <xsl:copy>
-      <xsl:apply-templates select="@* |node()"/>
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>
