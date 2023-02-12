@@ -35,7 +35,7 @@ SOFTWARE.
   <xsl:template match="/program/objects">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
-      <xsl:copy-of select="/program/speco/obj/version/o"/>
+      <xsl:copy-of select="/program/speco/version/o"/>
     </xsl:copy>
   </xsl:template>
   <xsl:template match="@*|node()">

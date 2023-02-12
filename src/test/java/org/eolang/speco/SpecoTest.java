@@ -93,7 +93,6 @@ class SpecoTest {
      * @param temp Temporary test dir
      * @throws IOException Iff IO error
      */
-    // @Disabled
     @Tag("fast")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")

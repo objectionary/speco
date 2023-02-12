@@ -24,8 +24,9 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Replaces object calls to their specialized versions.
-    -->
+    Rule #2: substitute all applications of native objects with
+    applications of their synthetic counterparts.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
   <xsl:template match="/program/objects//o">
@@ -37,7 +38,7 @@ SOFTWARE.
           <xsl:value-of select="$name"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:for-each select="/program/speco/obj/version[@name=$name and @spec=$spec]/o">
+      <xsl:for-each select="/program/speco/version[@name=$name and @spec=$spec]/o">
         <xsl:attribute name="base">
           <xsl:value-of select="@name"/>
         </xsl:attribute>
