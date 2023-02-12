@@ -86,9 +86,6 @@ class SpecoTest {
 
     /**
      * Integration test for conversation from EO.
-     * @todo #32:90min fix disabled convertsFromEo tests for a group with matrices,
-     *  the reason is that only one parameter is processed for specialization,
-     *  but it is necessary to process all.
      * @param pack Pack this test data
      * @param temp Temporary test dir
      * @throws IOException Iff IO error
