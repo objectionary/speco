@@ -38,7 +38,7 @@ SOFTWARE.
           <xsl:value-of select="$name"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:for-each select="/program/speco/version[@name=$name and @spec=$spec]/o">
+      <xsl:for-each select="/program/speco/version[contains(@name, $name) and contains(@spec, $spec)]/o">
         <xsl:attribute name="base">
           <xsl:value-of select="@name"/>
         </xsl:attribute>
