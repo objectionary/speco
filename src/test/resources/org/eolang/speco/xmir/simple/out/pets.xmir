@@ -114,31 +114,31 @@
          <o base="so" line="30" name="@" pos="2" ref="29"/>
       </o>
       <o abstract="" line="20" name="some_object_spec_x_cat" pos="0">
-         <o line="20" name="x" pos="1" spec="cat"/>
-         <o base=".talk" line="21" name="heh" pos="3" spec="cat">
+         <o line="20" name="x" pos="1"/>
+         <o base=".talk" line="21" name="heh" pos="3">
             <o base="x" line="21" pos="2" ref="20"/>
          </o>
-         <o base=".move" line="22" name="@" pos="3" spec="cat">
+         <o base=".move" line="22" name="@" pos="3">
             <o base="x" line="22" pos="2" ref="20"/>
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
       </o>
       <o abstract="" line="20" name="some_object_spec_x_dog" pos="0">
-         <o line="20" name="x" pos="1" spec="dog"/>
-         <o base=".talk" line="21" name="heh" pos="3" spec="dog">
+         <o line="20" name="x" pos="1"/>
+         <o base=".talk" line="21" name="heh" pos="3">
             <o base="x" line="21" pos="2" ref="20"/>
          </o>
-         <o base=".move" line="22" name="@" pos="3" spec="dog">
+         <o base=".move" line="22" name="@" pos="3">
             <o base="x" line="22" pos="2" ref="20"/>
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
       </o>
       <o abstract="" line="24" name="other_object_spec_x_dog" pos="0">
-         <o line="24" name="x" pos="1" spec="dog"/>
-         <o base=".talk" line="25" name="@" pos="3" spec="dog">
+         <o line="24" name="x" pos="1"/>
+         <o base=".talk" line="25" name="@" pos="3">
             <o base="x" line="25" pos="2" ref="24"/>
          </o>
-         <o base=".smth" line="26" name="hih" pos="3" spec="dog">
+         <o base=".smth" line="26" name="hih" pos="3">
             <o base="x" line="26" pos="2" ref="24"/>
          </o>
       </o>
@@ -160,11 +160,11 @@
       <obj fqn="some_object.x">
          <version name="some_object" spec="cat" var="x">
             <o abstract="" line="20" name="some_object_spec_x_cat" pos="0">
-               <o line="20" name="x" pos="1" spec="cat"/>
-               <o base=".talk" line="21" name="heh" pos="3" spec="cat">
+               <o line="20" name="x" pos="1"/>
+               <o base=".talk" line="21" name="heh" pos="3">
                   <o base="x" line="21" pos="2" ref="20"/>
                </o>
-               <o base=".move" line="22" name="@" pos="3" spec="cat">
+               <o base=".move" line="22" name="@" pos="3">
                   <o base="x" line="22" pos="2" ref="20"/>
                   <o base="string" data="string" line="22" pos="9">left</o>
                </o>
@@ -172,11 +172,11 @@
          </version>
          <version name="some_object" spec="dog" var="x">
             <o abstract="" line="20" name="some_object_spec_x_dog" pos="0">
-               <o line="20" name="x" pos="1" spec="dog"/>
-               <o base=".talk" line="21" name="heh" pos="3" spec="dog">
+               <o line="20" name="x" pos="1"/>
+               <o base=".talk" line="21" name="heh" pos="3">
                   <o base="x" line="21" pos="2" ref="20"/>
                </o>
-               <o base=".move" line="22" name="@" pos="3" spec="dog">
+               <o base=".move" line="22" name="@" pos="3">
                   <o base="x" line="22" pos="2" ref="20"/>
                   <o base="string" data="string" line="22" pos="9">left</o>
                </o>
@@ -186,11 +186,11 @@
       <obj fqn="other_object.x">
          <version name="other_object" spec="dog" var="x">
             <o abstract="" line="24" name="other_object_spec_x_dog" pos="0">
-               <o line="24" name="x" pos="1" spec="dog"/>
-               <o base=".talk" line="25" name="@" pos="3" spec="dog">
+               <o line="24" name="x" pos="1"/>
+               <o base=".talk" line="25" name="@" pos="3">
                   <o base="x" line="25" pos="2" ref="24"/>
                </o>
-               <o base=".smth" line="26" name="hih" pos="3" spec="dog">
+               <o base=".smth" line="26" name="hih" pos="3">
                   <o base="x" line="26" pos="2" ref="24"/>
                </o>
             </o>
