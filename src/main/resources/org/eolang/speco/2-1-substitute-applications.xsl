@@ -26,6 +26,10 @@ SOFTWARE.
   <!--
     Rule #2: substitute all applications of native objects with
     applications of their synthetic counterparts.
+    @todo #47:30min add unit-test for transformation,
+     in which the input will be xmir with applications with polymorphic objects and
+     the expected result will be the same xmir with an applications with their
+     specialized versions.
   -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
