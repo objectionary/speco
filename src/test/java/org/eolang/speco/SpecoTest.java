@@ -153,7 +153,7 @@ class SpecoTest {
     }
 
     /**
-    * Compiles EO program.
+    * Compiles and dataize EO program.
     *
     * @param target Path to the dir with target EO program
     * @return List of lines in output
