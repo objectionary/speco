@@ -23,6 +23,12 @@
  */
 package org.eolang.speco;
 
+import com.jcabi.xml.XMLDocument;
+import com.yegor256.xsline.Shift;
+import com.yegor256.xsline.StClasspath;
+import com.yegor256.xsline.TrDefault;
+import com.yegor256.xsline.Train;
+import com.yegor256.xsline.Xsline;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -36,7 +42,6 @@ import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -127,6 +132,29 @@ class SpecoTest {
             SpecoTest.dataize(SpecoTest.run(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
+            )
+        );
+    }
+
+    /**
+     * Integration test for conversation from EO.
+     * @param pack Pack with test data
+     * @throws IOException Iff IO error
+     */
+    @Tag("fast")
+    @ParameterizedTest
+    @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
+    public void applyTransToXmir(final String pack) throws IOException {
+        final Map<String, Object> script = new Yaml().load(pack);
+        final Train<Shift> train = new TrDefault<Shift>()
+            .with(new StClasspath(script.get("xsl").toString()));
+        MatcherAssert.assertThat(
+            "Unexpected transformation result",
+            new Xsline(train).pass(
+                Speco.getParsedXml(new XMLDocument(script.get("before").toString()))
+            ),
+            Matchers.equalTo(
+                new XMLDocument(script.get("after").toString())
             )
         );
     }

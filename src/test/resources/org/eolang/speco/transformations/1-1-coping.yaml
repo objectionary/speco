@@ -1,0 +1,155 @@
+xsl: /org/eolang/speco/1-1-coping.xsl
+
+before: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <program>
+     <listing>[] &gt; first
+  [] &gt; boom
+  QQ.io.stdout "First!" &gt; @
+
+  [] &gt; second
+  [] &gt; boom
+  QQ.io.stdout "Second!" &gt; @
+
+  [x] &gt; foo
+  x.boom &gt; @
+
+  [] &gt; app
+  seq &gt; @
+  foo first
+  foo second
+  </listing>
+     <errors/>
+     <sheets>
+        <sheet>add-refs</sheet>
+        <sheet>expand-aliases</sheet>
+        <sheet>resolve-aliases</sheet>
+     </sheets>
+     <objects>
+        <o abstract="" line="1" name="first" pos="0">
+           <o abstract="" line="2" name="boom" pos="2">
+              <o base=".stdout" line="3" name="@" pos="9">
+                 <o base=".io" line="3" pos="6">
+                    <o base="QQ" line="3" pos="4"/>
+                 </o>
+                 <o base="string" data="string" line="3" pos="17">First!</o>
+              </o>
+           </o>
+        </o>
+        <o abstract="" line="5" name="second" pos="0">
+           <o abstract="" line="6" name="boom" pos="2">
+              <o base=".stdout" line="7" name="@" pos="9">
+                 <o base=".io" line="7" pos="6">
+                    <o base="QQ" line="7" pos="4"/>
+                 </o>
+                 <o base="string" data="string" line="7" pos="17">Second!</o>
+              </o>
+           </o>
+        </o>
+        <o abstract="" line="9" name="foo" pos="0">
+           <o line="9" name="x" pos="1"/>
+           <o base=".boom" line="10" name="@" pos="3">
+              <o base="x" line="10" pos="2" ref="9"/>
+           </o>
+        </o>
+        <o abstract="" line="12" name="app" pos="0">
+           <o base="seq" line="13" name="@" pos="2">
+              <o base="foo" line="14" pos="4" ref="9">
+                 <o base="first" line="14" pos="8" ref="1"/>
+              </o>
+              <o base="foo" line="15" pos="4" ref="9">
+                 <o base="second" line="15" pos="8" ref="5"/>
+              </o>
+           </o>
+        </o>
+     </objects>
+     <aoi>
+        <obj fqn="foo.x">
+           <inferred>
+              <obj fqn="first"/>
+              <obj fqn="second"/>
+           </inferred>
+        </obj>
+     </aoi>
+  </program>
+
+after: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <program>
+     <listing>[] &gt; first
+  [] &gt; boom
+  QQ.io.stdout "First!" &gt; @
+
+  [] &gt; second
+  [] &gt; boom
+  QQ.io.stdout "Second!" &gt; @
+
+  [x] &gt; foo
+  x.boom &gt; @
+
+  [] &gt; app
+  seq &gt; @
+  foo first
+  foo second
+  </listing>
+     <errors/>
+     <sheets>
+        <sheet>add-refs</sheet>
+        <sheet>expand-aliases</sheet>
+        <sheet>resolve-aliases</sheet>
+     </sheets>
+     <objects>
+        <o abstract="" line="1" name="first" pos="0">
+           <o abstract="" line="2" name="boom" pos="2">
+              <o base=".stdout" line="3" name="@" pos="9">
+                 <o base=".io" line="3" pos="6">
+                    <o base="QQ" line="3" pos="4"/>
+                 </o>
+                 <o base="string" data="string" line="3" pos="17">First!</o>
+              </o>
+           </o>
+        </o>
+        <o abstract="" line="5" name="second" pos="0">
+           <o abstract="" line="6" name="boom" pos="2">
+              <o base=".stdout" line="7" name="@" pos="9">
+                 <o base=".io" line="7" pos="6">
+                    <o base="QQ" line="7" pos="4"/>
+                 </o>
+                 <o base="string" data="string" line="7" pos="17">Second!</o>
+              </o>
+           </o>
+        </o>
+        <o abstract="" line="9" name="foo" pos="0">
+           <o line="9" name="x" pos="1"/>
+           <o base=".boom" line="10" name="@" pos="3">
+              <o base="x" line="10" pos="2" ref="9"/>
+           </o>
+        </o>
+        <o abstract="" line="12" name="app" pos="0">
+           <o base="seq" line="13" name="@" pos="2">
+              <o base="foo" line="14" pos="4" ref="9">
+                 <o base="first" line="14" pos="8" ref="1"/>
+              </o>
+              <o base="foo" line="15" pos="4" ref="9">
+                 <o base="second" line="15" pos="8" ref="5"/>
+              </o>
+           </o>
+        </o>
+     </objects>
+     <aoi>
+        <obj fqn="foo.x">
+           <inferred>
+              <obj fqn="first"/>
+              <obj fqn="second"/>
+           </inferred>
+        </obj>
+     </aoi>
+     <speco>
+        <obj fqn="foo.x">
+           <inferred>
+              <obj fqn="first"/>
+              <obj fqn="second"/>
+           </inferred>
+        </obj>
+     </speco>
+  </program>

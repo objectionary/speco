@@ -125,7 +125,7 @@ final class Speco {
      * @param input XML input
      * @return XML
      */
-    private static XML getParsedXml(final XML input) {
+    public static XML getParsedXml(final XML input) {
         return new Xsline(
             new TrDefault<Shift>().with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
         ).pass(input);
