@@ -24,10 +24,18 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-     Coping of <aoi></aoi> node.
-     -->
+    Rule #1: extend the program by creating specialized object
+    based on AOI.
+    @todo #47:30min add unit-test for transformation,
+     in which the input will be xmir without a <speco/> section and
+     the expected result will be the same xmir with a <speco/> section
+     duplicating <aoi/>.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
+  <!--
+     Recursively copies the <aoi/> node to the new <speco/> node.
+  -->
   <xsl:template match="program">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>

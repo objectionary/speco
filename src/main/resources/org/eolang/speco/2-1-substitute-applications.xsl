@@ -24,26 +24,44 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Simple specialization.
-    -->
+    Rule #2: substitute all applications of native objects with
+    applications of their synthetic counterparts.
+    @todo #47:30min add unit-test for transformation,
+     in which the input will be xmir with applications with polymorphic objects and
+     the expected result will be the same xmir with an applications with their
+     specialized versions.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-  <xsl:template match="version/o/@name">
-    <xsl:attribute name="name">
-      <xsl:value-of select="concat(../../@name, '_spec_', ../../@var, '_', ../../@spec)"/>
-    </xsl:attribute>
-  </xsl:template>
-  <xsl:template match="version/o/o">
+  <!--
+    Checks the appropriate specialized version in the lines with the application.
+  -->
+  <xsl:template match="/program/objects//o">
+    <xsl:variable name="name" select="@base"/>
+    <xsl:variable name="spec">
+      <xsl:for-each select="o">
+        <xsl:copy>
+          <xsl:value-of select="concat(@base, '_')"/>
+        </xsl:copy>
+      </xsl:for-each>
+    </xsl:variable>
     <xsl:copy>
-      <xsl:attribute name="spec">
-        <xsl:value-of select="../../@spec"/>
-      </xsl:attribute>
-      <xsl:apply-templates select="@*|node()"/>
+      <xsl:if test="@base">
+        <xsl:attribute name="base">
+          <xsl:value-of select="$name"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:for-each select="/program/speco/version[@name=$name and concat(@spec, '_')=$spec]/o">
+        <xsl:attribute name="base">
+          <xsl:value-of select="@name"/>
+        </xsl:attribute>
+      </xsl:for-each>
+      <xsl:apply-templates select="@* except @base |node()"/>
     </xsl:copy>
   </xsl:template>
-  <xsl:template match="@* | node()">
+  <xsl:template match="@*|node()">
     <xsl:copy>
-      <xsl:apply-templates select="@* |node()"/>
+      <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>

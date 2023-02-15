@@ -60,14 +60,14 @@
          </o>
       </o>
       <o abstract="" line="9" name="foo_spec_x_first" pos="0">
-         <o line="9" name="x" pos="1" spec="first"/>
-         <o base=".boom" line="10" name="@" pos="3" spec="first">
+         <o line="9" name="x" pos="1"/>
+         <o base=".boom" line="10" name="@" pos="3">
             <o base="x" line="10" pos="2" ref="9"/>
          </o>
       </o>
       <o abstract="" line="9" name="foo_spec_x_second" pos="0">
-         <o line="9" name="x" pos="1" spec="second"/>
-         <o base=".boom" line="10" name="@" pos="3" spec="second">
+         <o line="9" name="x" pos="1"/>
+         <o base=".boom" line="10" name="@" pos="3">
             <o base="x" line="10" pos="2" ref="9"/>
          </o>
       </o>
@@ -81,23 +81,21 @@
       </obj>
    </aoi>
    <speco>
-      <obj fqn="foo.x">
-         <version name="foo" spec="first" var="x">
-            <o abstract="" line="9" name="foo_spec_x_first" pos="0">
-               <o line="9" name="x" pos="1" spec="first"/>
-               <o base=".boom" line="10" name="@" pos="3" spec="first">
-                  <o base="x" line="10" pos="2" ref="9"/>
-               </o>
+      <version name="foo" spec="first" var="x">
+         <o abstract="" line="9" name="foo_spec_x_first" pos="0">
+            <o line="9" name="x" pos="1"/>
+            <o base=".boom" line="10" name="@" pos="3">
+               <o base="x" line="10" pos="2" ref="9"/>
             </o>
-         </version>
-         <version name="foo" spec="second" var="x">
-            <o abstract="" line="9" name="foo_spec_x_second" pos="0">
-               <o line="9" name="x" pos="1" spec="second"/>
-               <o base=".boom" line="10" name="@" pos="3" spec="second">
-                  <o base="x" line="10" pos="2" ref="9"/>
-               </o>
+         </o>
+      </version>
+      <version name="foo" spec="second" var="x">
+         <o abstract="" line="9" name="foo_spec_x_second" pos="0">
+            <o line="9" name="x" pos="1"/>
+            <o base=".boom" line="10" name="@" pos="3">
+               <o base="x" line="10" pos="2" ref="9"/>
             </o>
-         </version>
-      </obj>
+         </o>
+      </version>
    </speco>
 </program>

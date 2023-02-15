@@ -86,15 +86,12 @@ class SpecoTest {
 
     /**
      * Integration test for conversation from EO.
-     * @todo #32:90min fix disabled convertsFromEo tests for a group with matrices,
-     *  the reason is that only one parameter is processed for specialization,
-     *  but it is necessary to process all.
      * @param pack Pack this test data
      * @param temp Temporary test dir
      * @throws IOException Iff IO error
      */
-    @Disabled
     @Tag("fast")
+    @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     public void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
@@ -157,7 +154,7 @@ class SpecoTest {
     }
 
     /**
-    * Compiles EO program.
+    * Compiles and dataize EO program.
     *
     * @param target Path to the dir with target EO program
     * @return List of lines in output

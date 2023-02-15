@@ -113,11 +113,9 @@ final class Speco {
     public static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
             .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-preparation.xsl")))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/1-3-simple-transformation.xsl")))
-            .with(new StEndless(new StClasspath("/org/eolang/speco/1-4-formatting.xsl")))
-            .with(new StClasspath("/org/eolang/speco/2-1-to-objects.xsl"))
-            .with(new StClasspath("/org/eolang/speco/2-2-calls-replacement.xsl"));
+            .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-specialization.xsl")))
+            .with(new StClasspath("/org/eolang/speco/1-3-extension.xsl"))
+            .with(new StClasspath("/org/eolang/speco/2-1-substitute-applications.xsl"));
         return new Xsline(train).pass(xml);
     }
 

@@ -24,30 +24,26 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Replaces object calls to their specialized versions.
-    -->
+    Rule #1: extend the program by creating specialized object
+    based on AOI.
+    @todo #47:30min add unit-test for transformation,
+     in which the input will be xmir with a specialized objects in <speco/> section and
+     the expected result will be the same xmir with a specialized object in <objects/> section.
+  -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
-  <xsl:template match="/program/objects//o">
-    <xsl:variable name="name" select="@base"/>
-    <xsl:variable name="spec" select="o[1]/@base"/>
+  <!--
+    Copies specialized versions to the <objects/> node.
+  -->
+  <xsl:template match="/program/objects">
     <xsl:copy>
-      <xsl:if test="@base">
-        <xsl:attribute name="base">
-          <xsl:value-of select="$name"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:for-each select="/program/speco/obj/version[@name=$name and @spec=$spec]/o">
-        <xsl:attribute name="base">
-          <xsl:value-of select="@name"/>
-        </xsl:attribute>
-      </xsl:for-each>
-      <xsl:apply-templates select="@* except @base |node()"/>
+      <xsl:apply-templates select="@*|node()"/>
+      <xsl:copy-of select="/program/speco/version/o"/>
     </xsl:copy>
   </xsl:template>
-  <xsl:template match="@* | node()">
+  <xsl:template match="@*|node()">
     <xsl:copy>
-      <xsl:apply-templates select="@* |node()"/>
+      <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
 </xsl:stylesheet>
