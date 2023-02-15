@@ -135,29 +135,9 @@ class SpecoTest {
             )
         );
     }
-    /**
-     * Problems:
-     * 1. Process list of transformations or not?
-     * 2. How to handle transformation mode?
-     * 3. How to design dirs structure?
-     *
-     * Idea:
-     * packs/ -- in eo
-     * transformations/ -- in xmir
-     * rules/ -- in eo
-     * xmir/ -- in xmir (maybe rename to integration/)
-     *
-     * Or
-     * unit/
-     *  transformations/
-     *  rules/
-     * integration/
-     *  eo/ -- old packs/
-     *  xmir/
-     */
 
     /**
-     * Unit tests for transformations
+     * Unit tests for transformations.
      * @param pack Pack with test data
      * @throws IOException Iff IO error
      */
