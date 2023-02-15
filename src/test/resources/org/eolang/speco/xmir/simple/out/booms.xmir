@@ -31,7 +31,7 @@
                </o>
                <o base="string" data="string" line="3" pos="17">First!</o>
             </o>
-         </o>
+         </o>a
       </o>
       <o abstract="" line="5" name="second" pos="0">
          <o abstract="" line="6" name="boom" pos="2">

@@ -119,7 +119,8 @@ final class Speco {
             .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
             .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-specialization.xsl")))
             .with(new StClasspath("/org/eolang/speco/1-3-extension.xsl"))
-            .with(new StClasspath("/org/eolang/speco/2-1-substitute-applications.xsl"));
+            .with(new StClasspath("/org/eolang/speco/2-1-substitute-applications.xsl"))
+            .with(new StClasspath("/org/eolang/speco/3-1-add-with.xsl"));
         return new Xsline(train).pass(xml);
     }
 
