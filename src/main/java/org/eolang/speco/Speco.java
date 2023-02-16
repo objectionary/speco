@@ -91,7 +91,11 @@ final class Speco {
         }
         for (final Path path : Files.newDirectoryStream(source)) {
             final String transformed = Speco.applyTrain(
-                Speco.getParsedXml(new XMLDocument(Files.readString(path)))
+                new Xsline(
+                    new TrDefault<Shift>().with(
+                        new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
+                    )
+                ).pass(new XMLDocument(Files.readString(path)))
             ).toString();
             final String after;
             if (this.eolang) {
@@ -117,18 +121,6 @@ final class Speco {
             .with(new StClasspath("/org/eolang/speco/1-3-extension.xsl"))
             .with(new StClasspath("/org/eolang/speco/2-1-substitute-applications.xsl"));
         return new Xsline(train).pass(xml);
-    }
-
-    /**
-     * Parses EO-xmir documents.
-     *
-     * @param input XML input
-     * @return XML
-     */
-    public static XML getParsedXml(final XML input) {
-        return new Xsline(
-            new TrDefault<Shift>().with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
-        ).pass(input);
     }
 
     /**

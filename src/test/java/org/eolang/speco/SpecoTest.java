@@ -147,12 +147,11 @@ class SpecoTest {
     public void applyTransToXmir(final String pack) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
         final Train<Shift> train = new TrDefault<Shift>()
+            .with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
             .with(new StClasspath(script.get("xsl").toString()));
         MatcherAssert.assertThat(
             "Unexpected transformation result",
-            new Xsline(train).pass(
-                Speco.getParsedXml(new XMLDocument(script.get("before").toString()))
-            ),
+            new Xsline(train).pass(new XMLDocument(script.get("before").toString())),
             Matchers.equalTo(
                 new XMLDocument(script.get("after").toString())
             )
