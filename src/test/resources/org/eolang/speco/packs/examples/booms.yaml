@@ -28,14 +28,14 @@ after: |
       .io
       .stdout > @
         "First!\n"
-
+  
   [] > second
     [] > boom
       QQ
       .io
       .stdout > @
         "Second!\n"
-
+  
   [x] > foo
     x
     .boom > @
@@ -52,7 +52,7 @@ after: |
         first
       foo_spec_x_second
         second
-
+  
   [x] > foo_spec_x_first
     x
     .boom > @
