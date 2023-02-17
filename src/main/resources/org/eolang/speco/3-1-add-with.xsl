@@ -33,9 +33,10 @@ SOFTWARE.
   -->
   <xsl:template match="/program/objects/o">
     <xsl:variable name="name" select="@name"/>
+    <xsl:variable name="spec" select="@spec"/>
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
-      <xsl:for-each select="/program/speco/version[@name=$name]/o">
+      <xsl:for-each select="/program/speco/version[@name=$name or @name=$spec]/o">
         <xsl:element name="o">
           <xsl:attribute name="abstract"/>
           <xsl:attribute name="name">
