@@ -122,7 +122,7 @@ after: |
       foo_spec_x_second > @
         x
 
-result: |-
+result: |
   -
   1
   -
