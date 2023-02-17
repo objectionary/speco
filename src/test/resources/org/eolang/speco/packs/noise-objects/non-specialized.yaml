@@ -83,6 +83,12 @@ after: |
     seq > @
       x
       .bar
+    [x] > with_first
+      foo_spec_x_first > @
+        x
+    [x] > with_second
+      foo_spec_x_second > @
+        x
 
   [] > app
     seq > @
@@ -98,11 +104,23 @@ after: |
     seq > @
       x
       .bar
+    [x] > with_first
+      foo_spec_x_first > @
+        x
+    [x] > with_second
+      foo_spec_x_second > @
+        x
 
   [x] > foo_spec_x_second
     seq > @
       x
       .bar
+    [x] > with_first
+      foo_spec_x_first > @
+        x
+    [x] > with_second
+      foo_spec_x_second > @
+        x
 
 result: |
   -

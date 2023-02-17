@@ -93,6 +93,18 @@
             <o base="x" line="22" pos="2" ref="20"/>
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
+         <o abstract="" name="with_cat">
+            <o name="x"/>
+            <o base="some_object_spec_x_cat" name="@">
+               <o base="x"/>
+            </o>
+         </o>
+         <o abstract="" name="with_dog">
+            <o name="x"/>
+            <o base="some_object_spec_x_dog" name="@">
+               <o base="x"/>
+            </o>
+         </o>
       </o>
       <o abstract="" line="24" name="other_object" pos="0">
          <o line="24" name="x" pos="1"/>
@@ -101,6 +113,12 @@
          </o>
          <o base=".smth" line="26" name="hih" pos="3">
             <o base="x" line="26" pos="2" ref="24"/>
+         </o>
+         <o abstract="" name="with_dog">
+            <o name="x"/>
+            <o base="other_object_spec_x_dog" name="@">
+               <o base="x"/>
+            </o>
          </o>
       </o>
       <o abstract="" line="28" name="app" pos="0">
@@ -126,6 +144,18 @@
             <o base="x" line="22" pos="2" ref="20"/>
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
+         <o abstract="" name="with_cat">
+            <o name="x"/>
+            <o base="some_object_spec_x_cat" name="@">
+               <o base="x"/>
+            </o>
+         </o>
+         <o abstract="" name="with_dog">
+            <o name="x"/>
+            <o base="some_object_spec_x_dog" name="@">
+               <o base="x"/>
+            </o>
+         </o>
       </o>
       <o abstract=""
           line="20"
@@ -140,6 +170,18 @@
             <o base="x" line="22" pos="2" ref="20"/>
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
+         <o abstract="" name="with_cat">
+            <o name="x"/>
+            <o base="some_object_spec_x_cat" name="@">
+               <o base="x"/>
+            </o>
+         </o>
+         <o abstract="" name="with_dog">
+            <o name="x"/>
+            <o base="some_object_spec_x_dog" name="@">
+               <o base="x"/>
+            </o>
+         </o>
       </o>
       <o abstract=""
           line="24"
@@ -152,6 +194,12 @@
          </o>
          <o base=".smth" line="26" name="hih" pos="3">
             <o base="x" line="26" pos="2" ref="24"/>
+         </o>
+         <o abstract="" name="with_dog">
+            <o name="x"/>
+            <o base="other_object_spec_x_dog" name="@">
+               <o base="x"/>
+            </o>
          </o>
       </o>
    </objects>

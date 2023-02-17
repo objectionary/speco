@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,6 +42,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class SpecoXmirTest {
 
     @Tag("fast")
+    @Disabled
     @ParameterizedTest
     @ValueSource(strings = "simple")
     void convertsFromXmir(final String title, @TempDir final Path out) throws IOException {

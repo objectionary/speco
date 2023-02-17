@@ -5,21 +5,21 @@ before: |
       .io
       .stdout > @
         "1\n"
-  
+
   [] > second
     [] > bar
       QQ
       .io
       .stdout > @
         "2\n"
-  
+
   [] > third
     [] > bar
       QQ
       .io
       .stdout > @
         "3\n"
-  
+
   [x y z] > foo
     seq > @
       x
@@ -28,7 +28,7 @@ before: |
       .bar
       z
       .bar
-  
+
   [] > app
     seq > @
       foo
@@ -55,21 +55,21 @@ after: |
       .io
       .stdout > @
         "1\n"
-  
+
   [] > second
     [] > bar
       QQ
       .io
       .stdout > @
         "2\n"
-  
+
   [] > third
     [] > bar
       QQ
       .io
       .stdout > @
         "3\n"
-  
+
   [x y z] > foo
     seq > @
       x
@@ -78,7 +78,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [] > app
     seq > @
       foo_spec_x_first_spec_y_first_spec_z_first
@@ -97,7 +232,7 @@ after: |
         third
         second
         third
-  
+
   [x y z] > foo_spec_x_first_spec_y_first_spec_z_first
     seq > @
       x
@@ -106,7 +241,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_first_spec_z_second
     seq > @
       x
@@ -115,7 +385,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_first_spec_z_third
     seq > @
       x
@@ -124,7 +529,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_second_spec_z_first
     seq > @
       x
@@ -133,7 +673,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_second_spec_z_second
     seq > @
       x
@@ -142,7 +817,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_second_spec_z_third
     seq > @
       x
@@ -151,7 +961,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_third_spec_z_first
     seq > @
       x
@@ -160,7 +1105,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_third_spec_z_second
     seq > @
       x
@@ -169,7 +1249,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_first_spec_y_third_spec_z_third
     seq > @
       x
@@ -178,7 +1393,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_first_spec_z_first
     seq > @
       x
@@ -187,7 +1537,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_first_spec_z_second
     seq > @
       x
@@ -196,7 +1681,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_first_spec_z_third
     seq > @
       x
@@ -205,7 +1825,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_second_spec_z_first
     seq > @
       x
@@ -214,7 +1969,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_second_spec_z_second
     seq > @
       x
@@ -223,7 +2113,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_second_spec_z_third
     seq > @
       x
@@ -232,7 +2257,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_third_spec_z_first
     seq > @
       x
@@ -241,7 +2401,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_third_spec_z_second
     seq > @
       x
@@ -250,7 +2545,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_second_spec_y_third_spec_z_third
     seq > @
       x
@@ -259,7 +2689,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_first_spec_z_first
     seq > @
       x
@@ -268,7 +2833,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_first_spec_z_second
     seq > @
       x
@@ -277,7 +2977,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_first_spec_z_third
     seq > @
       x
@@ -286,7 +3121,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_second_spec_z_first
     seq > @
       x
@@ -295,7 +3265,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_second_spec_z_second
     seq > @
       x
@@ -304,7 +3409,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_second_spec_z_third
     seq > @
       x
@@ -313,7 +3553,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_third_spec_z_first
     seq > @
       x
@@ -322,7 +3697,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_third_spec_z_second
     seq > @
       x
@@ -331,7 +3841,142 @@ after: |
       .bar
       z
       .bar
-  
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+
   [x y z] > foo_spec_x_third_spec_y_third_spec_z_third
     seq > @
       x
@@ -340,6 +3985,141 @@ after: |
       .bar
       z
       .bar
+    [x y z] > with_first_first_first
+      foo_spec_x_first_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_first_second
+      foo_spec_x_first_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_first_third
+      foo_spec_x_first_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_second_first
+      foo_spec_x_first_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_second_second
+      foo_spec_x_first_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_second_third
+      foo_spec_x_first_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_first_third_first
+      foo_spec_x_first_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_first_third_second
+      foo_spec_x_first_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_first_third_third
+      foo_spec_x_first_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_first_first
+      foo_spec_x_second_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_first_second
+      foo_spec_x_second_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_first_third
+      foo_spec_x_second_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_second_first
+      foo_spec_x_second_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_second_second
+      foo_spec_x_second_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_second_third
+      foo_spec_x_second_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_second_third_first
+      foo_spec_x_second_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_second_third_second
+      foo_spec_x_second_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_second_third_third
+      foo_spec_x_second_spec_y_third_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_first_first
+      foo_spec_x_third_spec_y_first_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_first_second
+      foo_spec_x_third_spec_y_first_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_first_third
+      foo_spec_x_third_spec_y_first_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_second_first
+      foo_spec_x_third_spec_y_second_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_second_second
+      foo_spec_x_third_spec_y_second_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_second_third
+      foo_spec_x_third_spec_y_second_spec_z_third > @
+        x
+        y
+        z
+    [x y z] > with_third_third_first
+      foo_spec_x_third_spec_y_third_spec_z_first > @
+        x
+        y
+        z
+    [x y z] > with_third_third_second
+      foo_spec_x_third_spec_y_third_spec_z_second > @
+        x
+        y
+        z
+    [x y z] > with_third_third_third
+      foo_spec_x_third_spec_y_third_spec_z_third > @
+        x
+        y
+        z
 
 result: |
   1

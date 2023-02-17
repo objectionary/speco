@@ -70,6 +70,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [] > app
     seq > @
@@ -92,6 +128,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_first_spec_y_second
     seq > @
@@ -99,6 +171,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_first_spec_y_third
     seq > @
@@ -106,6 +214,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_second_spec_y_first
     seq > @
@@ -113,6 +257,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_second_spec_y_second
     seq > @
@@ -120,6 +300,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_second_spec_y_third
     seq > @
@@ -127,6 +343,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_third_spec_y_first
     seq > @
@@ -134,6 +386,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_third_spec_y_second
     seq > @
@@ -141,6 +429,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
   
   [x y] > foo_spec_x_third_spec_y_third
     seq > @
@@ -148,6 +472,42 @@ after: |
       .bar
       y
       .bar
+    [x y] > with_first_first
+      foo_spec_x_first_spec_y_first > @
+        x
+        y
+    [x y] > with_first_second
+      foo_spec_x_first_spec_y_second > @
+        x
+        y
+    [x y] > with_first_third
+      foo_spec_x_first_spec_y_third > @
+        x
+        y
+    [x y] > with_second_first
+      foo_spec_x_second_spec_y_first > @
+        x
+        y
+    [x y] > with_second_second
+      foo_spec_x_second_spec_y_second > @
+        x
+        y
+    [x y] > with_second_third
+      foo_spec_x_second_spec_y_third > @
+        x
+        y
+    [x y] > with_third_first
+      foo_spec_x_third_spec_y_first > @
+        x
+        y
+    [x y] > with_third_second
+      foo_spec_x_third_spec_y_second > @
+        x
+        y
+    [x y] > with_third_third
+      foo_spec_x_third_spec_y_third > @
+        x
+        y
 
 result: |
   1

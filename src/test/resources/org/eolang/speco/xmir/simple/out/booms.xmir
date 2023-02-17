@@ -48,6 +48,18 @@
          <o base=".boom" line="10" name="@" pos="3">
             <o base="x" line="10" pos="2" ref="9"/>
          </o>
+         <o abstract="" name="with_first">
+            <o name="x"/>
+            <o base="foo_spec_x_first" name="@">
+               <o base="x"/>
+            </o>
+         </o>
+         <o abstract="" name="with_second">
+            <o name="x"/>
+            <o base="foo_spec_x_second" name="@">
+               <o base="x"/>
+            </o>
+         </o>
       </o>
       <o abstract="" line="12" name="app" pos="0">
          <o base="seq" line="13" name="@" pos="2">
@@ -68,6 +80,18 @@
          <o base=".boom" line="10" name="@" pos="3">
             <o base="x" line="10" pos="2" ref="9"/>
          </o>
+         <o abstract="" name="with_first">
+            <o name="x"/>
+            <o base="foo_spec_x_first" name="@">
+               <o base="x"/>
+            </o>
+         </o>
+         <o abstract="" name="with_second">
+            <o name="x"/>
+            <o base="foo_spec_x_second" name="@">
+               <o base="x"/>
+            </o>
+         </o>
       </o>
       <o abstract=""
           line="9"
@@ -77,6 +101,18 @@
          <o line="9" name="x" pos="1"/>
          <o base=".boom" line="10" name="@" pos="3">
             <o base="x" line="10" pos="2" ref="9"/>
+         </o>
+         <o abstract="" name="with_first">
+            <o name="x"/>
+            <o base="foo_spec_x_first" name="@">
+               <o base="x"/>
+            </o>
+         </o>
+         <o abstract="" name="with_second">
+            <o name="x"/>
+            <o base="foo_spec_x_second" name="@">
+               <o base="x"/>
+            </o>
          </o>
       </o>
    </objects>

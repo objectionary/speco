@@ -59,6 +59,12 @@ after: |
   [x] > some_object
     x
     .talk > @
+    [x] > with_cat
+      some_object_spec_x_cat > @
+        x
+    [x] > with_dog
+      some_object_spec_x_dog > @
+        x
   
   [x] > other_object
     seq > @
@@ -66,6 +72,9 @@ after: |
       .talk
       x
       .smth
+    [x] > with_dog
+      other_object_spec_x_dog > @
+        x
   
   [] > app
     seq > @
@@ -77,10 +86,22 @@ after: |
   [x] > some_object_spec_x_cat
     x
     .talk > @
+    [x] > with_cat
+      some_object_spec_x_cat > @
+        x
+    [x] > with_dog
+      some_object_spec_x_dog > @
+        x
   
   [x] > some_object_spec_x_dog
     x
     .talk > @
+    [x] > with_cat
+      some_object_spec_x_cat > @
+        x
+    [x] > with_dog
+      some_object_spec_x_dog > @
+        x
   
   [x] > other_object_spec_x_dog
     seq > @
@@ -88,6 +109,9 @@ after: |
       .talk
       x
       .smth
+    [x] > with_dog
+      other_object_spec_x_dog > @
+        x
 
 result: |
   Meow!
