@@ -1,12 +1,6 @@
 ---
 name: mvn
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: push
 jobs:
   mvn:
     runs-on: ${{ matrix.os }}
