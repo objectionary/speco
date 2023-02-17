@@ -63,7 +63,6 @@ class SpecoEoTest {
      * @throws IOException Iff IO error
      */
     @Tag("fast")
-    @Disabled
     @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
