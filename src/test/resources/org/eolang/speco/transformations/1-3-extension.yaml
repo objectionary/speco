@@ -1,0 +1,69 @@
+xsl: /org/eolang/speco/1-3-extension.xsl
+
+before: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <program>
+     <listing/>
+     <errors/>
+     <sheets/>
+     <objects/>
+     <aoi/>
+     <speco>
+        <version name="foo" spec="first" var="x">
+           <o abstract="" line="9" name="foo_spec_x_first" pos="0">
+              <o line="9" name="x" pos="1"/>
+              <o base=".boom" line="10" name="@" pos="3">
+                 <o base="x" line="10" pos="2" ref="9"/>
+              </o>
+           </o>
+        </version>
+        <version name="foo" spec="second" var="x">
+           <o abstract="" line="9" name="foo_spec_x_second" pos="0">
+              <o line="9" name="x" pos="1"/>
+              <o base=".boom" line="10" name="@" pos="3">
+                 <o base="x" line="10" pos="2" ref="9"/>
+              </o>
+           </o>
+        </version>
+     </speco>
+  </program>
+after: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <program>
+     <listing/>
+     <errors/>
+     <sheets/>
+     <objects>
+        <o abstract="" line="9" name="foo_spec_x_first" pos="0">
+            <o line="9" name="x" pos="1"/>
+            <o base=".boom" line="10" name="@" pos="3">
+               <o base="x" line="10" pos="2" ref="9"/>
+            </o>
+         </o>
+        <o abstract="" line="9" name="foo_spec_x_second" pos="0">
+            <o line="9" name="x" pos="1"/>
+            <o base=".boom" line="10" name="@" pos="3">
+               <o base="x" line="10" pos="2" ref="9"/>
+            </o>
+        </o>
+     </objects>
+     <aoi/>
+     <speco>
+        <version name="foo" spec="first" var="x">
+           <o abstract="" line="9" name="foo_spec_x_first" pos="0">
+              <o line="9" name="x" pos="1"/>
+              <o base=".boom" line="10" name="@" pos="3">
+                 <o base="x" line="10" pos="2" ref="9"/>
+              </o>
+           </o>
+        </version>
+        <version name="foo" spec="second" var="x">
+           <o abstract="" line="9" name="foo_spec_x_second" pos="0">
+              <o line="9" name="x" pos="1"/>
+              <o base=".boom" line="10" name="@" pos="3">
+                 <o base="x" line="10" pos="2" ref="9"/>
+              </o>
+           </o>
+        </version>
+     </speco>
+  </program>
