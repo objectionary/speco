@@ -62,12 +62,10 @@ class SpecoEoTest {
      * @throws IOException Iff IO error
      */
     @Tag("fast")
-    @Disabled
     @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
-
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected transformation result",
