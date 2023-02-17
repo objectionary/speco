@@ -29,7 +29,8 @@ SOFTWARE.
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
   <!--
-    Smth smart.
+    Iterates over <objects/> and adds with-* attributes
+    for all specialized versions of current object.
   -->
   <xsl:template match="/program/objects/o">
     <xsl:variable name="name" select="@name"/>
