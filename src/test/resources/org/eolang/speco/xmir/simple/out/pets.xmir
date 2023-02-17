@@ -113,7 +113,11 @@
          </o>
          <o base="so" line="30" name="@" pos="2" ref="29"/>
       </o>
-      <o abstract="" line="20" name="some_object_spec_x_cat" pos="0">
+      <o abstract=""
+          line="20"
+          name="some_object_spec_x_cat"
+          pos="0"
+          spec="some_object">
          <o line="20" name="x" pos="1"/>
          <o base=".talk" line="21" name="heh" pos="3">
             <o base="x" line="21" pos="2" ref="20"/>
@@ -123,7 +127,11 @@
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
       </o>
-      <o abstract="" line="20" name="some_object_spec_x_dog" pos="0">
+      <o abstract=""
+          line="20"
+          name="some_object_spec_x_dog"
+          pos="0"
+          spec="some_object">
          <o line="20" name="x" pos="1"/>
          <o base=".talk" line="21" name="heh" pos="3">
             <o base="x" line="21" pos="2" ref="20"/>
@@ -133,7 +141,11 @@
             <o base="string" data="string" line="22" pos="9">left</o>
          </o>
       </o>
-      <o abstract="" line="24" name="other_object_spec_x_dog" pos="0">
+      <o abstract=""
+          line="24"
+          name="other_object_spec_x_dog"
+          pos="0"
+          spec="other_object">
          <o line="24" name="x" pos="1"/>
          <o base=".talk" line="25" name="@" pos="3">
             <o base="x" line="25" pos="2" ref="24"/>
@@ -158,7 +170,11 @@
    </aoi>
    <speco>
       <version name="some_object" spec="cat" var="x">
-         <o abstract="" line="20" name="some_object_spec_x_cat" pos="0">
+         <o abstract=""
+             line="20"
+             name="some_object_spec_x_cat"
+             pos="0"
+             spec="some_object">
             <o line="20" name="x" pos="1"/>
             <o base=".talk" line="21" name="heh" pos="3">
                <o base="x" line="21" pos="2" ref="20"/>
@@ -170,7 +186,11 @@
          </o>
       </version>
       <version name="some_object" spec="dog" var="x">
-         <o abstract="" line="20" name="some_object_spec_x_dog" pos="0">
+         <o abstract=""
+             line="20"
+             name="some_object_spec_x_dog"
+             pos="0"
+             spec="some_object">
             <o line="20" name="x" pos="1"/>
             <o base=".talk" line="21" name="heh" pos="3">
                <o base="x" line="21" pos="2" ref="20"/>
@@ -182,7 +202,11 @@
          </o>
       </version>
       <version name="other_object" spec="dog" var="x">
-         <o abstract="" line="24" name="other_object_spec_x_dog" pos="0">
+         <o abstract=""
+             line="24"
+             name="other_object_spec_x_dog"
+             pos="0"
+             spec="other_object">
             <o line="24" name="x" pos="1"/>
             <o base=".talk" line="25" name="@" pos="3">
                <o base="x" line="25" pos="2" ref="24"/>

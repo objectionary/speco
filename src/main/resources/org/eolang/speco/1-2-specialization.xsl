@@ -89,6 +89,7 @@ SOFTWARE.
       <xsl:for-each select="/program/objects/o[@name=$name]">
         <xsl:call-template name="format">
           <xsl:with-param name="name" select="$objname"/>
+          <xsl:with-param name="spec" select="$name"/>
         </xsl:call-template>
       </xsl:for-each>
     </xsl:element>
@@ -98,9 +99,13 @@ SOFTWARE.
   -->
   <xsl:template match="@*|node()" name="format">
     <xsl:param name="name"/>
+    <xsl:param name="spec"/>
     <xsl:copy>
       <xsl:attribute name="name">
         <xsl:value-of select="$name"/>
+      </xsl:attribute>
+      <xsl:attribute name="spec">
+        <xsl:value-of select="$spec"/>
       </xsl:attribute>
       <xsl:apply-templates select="@* except @name |node()"/>
     </xsl:copy>
