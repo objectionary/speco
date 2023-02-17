@@ -15,14 +15,7 @@ before: |
            </o>
         </o>
      </objects>
-     <aoi>
-        <obj fqn="foo.x">
-           <inferred>
-              <obj fqn="first"/>
-              <obj fqn="second"/>
-           </inferred>
-        </obj>
-     </aoi>
+     <aoi/>
      <speco>
         <obj fqn="foo.x">
            <inferred>
@@ -47,14 +40,7 @@ after: |
            </o>
         </o>
      </objects>
-     <aoi>
-        <obj fqn="foo.x">
-           <inferred>
-              <obj fqn="first"/>
-              <obj fqn="second"/>
-           </inferred>
-        </obj>
-     </aoi>
+     <aoi/>
      <speco>
         <version name="foo" spec="first" var="x">
            <o abstract="" line="9" name="foo_spec_x_first" pos="0">
