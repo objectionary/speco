@@ -40,6 +40,7 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
+import org.eolang.xax.XaxStory;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;
@@ -145,17 +146,9 @@ class SpecoTest {
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
     public void applyTransToXmir(final String pack) throws IOException {
-        final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
-            "Unexpected transformation result",
-            new Xsline(
-                new TrDefault<Shift>()
-                    .with(new StClasspath("/org/eolang/parser/wrap-method-calls.xsl"))
-                    .with(new StClasspath(script.get("xsl").toString()))
-            ).pass(new XMLDocument(script.get("before").toString())),
-            Matchers.equalTo(
-                new XMLDocument(script.get("after").toString())
-            )
+            new XaxStory(pack),
+            Matchers.is(true)
         );
     }
 

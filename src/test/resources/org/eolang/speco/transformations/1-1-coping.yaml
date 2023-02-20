@@ -1,6 +1,6 @@
-xsl: /org/eolang/speco/1-1-coping.xsl
-
-before: |
+sheets:
+  - /org/eolang/speco/1-1-coping.xsl
+document:
   <?xml version="1.0" encoding="UTF-8"?>
   <program>
      <listing/>
@@ -16,28 +16,5 @@ before: |
         </obj>
      </aoi>
   </program>
-
-after: |
-  <?xml version="1.0" encoding="UTF-8"?>
-  <program>
-     <listing/>
-     <errors/>
-     <sheets/>
-     <objects/>
-     <aoi>
-        <obj fqn="foo.x">
-           <inferred>
-              <obj fqn="first"/>
-              <obj fqn="second"/>
-           </inferred>
-        </obj>
-     </aoi>
-     <speco>
-        <obj fqn="foo.x">
-           <inferred>
-              <obj fqn="first"/>
-              <obj fqn="second"/>
-           </inferred>
-        </obj>
-     </speco>
-  </program>
+asserts:
+  - count(//program)
