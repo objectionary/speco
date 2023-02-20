@@ -17,4 +17,5 @@ document:
      </aoi>
   </program>
 asserts:
-  - count(//program)
+  - /program[deep-equal(speco/*, aoi/*)]
+  - /program[count(speco/*) = count(aoi/*)]
