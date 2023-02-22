@@ -1,0 +1,21 @@
+sheets:
+  - /org/eolang/speco/1-1-coping.xsl
+document:
+  <?xml version="1.0" encoding="UTF-8"?>
+  <program>
+     <listing/>
+     <errors/>
+     <sheets/>
+     <objects/>
+     <aoi>
+        <obj fqn="foo.x">
+           <inferred>
+              <obj fqn="first"/>
+              <obj fqn="second"/>
+           </inferred>
+        </obj>
+     </aoi>
+  </program>
+asserts:
+  - /program[deep-equal(speco/*, aoi/*)]
+  - /program[count(speco/*) = count(aoi/*)]

@@ -23,6 +23,12 @@
  */
 package org.eolang.speco;
 
+import com.jcabi.xml.XMLDocument;
+import com.yegor256.xsline.Shift;
+import com.yegor256.xsline.StClasspath;
+import com.yegor256.xsline.TrDefault;
+import com.yegor256.xsline.Train;
+import com.yegor256.xsline.Xsline;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -34,9 +40,9 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
+import org.eolang.xax.XaxStory;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -128,6 +134,21 @@ class SpecoTest {
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
+        );
+    }
+
+    /**
+     * Unit tests for transformations.
+     * @param pack Pack with test data
+     * @throws IOException Iff IO error
+     */
+    @Tag("fast")
+    @ParameterizedTest
+    @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
+    public void applyTransToXmir(final String pack) throws IOException {
+        MatcherAssert.assertThat(
+            new XaxStory(pack),
+            Matchers.is(true)
         );
     }
 
