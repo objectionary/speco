@@ -1,0 +1,164 @@
+before: |
+  [s] > counter
+    memory > k
+      s
+    [] > next
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        ^
+        .k
+  [] > app
+    counter > c
+      0
+    seq > @
+      QQ
+      .io
+      .stdout
+        QQ
+        .txt
+        .sprintf
+          "First: %d\nSecond: %d\nThird: %d\n"
+          c
+          .next
+          c
+          .next
+          c
+          .next
+
+after: |
+  [s] > counter
+    memory > k
+      s
+    [] > next
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        ^
+        .k
+    [s next] > with_counter
+      counter_spec_s_counter > @
+        s
+        next
+    [s next] > with_counter.next
+      counter_spec_s_counter_next > @
+        s
+        next
+    [s next] > with_app
+      counter_spec_s_app > @
+        s
+        next
+
+  [] > app
+    counter > c
+      0
+    seq > @
+      QQ
+      .io
+      .stdout
+        QQ
+        .txt
+        .sprintf
+          "First: %d\nSecond: %d\nThird: %d\n"
+          c
+          .next
+          c
+          .next
+          c
+          .next
+
+  [s] > counter_spec_s_counter
+    memory > k
+      s
+    [] > next
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        ^
+        .k
+    [s next] > with_counter
+      counter_spec_s_counter > @
+        s
+        next
+    [s next] > with_counter.next
+      counter_spec_s_counter_next > @
+        s
+        next
+    [s next] > with_app
+      counter_spec_s_app > @
+        s
+        next
+
+  [s] > counter_spec_s_counter_next
+    memory > k
+      s
+    [] > next
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        ^
+        .k
+    [s next] > with_counter
+      counter_spec_s_counter > @
+        s
+        next
+    [s next] > with_counter.next
+      counter_spec_s_counter_next > @
+        s
+        next
+    [s next] > with_app
+      counter_spec_s_app > @
+        s
+        next
+
+  [s] > counter_spec_s_app
+    memory > k
+      s
+    [] > next
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        ^
+        .k
+    [s next] > with_counter
+      counter_spec_s_counter > @
+        s
+        next
+    [s next] > with_counter.next
+      counter_spec_s_counter_next > @
+        s
+        next
+    [s next] > with_app
+      counter_spec_s_app > @
+        s
+        next
+
+result: |
+  First: 1
+  Second: 2
+  Third: 3
