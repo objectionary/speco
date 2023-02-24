@@ -1,79 +1,43 @@
-xsl: /org/eolang/speco/2-1-substitute-applications.xsl
-
-before: |
+sheets:
+  - /org/eolang/speco/2-1-substitute-applications.xsl
+document:
   <?xml version="1.0" encoding="UTF-8"?>
   <program>
-     <listing/>
-     <errors/>
-     <sheets/>
-     <objects>
-        <o abstract="" line="12" name="app" pos="0">
-           <o base="seq" line="13" name="@" pos="2">
-              <o base="foo" line="14" pos="4" ref="9">
-                 <o base="first" line="14" pos="8" ref="1"/>
-              </o>
-              <o base="foo" line="15" pos="4" ref="9">
-                 <o base="second" line="15" pos="8" ref="5"/>
-              </o>
-           </o>
+    <listing/>
+    <errors/>
+    <sheets/>
+    <objects>
+      <o abstract="" line="12" name="app" pos="0">
+        <o base="seq" line="13" name="@" pos="2">
+          <o base="foo" line="14" pos="4" ref="9">
+            <o base="first" line="14" pos="8" ref="1"/>
+          </o>
+          <o base="foo" line="15" pos="4" ref="9">
+            <o base="second" line="15" pos="8" ref="5"/>
+          </o>
         </o>
-     </objects>
-     <aoi/>
-     <speco>
-        <version name="foo" spec="first" var="x">
-           <o abstract="" line="9" name="foo_spec_x_first" pos="0">
-              <o line="9" name="x" pos="1"/>
-              <o base=".boom" line="10" name="@" pos="3">
-                 <o base="x" line="10" pos="2" ref="9"/>
-              </o>
-           </o>
-        </version>
-        <version name="foo" spec="second" var="x">
-           <o abstract="" line="9" name="foo_spec_x_second" pos="0">
-              <o line="9" name="x" pos="1"/>
-              <o base=".boom" line="10" name="@" pos="3">
-                 <o base="x" line="10" pos="2" ref="9"/>
-              </o>
-           </o>
-        </version>
-     </speco>
-  </program>
-
-after: |
-  <?xml version="1.0" encoding="UTF-8"?>
-  <program>
-     <listing/>
-     <errors/>
-     <sheets/>
-     <objects>
-        <o abstract="" line="12" name="app" pos="0">
-           <o base="seq" line="13" name="@" pos="2">
-              <o base="foo_spec_x_first" line="14" pos="4" ref="9">
-                 <o base="first" line="14" pos="8" ref="1"/>
-              </o>
-              <o base="foo_spec_x_second" line="15" pos="4" ref="9">
-                 <o base="second" line="15" pos="8" ref="5"/>
-              </o>
-           </o>
+      </o>
+    </objects>
+    <aoi/>
+    <speco>
+      <version name="foo" spec="first" var="x">
+        <o abstract="" line="9" name="foo_spec_x_first" pos="0">
+          <o line="9" name="x" pos="1"/>
+          <o base=".boom" line="10" name="@" pos="3">
+            <o base="x" line="10" pos="2" ref="9"/>
+          </o>
         </o>
-     </objects>
-     <aoi/>
-     <speco>
-        <version name="foo" spec="first" var="x">
-           <o abstract="" line="9" name="foo_spec_x_first" pos="0">
-              <o line="9" name="x" pos="1"/>
-              <o base=".boom" line="10" name="@" pos="3">
-                 <o base="x" line="10" pos="2" ref="9"/>
-              </o>
-           </o>
-        </version>
-        <version name="foo" spec="second" var="x">
-           <o abstract="" line="9" name="foo_spec_x_second" pos="0">
-              <o line="9" name="x" pos="1"/>
-              <o base=".boom" line="10" name="@" pos="3">
-                 <o base="x" line="10" pos="2" ref="9"/>
-              </o>
-           </o>
-        </version>
-     </speco>
+      </version>
+      <version name="foo" spec="second" var="x">
+        <o abstract="" line="9" name="foo_spec_x_second" pos="0">
+          <o line="9" name="x" pos="1"/>
+          <o base=".boom" line="10" name="@" pos="3">
+            <o base="x" line="10" pos="2" ref="9"/>
+          </o>
+        </o>
+      </version>
+    </speco>
   </program>
+asserts:
+  - /program/objects/o/o/o[1][@base="foo_spec_x_first"]
+  - /program/objects/o/o/o[2][@base="foo_spec_x_second"]
