@@ -41,3 +41,4 @@ document:
 asserts:
   - /program/objects/o/o/o[1][@base="foo_spec_x_first"]
   - /program/objects/o/o/o[2][@base="foo_spec_x_second"]
+  - /program[count(//o[@base="foo"]) = 0]
