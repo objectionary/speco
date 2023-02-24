@@ -40,8 +40,6 @@ import java.util.Arrays;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
-import org.cactoos.scalar.Ternary;
-import org.cactoos.scalar.Unchecked;
 import org.eolang.jucs.ClasspathSource;
 import org.eolang.xax.XaxStory;
 import org.hamcrest.MatcherAssert;
