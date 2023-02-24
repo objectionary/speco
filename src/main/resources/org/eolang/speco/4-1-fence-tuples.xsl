@@ -29,7 +29,8 @@ SOFTWARE.
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
   <!--
-    TODOs write desc.
+    Finds fence attributes and creates duplicates of them, which return a two-elements tuple
+    with the object it returned before and the "parent" object.
   -->
   <xsl:template match="/program/objects//o">
     <xsl:copy>
