@@ -16,6 +16,12 @@ before: |
   [] > app
     counter > c
       0
+    c
+    .next > x1
+    c
+    .next > x2
+    c
+    .next > x3
     seq > @
       QQ
       .io
@@ -24,12 +30,9 @@ before: |
         .txt
         .sprintf
           "First: %d\nSecond: %d\nThird: %d\n"
-          c
-          .next
-          c
-          .next
-          c
-          .next
+          x1
+          x2
+          x3
 
 after: |
   [s] > counter
@@ -72,6 +75,12 @@ after: |
   [] > app
     counter > c
       0
+    c
+    .next > x1
+    c
+    .next > x2
+    c
+    .next > x3
     seq > @
       QQ
       .io
@@ -80,12 +89,9 @@ after: |
         .txt
         .sprintf
           "First: %d\nSecond: %d\nThird: %d\n"
-          c
-          .next
-          c
-          .next
-          c
-          .next
+          x1
+          x2
+          x3
   
   [s] > counter_spec_s_counter
     memory > k
