@@ -41,6 +41,9 @@ SOFTWARE.
           <xsl:attribute name="name">
             <xsl:value-of select="concat(@name, '_as_tuple')"/>
           </xsl:attribute>
+          <xsl:attribute name="fence">
+            <xsl:value-of select="@name"/>
+          </xsl:attribute>
           <xsl:for-each select="o">
             <xsl:choose>
               <xsl:when test=".[@name='@']">
