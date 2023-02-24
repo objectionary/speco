@@ -46,19 +46,29 @@ after: |
             1
         ^
         .k
-    [s next] > with_counter
+    [s] > with_counter
       counter_spec_s_counter > @
         s
-        next
-    [s next] > with_counter.next
+    [s] > with_counter_next
       counter_spec_s_counter_next > @
         s
-        next
-    [s next] > with_app
+    [s] > with_app
       counter_spec_s_app > @
         s
-        next
-
+    [] > next_as_tuple
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        *
+          ^
+          .k
+          ^
+  
   [] > app
     counter > c
       0
@@ -76,7 +86,7 @@ after: |
           .next
           c
           .next
-
+  
   [s] > counter_spec_s_counter
     memory > k
       s
@@ -91,19 +101,29 @@ after: |
             1
         ^
         .k
-    [s next] > with_counter
+    [s] > with_counter
       counter_spec_s_counter > @
         s
-        next
-    [s next] > with_counter.next
+    [s] > with_counter_next
       counter_spec_s_counter_next > @
         s
-        next
-    [s next] > with_app
+    [s] > with_app
       counter_spec_s_app > @
         s
-        next
-
+    [] > next_as_tuple
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        *
+          ^
+          .k
+          ^
+  
   [s] > counter_spec_s_counter_next
     memory > k
       s
@@ -118,19 +138,29 @@ after: |
             1
         ^
         .k
-    [s next] > with_counter
+    [s] > with_counter
       counter_spec_s_counter > @
         s
-        next
-    [s next] > with_counter.next
+    [s] > with_counter_next
       counter_spec_s_counter_next > @
         s
-        next
-    [s next] > with_app
+    [s] > with_app
       counter_spec_s_app > @
         s
-        next
-
+    [] > next_as_tuple
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        *
+          ^
+          .k
+          ^
+  
   [s] > counter_spec_s_app
     memory > k
       s
@@ -145,18 +175,28 @@ after: |
             1
         ^
         .k
-    [s next] > with_counter
+    [s] > with_counter
       counter_spec_s_counter > @
         s
-        next
-    [s next] > with_counter.next
+    [s] > with_counter_next
       counter_spec_s_counter_next > @
         s
-        next
-    [s next] > with_app
+    [s] > with_app
       counter_spec_s_app > @
         s
-        next
+    [] > next_as_tuple
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        *
+          ^
+          .k
+          ^
 
 result: |
   First: 1
