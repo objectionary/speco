@@ -26,10 +26,6 @@ SOFTWARE.
   <!--
     Rule #1: extend the program by creating specialized object
     based on AOI.
-    @todo #47:30min add unit-test for transformation,
-     in which the input will be xmir with a <speco/> section duplicating <aoi/> and
-     in the expected result will be the same xmir with a specialized objects
-     in the <speco/> section.
   -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>

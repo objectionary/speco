@@ -1,62 +1,34 @@
-xsl: /org/eolang/speco/1-2-specialization.xsl
-endless:
-
-before: |
+sheets:
+  - /org/eolang/speco/1-2-specialization.xsl
+document:
   <?xml version="1.0" encoding="UTF-8"?>
   <program>
-     <listing/>
-     <errors/>
-     <sheets/>
-     <objects>
-        <o abstract="" line="9" name="foo" pos="0">
-           <o line="9" name="x" pos="1"/>
-           <o base=".boom" line="10" name="@" pos="3">
-              <o base="x" line="10" pos="2" ref="9"/>
-           </o>
+    <listing/>
+    <errors/>
+    <sheets/>
+    <objects>
+      <o abstract="" line="9" name="foo" pos="0">
+        <o line="9" name="x" pos="1"/>
+          <o base=".boom" line="10" name="@" pos="3">
+          <o base="x" line="10" pos="2" ref="9"/>
         </o>
-     </objects>
-     <aoi/>
-     <speco>
-        <obj fqn="foo.x">
-           <inferred>
-              <obj fqn="first"/>
-              <obj fqn="second"/>
-           </inferred>
-        </obj>
-     </speco>
+      </o>
+    </objects>
+    <aoi/>
+    <speco>
+      <obj fqn="foo.x">
+        <inferred>
+          <obj fqn="first"/>
+          <obj fqn="second"/>
+        </inferred>
+      </obj>
+    </speco>
   </program>
-
-after: |
-  <?xml version="1.0" encoding="UTF-8"?>
-  <program>
-     <listing/>
-     <errors/>
-     <sheets/>
-     <objects>
-        <o abstract="" line="9" name="foo" pos="0">
-           <o line="9" name="x" pos="1"/>
-           <o base=".boom" line="10" name="@" pos="3">
-              <o base="x" line="10" pos="2" ref="9"/>
-           </o>
-        </o>
-     </objects>
-     <aoi/>
-     <speco>
-        <version name="foo" spec="first" var="x">
-           <o abstract="" line="9" name="foo_spec_x_first" pos="0">
-              <o line="9" name="x" pos="1"/>
-              <o base=".boom" line="10" name="@" pos="3">
-                 <o base="x" line="10" pos="2" ref="9"/>
-              </o>
-           </o>
-        </version>
-        <version name="foo" spec="second" var="x">
-           <o abstract="" line="9" name="foo_spec_x_second" pos="0">
-              <o line="9" name="x" pos="1"/>
-              <o base=".boom" line="10" name="@" pos="3">
-                 <o base="x" line="10" pos="2" ref="9"/>
-              </o>
-           </o>
-        </version>
-     </speco>
-  </program>
+asserts:
+  - /program[count(speco/*) = 2]
+  - /program/speco/version[1][@name="foo" and @spec="first" and @var="x"]
+  - /program/speco/version[2][@name="foo" and @spec="second" and @var="x"]
+  - /program/speco/version[1]/o[@name="foo_spec_x_first"]
+  - /program/speco/version[2]/o[@name="foo_spec_x_second"]
+  - /program[deep-equal(speco/version[1]/o/*, objects/o/*)]
+  - /program[deep-equal(speco/version[2]/o/*, objects/o/*)]
