@@ -47,7 +47,7 @@ SOFTWARE.
           <xsl:attribute name="name">
             <xsl:value-of select="concat('with_', translate(../@spec, '.', '_'))"/>
           </xsl:attribute>
-          <xsl:for-each select="o[not(@base)]">
+          <xsl:for-each select="o[not(@base) and not(@abstract)]">
             <xsl:element name="o">
               <xsl:attribute name="name">
                 <xsl:value-of select="@name"/>
@@ -61,7 +61,7 @@ SOFTWARE.
             <xsl:attribute name="name">
               <xsl:value-of select="'@'"/>
             </xsl:attribute>
-            <xsl:for-each select="o[not(@base)]">
+            <xsl:for-each select="o[not(@base) and not(@abstract)]">
               <xsl:element name="o">
                 <xsl:attribute name="base">
                   <xsl:value-of select="@name"/>

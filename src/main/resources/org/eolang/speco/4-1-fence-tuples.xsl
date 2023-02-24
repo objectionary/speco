@@ -34,7 +34,7 @@ SOFTWARE.
   <xsl:template match="/program/objects//o">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
-      <xsl:for-each select="o[@abstract and .//@base='.k']">
+      <xsl:for-each select="o[@abstract and .//@base=concat('.', ../o[@base='memory']/@name)]">
         <xsl:copy>
           <xsl:attribute name="abstract"/>
           <xsl:attribute name="name">
