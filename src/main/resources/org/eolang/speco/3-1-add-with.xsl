@@ -45,7 +45,7 @@ SOFTWARE.
         <xsl:element name="o">
           <xsl:attribute name="abstract"/>
           <xsl:attribute name="name">
-            <xsl:value-of select="concat('with_', ../@spec)"/>
+            <xsl:value-of select="concat('with_', translate(../@spec, '.', '_'))"/>
           </xsl:attribute>
           <xsl:for-each select="o[not(@base)]">
             <xsl:element name="o">
