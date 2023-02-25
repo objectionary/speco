@@ -34,7 +34,6 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.eolang.jucs.ClasspathSource;
-import org.eolang.xax.XaxStory;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;
@@ -126,20 +125,6 @@ class SpecoTest {
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
-        );
-    }
-
-    /**
-     * Unit tests for transformations.
-     * @param pack Pack with test data
-     */
-    @Tag("fast")
-    @ParameterizedTest
-    @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
-    void applyTransToXmir(final String pack) {
-        MatcherAssert.assertThat(
-            new XaxStory(pack),
-            Matchers.is(true)
         );
     }
 

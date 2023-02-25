@@ -67,14 +67,14 @@ final class Speco {
     /**
      * Ctor.
      *
-     * @param in Path to the directory with input files
+     * @param inp Path to the directory with input files
      * @param out Path to the directory with output files
-     * @param eo Iff the input program is in EO
+     * @param eolang Iff the input program is in EO
      */
-    Speco(final Path in, final Path out, final boolean eo) {
-        this.input = in.toAbsolutePath();
+    Speco(final Path inp, final Path out, final boolean eolang) {
+        this.input = inp.toAbsolutePath();
         this.output = out.toAbsolutePath();
-        this.eolang = eo;
+        this.eolang = eolang;
     }
 
     /**
