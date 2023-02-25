@@ -23,12 +23,6 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XMLDocument;
-import com.yegor256.xsline.Shift;
-import com.yegor256.xsline.StClasspath;
-import com.yegor256.xsline.TrDefault;
-import com.yegor256.xsline.Train;
-import com.yegor256.xsline.Xsline;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -66,7 +60,7 @@ class SpecoTest {
     @Tag("fast")
     @ParameterizedTest
     @ValueSource(strings = {"simple"})
-    public void convertsFromXmir(final String title, @TempDir final Path temp) throws IOException {
+    void convertsFromXmir(final String title, @TempDir final Path temp) throws IOException {
         final Path base = Path.of(
             "src", "test", "resources",
             "org", "eolang", "speco",
@@ -100,7 +94,7 @@ class SpecoTest {
     @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
+    void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected transformation result",
@@ -125,7 +119,7 @@ class SpecoTest {
     @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
-    public void compilesFromEo(final String pack, @TempDir final Path temp)
+    void compilesFromEo(final String pack, @TempDir final Path temp)
         throws IOException, InterruptedException {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
@@ -140,12 +134,11 @@ class SpecoTest {
     /**
      * Unit tests for transformations.
      * @param pack Pack with test data
-     * @throws IOException Iff IO error
      */
     @Tag("fast")
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
-    public void applyTransToXmir(final String pack) throws IOException {
+    void applyTransToXmir(final String pack) {
         MatcherAssert.assertThat(
             new XaxStory(pack),
             Matchers.is(true)
@@ -175,12 +168,12 @@ class SpecoTest {
     }
 
     /**
-    * Compiles and dataize EO program.
-    *
-    * @param target Path to the dir with target EO program
-    * @return List of lines in output
-    * @throws IOException Iff IO error
-    */
+     * Compiles and dataize EO program.
+     *
+     * @param target Path to the dir with target EO program
+     * @return List of lines in output
+     * @throws IOException Iff IO error
+     */
     private static String[] dataize(final String target) throws IOException, InterruptedException {
         final String executor;
         final String flag;

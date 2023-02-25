@@ -67,14 +67,14 @@ final class Speco {
     /**
      * Ctor.
      *
-     * @param input Path to the directory with input files
-     * @param output Path to the directory with output files
-     * @param eolang Iff the input program is in EO
+     * @param in Path to the directory with input files
+     * @param out Path to the directory with output files
+     * @param eo Iff the input program is in EO
      */
-    Speco(final Path input, final Path output, final boolean eolang) {
-        this.input = input.toAbsolutePath();
-        this.output = output.toAbsolutePath();
-        this.eolang = eolang;
+    Speco(final Path in, final Path out, final boolean eo) {
+        this.input = in.toAbsolutePath();
+        this.output = out.toAbsolutePath();
+        this.eolang = eo;
     }
 
     /**
@@ -82,10 +82,10 @@ final class Speco {
      *
      * @throws IOException In case of errors when working with files or parsing a document
      */
-    public void exec() throws IOException {
+    void exec() throws IOException {
         final Path source;
         if (this.eolang) {
-            source = parse(this.input);
+            source = Speco.parse(this.input);
         } else {
             source = this.input;
         }
@@ -114,7 +114,7 @@ final class Speco {
      * @param xml XML
      * @return XML
      */
-    public static XML applyTrain(final XML xml) {
+    private static XML applyTrain(final XML xml) {
         final Train<Shift> train = new TrDefault<Shift>()
             .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
             .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-specialization.xsl")))
@@ -137,7 +137,7 @@ final class Speco {
         for (final Path path : Files.newDirectoryStream(source)) {
             new Syntax(
                 "scenario",
-                new InputOf(String.format("%s\n", Files.readString(path))),
+                new InputOf(String.format("%s%n", Files.readString(path))),
                 new OutputTo(new FileOutputStream(path.toFile()))
             ).parse();
         }
