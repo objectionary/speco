@@ -41,47 +41,19 @@ import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.yaml.snakeyaml.Yaml;
 
 /**
- * Packs tests.
+ * Tests that check entire Speco algorithm applied directly to raw EO programs.
  *
  * @since 0.0.1
  */
-class SpecoTest {
+class SpecoEoTest {
 
     /**
      * The number of lines that the command "eoc link" outputs.
      */
     private static final int INTENT = 11;
-
-    @Tag("fast")
-    @ParameterizedTest
-    @ValueSource(strings = {"simple"})
-    void convertsFromXmir(final String title, @TempDir final Path out) throws IOException {
-        final Path base = Path.of(
-            "src", "test", "resources",
-            "org", "eolang", "speco",
-            "xmir", title
-        );
-        new Speco(base.resolve("in"), out, false).exec();
-        final Path expected = base.resolve("out");
-        for (final Path path : Files.newDirectoryStream(expected)) {
-            MatcherAssert.assertThat(
-                String.format(
-                    "Files %s in %s and %s are different",
-                    path.getFileName(),
-                    out,
-                    expected
-                ),
-                Files.readAllLines(out.resolve(path.getFileName())),
-                Matchers.equalTo(
-                    Files.readAllLines(path)
-                )
-            );
-        }
-    }
 
     /**
      * Integration test for conversation from EO.
@@ -97,7 +69,7 @@ class SpecoTest {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected transformation result",
-            Files.readString(SpecoTest.run(script, temp).resolve("app.eo")),
+            Files.readString(SpecoEoTest.run(script, temp).resolve("app.eo")),
             Matchers.equalTo(script.get("after").toString())
         );
     }
@@ -110,7 +82,7 @@ class SpecoTest {
      *  or get rid of the @TempDir.
      * @param pack Pack this test data
      * @param temp Temporary test dir
-     * @throws IOException Iff IO error
+     * @throws java.io.IOException Iff IO error
      */
     @Tag("slow")
     @DisabledOnOs(OS.WINDOWS)
@@ -121,7 +93,7 @@ class SpecoTest {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected execution result",
-            SpecoTest.dataize(SpecoTest.run(script, temp).toString()),
+            SpecoEoTest.dataize(SpecoEoTest.run(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
@@ -141,9 +113,9 @@ class SpecoTest {
         final Path input = temp.resolve("input");
         final Path output = temp.resolve("output");
         Files.createDirectories(input);
-        Files.write(
+        Files.writeString(
             input.resolve("app.eo"),
-            script.get("before").toString().getBytes(),
+            script.get("before").toString(),
             StandardOpenOption.CREATE
         );
         new Speco(input, output, true).exec();
@@ -179,6 +151,6 @@ class SpecoTest {
         process.destroy();
         final String[] output = writer.toString().split("\\r?\\n");
         writer.close();
-        return Arrays.copyOfRange(output, SpecoTest.INTENT, output.length - 1);
+        return Arrays.copyOfRange(output, SpecoEoTest.INTENT, output.length - 1);
     }
 }
