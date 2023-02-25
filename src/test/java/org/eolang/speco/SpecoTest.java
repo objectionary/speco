@@ -60,23 +60,23 @@ class SpecoTest {
     @Tag("fast")
     @ParameterizedTest
     @ValueSource(strings = {"simple"})
-    void convertsFromXmir(final String title, @TempDir final Path temp) throws IOException {
+    void convertsFromXmir(final String title, @TempDir final Path out) throws IOException {
         final Path base = Path.of(
             "src", "test", "resources",
             "org", "eolang", "speco",
             "xmir", title
         );
-        new Speco(base.resolve("in"), temp, false).exec();
-        final Path reference = base.resolve("out");
-        for (final Path path : Files.newDirectoryStream(reference)) {
+        new Speco(base.resolve("in"), out, false).exec();
+        final Path expected = base.resolve("out");
+        for (final Path path : Files.newDirectoryStream(expected)) {
             MatcherAssert.assertThat(
                 String.format(
                     "Files %s in %s and %s are different",
                     path.getFileName(),
-                    temp,
-                    reference
+                    out,
+                    expected
                 ),
-                Files.readAllLines(temp.resolve(path.getFileName())),
+                Files.readAllLines(out.resolve(path.getFileName())),
                 Matchers.equalTo(
                     Files.readAllLines(path)
                 )
@@ -99,9 +99,7 @@ class SpecoTest {
         MatcherAssert.assertThat(
             "Unexpected transformation result",
             Files.readString(SpecoTest.run(script, temp).resolve("app.eo")),
-            Matchers.equalTo(
-                script.get("after").toString()
-            )
+            Matchers.equalTo(script.get("after").toString())
         );
     }
 
