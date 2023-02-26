@@ -49,7 +49,7 @@ import org.yaml.snakeyaml.Yaml;
  *
  * @since 0.0.1
  *
- * @todo #63:30min enable convertsFromXmir and convertsFromEO test:
+ * @todo #63:30min enable convertsFromEO test:
  *   we need to remove @disable annotation for these tests
  *   when we provide the rule 3 implementation.
  */

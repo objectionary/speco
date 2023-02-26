@@ -38,6 +38,10 @@ import org.junit.jupiter.params.provider.ValueSource;
  * Tests that check entire Speco algorithm applied directly to parsed XMIR.
  *
  * @since 0.2
+ *
+ * @todo #63:30min enable convertsFromXmir test:
+ *   we need to remove @disable annotation for these tests
+ *   when we provide the rule 3 implementation.
  */
 class SpecoXmirTest {
 
