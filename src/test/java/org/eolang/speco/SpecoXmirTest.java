@@ -40,8 +40,8 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @since 0.2
  *
  * @todo #63:30min enable convertsFromXmir test:
- *   we need to remove @disable annotation for these tests
- *   when we provide the rule 3 implementation.
+ *   we need to remove @disable annotation for these test
+ *   when we provide the rule 3 implementation and add an appropriate transformation.
  */
 class SpecoXmirTest {
 
