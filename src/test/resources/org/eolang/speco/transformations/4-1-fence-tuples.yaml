@@ -1,0 +1,36 @@
+sheets:
+  - /org/eolang/speco/4-1-fence-tuples.xsl
+document:
+  <?xml version="1.0" encoding="UTF-8"?>
+    <program>
+    <listing/>
+    <errors/>
+    <sheets/>
+    <objects>
+      <o abstract="" line="1" name="counter" pos="0">
+        <o line="1" name="s" pos="1"/>
+        <o base="memory" line="2" name="k" pos="2">
+          <o base="s" line="3" pos="4"/>
+        </o>
+        <o abstract="" line="4" name="next" pos="2">
+          <o base="seq" line="5" name="@" pos="4">
+            <o base="^" line="6" pos="6"/>
+            <o base=".k" line="7" method="" pos="6"/>
+            <o base=".write" line="8" method="" pos="6">
+              <o base="^" line="9" pos="8"/>
+              <o base=".k" line="10" method="" pos="8"/>
+              <o base=".plus" line="11" method="" pos="8">
+                <o base="int" data="bytes" line="12" pos="10">00 00 00 00 00 00 00 01</o>
+              </o>
+            </o>
+            <o base="^" line="13" pos="6"/>
+            <o base=".k" line="14" method="" pos="6"/>
+          </o>
+        </o>
+      </o>
+    </objects>
+    <aoi/>
+    <speco/>
+  </program>
+asserts:
+  - /program/objects/o/o[@fence="next" and @name="next_as_tuple"]/o/o[last() and @base="array" and @data="array"]/o[last() and @base="^"]
