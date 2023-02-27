@@ -48,9 +48,6 @@ import org.yaml.snakeyaml.Yaml;
  * Tests that check entire Speco algorithm applied directly to raw EO programs.
  *
  * @since 0.0.1
- * @todo #63:30min enable convertsFromEO test:
- *  we need to remove @disable annotation for these test
- *  when we provide the rule 3 implementation and add an appropriate transformation.
  */
 class SpecoEoTest {
 
@@ -66,7 +63,6 @@ class SpecoEoTest {
      * @throws IOException Iff IO error
      */
     @Tag("fast")
-    @Disabled
     @DisabledOnOs(OS.WINDOWS)
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
