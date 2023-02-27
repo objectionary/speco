@@ -76,11 +76,20 @@ after: |
     counter > c
       0
     c
-    .next > x1
+    .next_as_tuple > x1_tuple
+    x1_tuple
+    .at > x1
+      0
     c
-    .next > x2
+    .next_as_tuple > x2_tuple
+    x2_tuple
+    .at > x2
+      0
     c
-    .next > x3
+    .next_as_tuple > x3_tuple
+    x3_tuple
+    .at > x3
+      0
     seq > @
       QQ
       .io
