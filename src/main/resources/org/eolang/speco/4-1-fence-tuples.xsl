@@ -25,10 +25,6 @@ SOFTWARE.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
     Rule #4: extend the program by creating duplicates of each fence attribute.
-    @todo #68:30min add unit-test for transformation,
-     in which the input will be xmir with object with fence attribute,
-     the expected result will be the same xmir with a *-as-tuple attribute
-     for this fence attribute.
   -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
