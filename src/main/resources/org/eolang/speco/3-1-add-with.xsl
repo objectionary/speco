@@ -25,10 +25,6 @@ SOFTWARE.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
     Rule #3: extend the program by adding new with-* attributes to all synthetic objects.
-    @todo #64:30min add unit-test for transformation,
-     in which the input will be xmir with polymorphic object and
-     the expected result will be the same xmir with a with-* attributes
-     for all specialized versions of this polymorphic object.
   -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
@@ -45,9 +41,9 @@ SOFTWARE.
         <xsl:element name="o">
           <xsl:attribute name="abstract"/>
           <xsl:attribute name="name">
-            <xsl:value-of select="concat('with_', ../@spec)"/>
+            <xsl:value-of select="concat('with_', translate(../@spec, '.', '_'))"/>
           </xsl:attribute>
-          <xsl:for-each select="o[not(@base)]">
+          <xsl:for-each select="o[not(@base) and not(@abstract)]">
             <xsl:element name="o">
               <xsl:attribute name="name">
                 <xsl:value-of select="@name"/>
@@ -61,7 +57,7 @@ SOFTWARE.
             <xsl:attribute name="name">
               <xsl:value-of select="'@'"/>
             </xsl:attribute>
-            <xsl:for-each select="o[not(@base)]">
+            <xsl:for-each select="o[not(@base) and not(@abstract)]">
               <xsl:element name="o">
                 <xsl:attribute name="base">
                   <xsl:value-of select="@name"/>

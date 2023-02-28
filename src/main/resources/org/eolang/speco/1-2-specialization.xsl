@@ -43,7 +43,7 @@ SOFTWARE.
             <xsl:with-param name="name" select="$curname"/>
             <xsl:with-param name="var" select="$curvar"/>
             <xsl:with-param name="spec" select="@fqn"/>
-            <xsl:with-param name="objname" select="concat($curname, '_spec_', $curvar, '_', @fqn)"/>
+            <xsl:with-param name="objname" select="concat($curname, '_spec_', $curvar, '_', translate(@fqn, '.', '_'))"/>
           </xsl:call-template>
         </xsl:for-each>
       </xsl:when>
