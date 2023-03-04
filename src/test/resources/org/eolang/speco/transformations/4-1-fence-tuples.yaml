@@ -33,4 +33,4 @@ document:
     <speco/>
   </program>
 asserts:
-  - /program/objects/o/o[@fence="next" and @name="next_as_tuple"]/o/o[last() and @base="array" and @data="array"]/o[last() and @base="^"]
+  - /program/objects/o/o[@fence="next" and @name="next_as_tuple"]/o/o[last() and @base="tuple" and @data="tuple"]/o[last() and @base="^"]

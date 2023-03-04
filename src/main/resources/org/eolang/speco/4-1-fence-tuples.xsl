@@ -55,10 +55,10 @@ SOFTWARE.
                   <xsl:for-each select="o[last()]">
                     <xsl:element name="o">
                       <xsl:attribute name="base">
-                        <xsl:value-of select="'array'"/>
+                        <xsl:value-of select="'tuple'"/>
                       </xsl:attribute>
                       <xsl:attribute name="data">
-                        <xsl:value-of select="'array'"/>
+                        <xsl:value-of select="'tuple'"/>
                       </xsl:attribute>
                       <xsl:copy-of select="."/>
                       <xsl:element name="o">
