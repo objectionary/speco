@@ -31,21 +31,23 @@ SOFTWARE.
   <!--
     Desc.
   -->
-  <xsl:template match="/program/objects//o">
-    <xsl:variable name="fence" select="substring-after(@base, '.')"/>
-    <xsl:variable name="name" select="@name"/>
+  <xsl:template match="/program/objects//o[@fence_tuple]">
     <xsl:copy>
       <xsl:choose>
-        <xsl:when test="/program/objects//o[not(../@spec) and @fence=$fence]">
-          <xsl:for-each select="/program/objects//o[not(../@spec) and @fence=$fence]">
+        <xsl:when test="preceding::o[@fence_tuple]">
+          <xsl:apply-templates select="@*"/>
+          <xsl:element name="o">
             <xsl:attribute name="base">
-              <xsl:value-of select="concat('.', @name)"/>
+              <xsl:value-of select="'.at'"/>
             </xsl:attribute>
-            <xsl:attribute name="name">
-              <xsl:value-of select="concat($name, '_tuple')"/>
-            </xsl:attribute>
-          </xsl:for-each>
-          <xsl:apply-templates select="@* except @base except @name|node()"/>
+            <xsl:attribute name="method"/>
+            <xsl:element name="o">
+              <xsl:attribute name="base">
+                <xsl:value-of select="(preceding::o[@fence_tuple])[last()]/@name"/>
+              </xsl:attribute>
+            </xsl:element>
+            <o base="int" data="bytes">00 00 00 00 00 00 00 01</o>
+          </xsl:element>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="@*|node()"/>

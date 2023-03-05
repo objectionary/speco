@@ -44,6 +44,7 @@ SOFTWARE.
             <xsl:attribute name="name">
               <xsl:value-of select="concat($name, '_tuple')"/>
             </xsl:attribute>
+            <xsl:attribute name="fence_tuple"/>
           </xsl:for-each>
           <xsl:apply-templates select="@* except @base except @name|node()"/>
         </xsl:when>
