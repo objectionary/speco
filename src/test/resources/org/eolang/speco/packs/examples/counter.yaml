@@ -80,12 +80,14 @@ after: |
     x1_tuple
     .at > x1
       0
-    c
+    x1_tuple
+    .at 1
     .next_as_tuple > x2_tuple
     x2_tuple
     .at > x2
       0
-    c
+    x2_tuple
+    .at 1
     .next_as_tuple > x3_tuple
     x3_tuple
     .at > x3

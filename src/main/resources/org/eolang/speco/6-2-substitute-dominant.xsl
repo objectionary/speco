@@ -31,6 +31,28 @@ SOFTWARE.
   <!--
     Desc.
   -->
+  <xsl:template match="/program/objects//o">
+    <xsl:variable name="fence" select="substring-after(@base, '.')"/>
+    <xsl:variable name="name" select="@name"/>
+    <xsl:copy>
+      <xsl:choose>
+        <xsl:when test="/program/objects//o[not(../@spec) and @fence=$fence]">
+          <xsl:for-each select="/program/objects//o[not(../@spec) and @fence=$fence]">
+            <xsl:attribute name="base">
+              <xsl:value-of select="concat('.', @name)"/>
+            </xsl:attribute>
+            <xsl:attribute name="name">
+              <xsl:value-of select="concat($name, '_tuple')"/>
+            </xsl:attribute>
+          </xsl:for-each>
+          <xsl:apply-templates select="@* except @base except @name|node()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
+  </xsl:template>
   <xsl:template match="@*|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
