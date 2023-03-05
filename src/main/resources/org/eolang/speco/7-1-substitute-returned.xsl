@@ -36,20 +36,19 @@ SOFTWARE.
   <xsl:template match="/program/objects//o[../../@fence and @base='tuple']/o[1]">
     <xsl:for-each select="../../o[@base='.write']/o[1]">
       <xsl:copy>
-        <xsl:apply-templates select="@*|node()"/>
+        <xsl:attribute name="base">
+          <xsl:value-of select="concat(substring-after(@base, '.'), '.')"/>
+        </xsl:attribute>
+        <xsl:apply-templates select="@* except @base"/>
         <xsl:element name="o">
           <xsl:attribute name="base">
-            <xsl:value-of select="'.with_counter'"/>
+            <xsl:value-of select="concat('.', ../../../../o[starts-with(@name, 'with_')][1]/@name)"/>
           </xsl:attribute>
           <xsl:attribute name="name">
             <xsl:value-of select="'tmp'"/>
           </xsl:attribute>
           <xsl:attribute name="method"/>
-          <xsl:for-each select="../../o[@base='.write']/o[2]//o[position()=1]">
-            <xsl:copy>
-              <xsl:apply-templates select="@*"/>
-            </xsl:copy>
-          </xsl:for-each>
+          <xsl:copy-of select="node()"/>
           <xsl:copy>
             <xsl:for-each select="../../o[@base='.write']/o[2]">
               <xsl:apply-templates select="@*|node()"/>
