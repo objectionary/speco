@@ -62,9 +62,14 @@ after: |
       seq > @
         TRUE
         *
-          ^
-          .k
-          ^
+          k.
+            ^
+            .with_counter > tmp
+              ^
+              .k
+              .plus
+                1
+          tmp
   
   [] > app
     counter > c
@@ -127,9 +132,14 @@ after: |
       seq > @
         TRUE
         *
-          ^
-          .k
-          ^
+          k.
+            ^
+            .with_counter > tmp
+              ^
+              .k
+              .plus
+                1
+          tmp
   
   [s] > counter_spec_s_counter_next
     memory > k
@@ -158,9 +168,14 @@ after: |
       seq > @
         TRUE
         *
-          ^
-          .k
-          ^
+          k.
+            ^
+            .with_counter > tmp
+              ^
+              .k
+              .plus
+                1
+          tmp
   
   [s] > counter_spec_s_app
     memory > k
@@ -189,9 +204,14 @@ after: |
       seq > @
         TRUE
         *
-          ^
-          .k
-          ^
+          k.
+            ^
+            .with_counter > tmp
+              ^
+              .k
+              .plus
+                1
+          tmp
 
 result: |
   First: 1
