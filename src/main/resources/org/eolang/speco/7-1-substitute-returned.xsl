@@ -24,14 +24,15 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-    Rule #7: Substitute all x.cage.write y with TRUE (the result of write dataization);
-    substitute the first reference to x dominated by write with x.with y labeled as x_tmp;
-    substitute all further dominated references to x with x_tmp
+    Rule #7: Substitute all "x.cage.write y" with "TRUE" (the result of write dataization);
+    substitute the first reference to "x" dominated by write with "x.with y" labeled as "tmp";
+    substitute all further dominated references to "x" with "tmp"
   -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
   <!--
-    Desc
+    Replaces the first fence tuple element with call with an attribute with an argument
+    hat was previously the "write" argument.
   -->
   <xsl:template match="/program/objects//o[../../@fence and @base='tuple']/o[1]">
     <xsl:for-each select="../../o[@base='.write']/o[1]">
@@ -58,8 +59,17 @@ SOFTWARE.
       </xsl:copy>
     </xsl:for-each>
   </xsl:template>
+  <!--
+     Replaces the second fence tuple element with a temporary object.
+  -->
   <xsl:template match="/program/objects//o[../../@fence and @base='tuple']/o[2]">
     <o base="tmp"/>
+  </xsl:template>
+  <!--
+     Replaces write with the result of its dataization.
+  -->
+  <xsl:template match="/program/objects//o[../../@fence and @base='.write']">
+    <o base="bool" data="bytes">01</o>
   </xsl:template>
   <xsl:template match="@*|node()">
     <xsl:copy>
