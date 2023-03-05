@@ -33,8 +33,34 @@ SOFTWARE.
   <!--
     Desc
   -->
-  <xsl:template match="/program/objects//o[../../@fence and @base='.write']">
-    <o base="bool" data="bytes">01</o>
+  <xsl:template match="/program/objects//o[../../@fence and @base='tuple']/o[1]">
+    <xsl:for-each select="../../o[@base='.write']/o[1]">
+      <xsl:copy>
+        <xsl:apply-templates select="@*|node()"/>
+        <xsl:element name="o">
+          <xsl:attribute name="base">
+            <xsl:value-of select="'.with_counter'"/>
+          </xsl:attribute>
+          <xsl:attribute name="name">
+            <xsl:value-of select="'tmp'"/>
+          </xsl:attribute>
+          <xsl:attribute name="method"/>
+          <xsl:for-each select="../../o[@base='.write']/o[2]//o[position()=1]">
+            <xsl:copy>
+              <xsl:apply-templates select="@*"/>
+            </xsl:copy>
+          </xsl:for-each>
+          <xsl:copy>
+            <xsl:for-each select="../../o[@base='.write']/o[2]">
+              <xsl:apply-templates select="@*|node()"/>
+            </xsl:for-each>
+          </xsl:copy>
+        </xsl:element>
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:template>
+  <xsl:template match="/program/objects//o[../../@fence and @base='tuple']/o[2]">
+    <o base="tmp"/>
   </xsl:template>
   <xsl:template match="@*|node()">
     <xsl:copy>
