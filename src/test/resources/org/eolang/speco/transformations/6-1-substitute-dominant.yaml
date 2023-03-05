@@ -1,0 +1,73 @@
+sheets:
+  - /org/eolang/speco/6-1-substitute-dominant.xsl
+document:
+  <?xml version="1.0" encoding="UTF-8"?>
+    <program>
+    <listing/>
+    <errors/>
+    <sheets/>
+    <objects>
+      <o abstract="" line="15" name="app" pos="0">
+        <o base="counter" line="16" name="c" pos="2">
+        <o base="int" data="bytes" line="17" pos="4">00 00 00 00 00 00 00 00</o>
+        </o>
+        <o base="c" line="18" pos="2"/>
+        <o base=".next_as_tuple"
+          fence_tuple=""
+          line="19"
+          method=""
+          name="x1_tuple"
+          pos="2"/>
+        <o base="x1_tuple" line="20" pos="2"/>
+        <o base=".at" line="21" method="" name="x1" pos="2">
+        <o base="int" data="bytes" line="22" pos="4">00 00 00 00 00 00 00 00</o>
+        </o>
+        <o base="c" line="18" pos="2"/>
+        <o base=".next_as_tuple"
+          fence_tuple=""
+          line="26"
+          method=""
+          name="x2_tuple"
+          pos="2"/>
+        <o base="x2_tuple" line="27" pos="2"/>
+        <o base=".at" line="28" method="" name="x2" pos="2">
+        <o base="int" data="bytes" line="29" pos="4">00 00 00 00 00 00 00 00</o>
+        </o>
+        <o base="c" line="18" pos="2"/>
+        <o base=".next_as_tuple"
+          fence_tuple=""
+          line="33"
+          method=""
+          name="x3_tuple"
+          pos="2"/>
+        <o base="x3_tuple" line="34" pos="2"/>
+        <o base=".at" line="35" method="" name="x3" pos="2">
+        <o base="int" data="bytes" line="36" pos="4">00 00 00 00 00 00 00 00</o>
+        </o>
+        <o base="seq" line="24" name="@" pos="2">
+          <o base="QQ" line="25" pos="4"/>
+          <o base=".io" line="26" method="" pos="4"/>
+          <o base=".stdout" line="27" method="" pos="4">
+            <o base="QQ" line="28" pos="6"/>
+            <o base=".txt" line="29" method="" pos="6"/>
+            <o base=".sprintf" line="30" method="" pos="6">
+              <o base="string" data="bytes" line="31" pos="8">46 69 72 73 74 3A 20 25 64 0A 53 65 63 6F 6E 64 3A 20 25 64 0A 54 68 69 72 64 3A 20 25 64 0A</o>
+              <o base="x1" line="32" pos="8" ref="19"/>
+              <o base="x2" line="33" pos="8" ref="21"/>
+              <o base="x3" line="34" pos="8" ref="23"/>
+            </o>
+          </o>
+        </o>
+      </o>
+    </objects>
+    <aoi/>
+    <speco/>
+  </program>
+asserts:
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x1_tuple" and (preceding::o)[last()]/@base="c"]
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x2_tuple" and (preceding::o)[position()=last()]="00 00 00 00 00 00 00 01"]
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x2_tuple" and (preceding::o)[position()=last()-1]/@base="x1_tuple"]
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x2_tuple" and (preceding::o)[position()=last()-2]/@base=".at"]
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x3_tuple" and (preceding::o)[position()=last()]="00 00 00 00 00 00 00 01"]
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x3_tuple" and (preceding::o)[position()=last()-1]/@base="x2_tuple"]
+  - /program/objects/o/o[@base=".next_as_tuple" and @name="x3_tuple" and (preceding::o)[position()=last()-2]/@base=".at"]
