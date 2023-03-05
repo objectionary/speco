@@ -123,7 +123,8 @@ final class Speco {
             .with(new StClasspath("/org/eolang/speco/3-1-add-with.xsl"))
             .with(new StClasspath("/org/eolang/speco/4-1-fence-tuples.xsl"))
             .with(new StClasspath("/org/eolang/speco/5-1-substitute-fence.xsl"))
-            .with(new StClasspath("/org/eolang/speco/6-1-substitute-dominant.xsl"));
+            .with(new StClasspath("/org/eolang/speco/6-1-substitute-dominant.xsl"))
+            .with(new StClasspath("/org/eolang/speco/7-2-substitute-write.xsl"));
         return new Xsline(train).pass(xml);
     }
 

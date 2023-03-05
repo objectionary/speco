@@ -60,13 +60,7 @@ after: |
         s
     [] > next_as_tuple
       seq > @
-        ^
-        .k
-        .write
-          ^
-          .k
-          .plus
-            1
+        TRUE
         *
           ^
           .k
@@ -131,13 +125,7 @@ after: |
         s
     [] > next_as_tuple
       seq > @
-        ^
-        .k
-        .write
-          ^
-          .k
-          .plus
-            1
+        TRUE
         *
           ^
           .k
@@ -168,13 +156,7 @@ after: |
         s
     [] > next_as_tuple
       seq > @
-        ^
-        .k
-        .write
-          ^
-          .k
-          .plus
-            1
+        TRUE
         *
           ^
           .k
@@ -205,13 +187,7 @@ after: |
         s
     [] > next_as_tuple
       seq > @
-        ^
-        .k
-        .write
-          ^
-          .k
-          .plus
-            1
+        TRUE
         *
           ^
           .k
