@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Set up Ruby
-        uses: ruby/setup-ruby@31a7f6d628878b80bc63375a93ae079ec50a1601
+        uses: ruby/setup-ruby@9669f3ee51dc3f4eda8447ab696b3ab19a90d14b
         with:
           ruby-version: '3.1'
       - run: java -version
