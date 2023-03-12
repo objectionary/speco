@@ -61,9 +61,21 @@ public final class Main implements Callable<Integer> {
         description = "If the input program is in EO")
     private boolean eolang;
 
+    /**
+     * Flag indicating whether the temporary tags should be deleted.
+     */
+    @CommandLine.Option(names = { "--clear" },
+        defaultValue = "false",
+        description = "If delete temporary tags")
+    private boolean clear;
+
     @Override
     public Integer call() throws IOException {
-        new Speco(this.input, this.output, this.eolang).exec();
+        Speco speco = new DefaultSpeco(this.input, this.output);
+        if (this.eolang) {
+            speco = new EolangSpeco(speco);
+        }
+        speco.exec();
         return 0;
     }
 
