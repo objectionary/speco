@@ -64,18 +64,18 @@ public class EolangSpeco implements Speco {
     @Override
     public final void exec() throws IOException {
         final Path source = this.parse(this.origin.input());
+        Files.createDirectories(this.origin.output());
         for (final Path path : Files.newDirectoryStream(source)) {
-            final String transformed = this.applyTrain(
-                new Xsline(
-                    new TrDefault<Shift>().with(
-                        new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
-                    )
-                ).pass(new XMLDocument(Files.readString(path)))
-            ).toString();
-            final String after = new XMIR(transformed).toEO();
-            Files.createDirectories(this.origin.output());
-            Files.write(this.origin.output().resolve(path.getFileName()), after.getBytes());
+            Files.write(
+                this.origin.output().resolve(path.getFileName()),
+                new XMIR(this.transform(path)).toEO().getBytes()
+            );
         }
+    }
+
+    @Override
+    public final String transform(final Path path) throws IOException {
+        return this.origin.transform(path);
     }
 
     @Override

@@ -74,19 +74,24 @@ final class DefaultSpeco implements Speco {
     @Override
     public void exec() throws IOException {
         final Path source = this.input;
+        Files.createDirectories(this.output);
         for (final Path path : Files.newDirectoryStream(source)) {
-            final String transformed = this.applyTrain(
-                new Xsline(
-                    new TrDefault<Shift>().with(
-                        new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
-                    )
-                ).pass(new XMLDocument(Files.readString(path)))
-            ).toString();
-            final String after;
-            after = transformed;
-            Files.createDirectories(this.output);
-            Files.write(this.output.resolve(path.getFileName()), after.getBytes());
+            Files.write(
+                this.output.resolve(path.getFileName()),
+                this.transform(path).getBytes()
+            );
         }
+    }
+
+    @Override
+    public String transform(final Path path) throws IOException {
+        return this.applyTrain(
+            new Xsline(
+                new TrDefault<Shift>().with(
+                    new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
+                )
+            ).pass(new XMLDocument(Files.readString(path)))
+        ).toString();
     }
 
     @Override

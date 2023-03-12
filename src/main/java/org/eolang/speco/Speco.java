@@ -41,6 +41,15 @@ public interface Speco {
     void exec() throws IOException;
 
     /**
+     * Transforms.
+     *
+     * @param path Path
+     * @return String
+     * @throws IOException In case of errors when working with files or parsing a document
+     */
+    String transform(Path path) throws IOException;
+
+    /**
      * Applies train of XSL-transformations.
      *
      * @param xml XML
