@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * The entity encapsulating specialization logic.
+ * The interface encapsulating specialization logic.
  *
  * @since 0.0.3
  */
@@ -42,23 +42,23 @@ public interface Speco {
     void exec() throws IOException;
 
     /**
-     * Transforms.
+     * Applies XSL-transformations to file.
      *
-     * @param path Path
-     * @return String
-     * @throws IOException In case of errors when working with files or parsing a document
+     * @param path Path to source xml file
+     * @return String Representation of transfromed xml
+     * @throws IOException In case of errors when reading from file
      */
     String transform(Path path) throws IOException;
 
     /**
-     * Applies train of XSL-transformations.
+     * Train of XSL-transformations.
      *
-     * @return XML
+     * @return Train<Shift>
      */
     Train<Shift> train();
 
     /**
-     * Absolute path to the directory with input files.
+     * Formats the transformed XMLs.
      *
      * @param content String
      * @return Path
@@ -69,7 +69,7 @@ public interface Speco {
      * Absolute path to the directory with input files.
      *
      * @return Path
-     * @throws IOException In case of errors when working with files or parsing a document
+     * @throws IOException In case of errors when prepare input
      */
     Path input() throws IOException;
 

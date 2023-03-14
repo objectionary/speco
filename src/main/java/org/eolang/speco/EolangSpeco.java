@@ -37,7 +37,7 @@ import org.eolang.parser.XMIR;
 import org.objectionary.aoi.launch.LauncherKt;
 
 /**
- * The entity encapsulating specialization logic.
+ * The class encapsulating specialization logic for eo programs.
  *
  * @since 0.0.3
  */
@@ -51,7 +51,7 @@ final class EolangSpeco implements Speco {
     /**
      * Ctor.
      *
-     * @param origin Origin encapsulated speco.
+     * @param origin Encapsulated speco.
      */
     EolangSpeco(final Speco origin) {
         this.origin = origin;

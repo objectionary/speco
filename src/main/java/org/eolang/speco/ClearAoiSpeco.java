@@ -34,7 +34,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * The entity encapsulating specialization logic.
+ * The class encapsulating specialization logic with the clearing of the resulting xmir.
  *
  * @since 0.0.3
  */
@@ -48,7 +48,7 @@ final class ClearAoiSpeco implements Speco {
     /**
      * Ctor.
      *
-     * @param origin Origin encapsulated speco.
+     * @param origin Encapsulated speco.
      */
     ClearAoiSpeco(final Speco origin) {
         this.origin = origin;

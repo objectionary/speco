@@ -43,8 +43,7 @@ import org.eolang.parser.XMIR;
 import org.objectionary.aoi.launch.LauncherKt;
 
 /**
- * The class encapsulating specialization logic.
- * Works with xmir.
+ * The class encapsulating specialization logic for xmir programs.
  *
  * @since 0.0.3
  */
