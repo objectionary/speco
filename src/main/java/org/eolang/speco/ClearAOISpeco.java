@@ -23,27 +23,19 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
 import com.yegor256.xsline.*;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import org.apache.commons.io.FileUtils;
-import org.cactoos.io.InputOf;
-import org.cactoos.io.OutputTo;
-import org.eolang.parser.Syntax;
-import org.eolang.parser.XMIR;
-import org.objectionary.aoi.launch.LauncherKt;
 
 /**
  * The entity encapsulating specialization logic.
  *
  * @since 0.0.3
  */
-public class EolangSpeco implements Speco {
+public class ClearAOISpeco implements Speco {
 
     /**
      * Encapsulated speco.
@@ -55,7 +47,7 @@ public class EolangSpeco implements Speco {
      *
      * @param origin Origin encapsulated speco.
      */
-    EolangSpeco(final Speco origin) {
+    ClearAOISpeco(final Speco origin) {
         this.origin = origin;
     }
 
@@ -65,24 +57,30 @@ public class EolangSpeco implements Speco {
         for (final Path path : Files.newDirectoryStream(this.input())) {
             Files.write(
                 this.output().resolve(path.getFileName()),
-                new XMIR(this.transform(path)).toEO().getBytes()
+                this.format(this.transform(path)).getBytes()
             );
         }
     }
 
     @Override
     public final String transform(final Path path) throws IOException {
-        return this.origin.transform(path);
+        return new Xsline(train()).pass(
+            new Xsline(
+                new TrDefault<Shift>().with(
+                    new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
+                )
+            ).pass(new XMLDocument(Files.readString(path)))
+        ).toString();
     }
 
     @Override
-    public Train<Shift> train() {
-        return this.origin.train();
+    public final Train<Shift> train() {
+        return this.origin.train().with(new StClasspath("/org/eolang/speco/clear.xsl"));
     }
 
     @Override
     public final Path input() throws IOException {
-        return parse(this.origin.input());
+        return this.origin.input();
     }
 
     @Override
@@ -92,28 +90,6 @@ public class EolangSpeco implements Speco {
 
     @Override
     public final String format(String content) {
-        return new XMIR(this.origin.format(content)).toEO();
-    }
-
-    /**
-     * Takes source codes on EO, converts to xmir and applies the AOI tool.
-     *
-     * @param input Path of the source directory
-     * @return Path to the directory with the parsed files
-     * @throws IOException When Parsing EO fails
-     */
-    private static Path parse(final Path input) throws IOException {
-        final StringBuilder name = new StringBuilder(input.toString());
-        final Path source = Path.of(name.append("_prs").toString());
-        FileUtils.copyDirectory(input.toFile(), source.toFile());
-        for (final Path path : Files.newDirectoryStream(source)) {
-            new Syntax(
-                "scenario",
-                new InputOf(String.format("%s%n", Files.readString(path))),
-                new OutputTo(new FileOutputStream(path.toFile()))
-            ).parse();
-        }
-        LauncherKt.launch(source.toString());
-        return Path.of(name.append("_aoi").toString());
+        return this.origin.format(content);
     }
 }

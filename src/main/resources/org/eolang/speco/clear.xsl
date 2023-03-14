@@ -24,8 +24,8 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="SG" version="2.0">
   <!--
-       Removes <speco/> and <aoi/> nodes.
-       -->
+     Removes <speco/> and <aoi/> nodes.
+   -->
   <xsl:output indent="yes" method="xml"/>
   <xsl:strip-space elements="*"/>
   <xsl:template match="@*|node()">
