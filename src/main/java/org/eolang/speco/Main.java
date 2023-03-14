@@ -67,7 +67,7 @@ public final class Main implements Callable<Integer> {
     @CommandLine.Option(names = { "--clear-aoi" },
         defaultValue = "false",
         description = "If delete temporary tags")
-    private boolean clearAOI;
+    private boolean clearaoi;
 
     @Override
     public Integer call() throws IOException {
@@ -75,8 +75,8 @@ public final class Main implements Callable<Integer> {
         if (this.eolang) {
             speco = new EolangSpeco(speco);
         }
-        if (this.clearAOI) {
-            speco = new ClearAOISpeco(speco);
+        if (this.clearaoi) {
+            speco = new ClearAoiSpeco(speco);
         }
         speco.exec();
         return 0;

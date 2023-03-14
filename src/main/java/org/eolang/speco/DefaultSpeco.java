@@ -84,7 +84,7 @@ final class DefaultSpeco implements Speco {
 
     @Override
     public String transform(final Path path) throws IOException {
-        return new Xsline(train()).pass(
+        return new Xsline(this.train()).pass(
             new Xsline(
                 new TrDefault<Shift>().with(
                     new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
@@ -118,7 +118,7 @@ final class DefaultSpeco implements Speco {
     }
 
     @Override
-    public final String format(String content) {
+    public String format(final String content) {
         return content;
     }
 }

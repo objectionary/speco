@@ -1,0 +1,16 @@
+sheets:
+  - /org/eolang/speco/clear.xsl
+document:
+  <?xml version="1.0" encoding="UTF-8"?>
+  <program>
+     <listing/>
+     <errors/>
+     <sheets/>
+     <objects/>
+     <aoi/>
+     <speco/>
+  </program>
+asserts:
+  - /program[count(node()) = 4]
+  - /program[count(speco) = 0]
+  - /program[count(aoi) = 0]

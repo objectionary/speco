@@ -23,10 +23,8 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
-import com.jcabi.xml.XMLDocument;
-import com.yegor256.xsline.*;
-
+import com.yegor256.xsline.Shift;
+import com.yegor256.xsline.Train;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -43,7 +41,7 @@ import org.objectionary.aoi.launch.LauncherKt;
  *
  * @since 0.0.3
  */
-public class EolangSpeco implements Speco {
+final class EolangSpeco implements Speco {
 
     /**
      * Encapsulated speco.
@@ -60,7 +58,7 @@ public class EolangSpeco implements Speco {
     }
 
     @Override
-    public final void exec() throws IOException {
+    public void exec() throws IOException {
         Files.createDirectories(this.output());
         for (final Path path : Files.newDirectoryStream(this.input())) {
             Files.write(
@@ -71,7 +69,7 @@ public class EolangSpeco implements Speco {
     }
 
     @Override
-    public final String transform(final Path path) throws IOException {
+    public String transform(final Path path) throws IOException {
         return this.origin.transform(path);
     }
 
@@ -81,17 +79,17 @@ public class EolangSpeco implements Speco {
     }
 
     @Override
-    public final Path input() throws IOException {
+    public Path input() throws IOException {
         return parse(this.origin.input());
     }
 
     @Override
-    public final Path output() {
+    public Path output() {
         return this.origin.output();
     }
 
     @Override
-    public final String format(String content) {
+    public String format(final String content) {
         return new XMIR(this.origin.format(content)).toEO();
     }
 

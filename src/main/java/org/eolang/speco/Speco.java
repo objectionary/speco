@@ -23,10 +23,8 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
 import com.yegor256.xsline.Shift;
 import com.yegor256.xsline.Train;
-
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -55,7 +53,6 @@ public interface Speco {
     /**
      * Applies train of XSL-transformations.
      *
-     * @param Train<Shift> XML
      * @return XML
      */
     Train<Shift> train();
@@ -63,6 +60,7 @@ public interface Speco {
     /**
      * Absolute path to the directory with input files.
      *
+     * @param content String
      * @return Path
      */
     String format(String content);
@@ -71,6 +69,7 @@ public interface Speco {
      * Absolute path to the directory with input files.
      *
      * @return Path
+     * @throws IOException In case of errors when working with files or parsing a document
      */
     Path input() throws IOException;
 
