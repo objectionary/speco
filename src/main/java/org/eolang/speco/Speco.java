@@ -53,7 +53,7 @@ public interface Speco {
     /**
      * Train of XSL-transformations.
      *
-     * @return Train<Shift>
+     * @return Train of transformations
      */
     Train<Shift> train();
 
