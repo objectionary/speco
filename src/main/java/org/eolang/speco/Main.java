@@ -64,10 +64,10 @@ public final class Main implements Callable<Integer> {
     /**
      * Flag indicating whether the temporary tags should be deleted.
      */
-    @CommandLine.Option(names = { "--clear-aoi" },
+    @CommandLine.Option(names = { "--clear-xmir" },
         defaultValue = "false",
         description = "If delete temporary tags")
-    private boolean clearaoi;
+    private boolean clearxmir;
 
     @Override
     public Integer call() throws IOException {
@@ -75,8 +75,8 @@ public final class Main implements Callable<Integer> {
         if (this.eolang) {
             speco = new EolangSpeco(speco);
         }
-        if (this.clearaoi) {
-            speco = new ClearAoiSpeco(speco);
+        if (this.clearxmir) {
+            speco = new ClearXmirSpeco(speco);
         }
         speco.exec();
         return 0;

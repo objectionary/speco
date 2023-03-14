@@ -38,7 +38,7 @@ import java.nio.file.Path;
  *
  * @since 0.0.3
  */
-final class ClearAoiSpeco implements Speco {
+final class ClearXmirSpeco implements Speco {
 
     /**
      * Encapsulated speco.
@@ -50,7 +50,7 @@ final class ClearAoiSpeco implements Speco {
      *
      * @param origin Encapsulated speco.
      */
-    ClearAoiSpeco(final Speco origin) {
+    ClearXmirSpeco(final Speco origin) {
         this.origin = origin;
     }
 
