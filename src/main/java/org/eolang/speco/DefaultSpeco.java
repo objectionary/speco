@@ -24,23 +24,12 @@
 package org.eolang.speco;
 
 import com.jcabi.xml.XML;
-import com.jcabi.xml.XMLDocument;
 import com.yegor256.xsline.Shift;
 import com.yegor256.xsline.StClasspath;
 import com.yegor256.xsline.StEndless;
 import com.yegor256.xsline.TrDefault;
-import com.yegor256.xsline.Train;
 import com.yegor256.xsline.Xsline;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import org.apache.commons.io.FileUtils;
-import org.cactoos.io.InputOf;
-import org.cactoos.io.OutputTo;
-import org.eolang.parser.Syntax;
-import org.eolang.parser.XMIR;
-import org.objectionary.aoi.launch.LauncherKt;
 
 /**
  * The class encapsulating specialization logic for xmir programs.
@@ -49,52 +38,9 @@ import org.objectionary.aoi.launch.LauncherKt;
  */
 final class DefaultSpeco implements Speco {
 
-    /**
-     * Absolute path to the directory with input files.
-     */
-    private final Path input;
-
-    /**
-     * Absolute path to the directory with output files.
-     */
-    private final Path output;
-
-    /**
-     * Ctor.
-     *
-     * @param inp Path to the directory with input files
-     * @param out Path to the directory with output files
-     */
-    DefaultSpeco(final Path inp, final Path out) {
-        this.input = inp.toAbsolutePath();
-        this.output = out.toAbsolutePath();
-    }
-
     @Override
-    public void exec() throws IOException {
-        Files.createDirectories(this.output);
-        for (final Path path : Files.newDirectoryStream(this.input())) {
-            Files.write(
-                this.output.resolve(path.getFileName()),
-                this.format(this.transform(path)).getBytes()
-            );
-        }
-    }
-
-    @Override
-    public String transform(final Path path) throws IOException {
-        return new Xsline(this.train()).pass(
-            new Xsline(
-                new TrDefault<Shift>().with(
-                    new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
-                )
-            ).pass(new XMLDocument(Files.readString(path)))
-        ).toString();
-    }
-
-    @Override
-    public Train<Shift> train() {
-        return new TrDefault<Shift>()
+    public XML transform(final XML xml) throws IOException {
+        return new Xsline(new TrDefault<Shift>()
             .with(new StClasspath("/org/eolang/speco/1-1-coping.xsl"))
             .with(new StEndless(new StClasspath("/org/eolang/speco/1-2-specialization.xsl")))
             .with(new StClasspath("/org/eolang/speco/1-3-extension.xsl"))
@@ -103,21 +49,13 @@ final class DefaultSpeco implements Speco {
             .with(new StClasspath("/org/eolang/speco/4-1-fence-tuples.xsl"))
             .with(new StClasspath("/org/eolang/speco/5-1-substitute-fence.xsl"))
             .with(new StClasspath("/org/eolang/speco/6-1-substitute-dominant.xsl"))
-            .with(new StClasspath("/org/eolang/speco/7-1-substitute-returned.xsl"));
+            .with(new StClasspath("/org/eolang/speco/7-1-substitute-returned.xsl"))).pass(
+            new Xsline(
+                new TrDefault<Shift>().with(
+                    new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
+                )
+            ).pass(xml)
+        );
     }
 
-    @Override
-    public Path input() throws IOException {
-        return this.input;
-    }
-
-    @Override
-    public Path output() {
-        return this.output;
-    }
-
-    @Override
-    public String format(final String content) {
-        return content;
-    }
 }

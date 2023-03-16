@@ -23,15 +23,12 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XMLDocument;
+import com.jcabi.xml.XML;
 import com.yegor256.xsline.Shift;
 import com.yegor256.xsline.StClasspath;
 import com.yegor256.xsline.TrDefault;
-import com.yegor256.xsline.Train;
 import com.yegor256.xsline.Xsline;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * The class encapsulating specialization logic with the clearing of the resulting xmir.
@@ -55,44 +52,16 @@ final class ClearXmirSpeco implements Speco {
     }
 
     @Override
-    public void exec() throws IOException {
-        Files.createDirectories(this.output());
-        for (final Path path : Files.newDirectoryStream(this.input())) {
-            Files.write(
-                this.output().resolve(path.getFileName()),
-                this.format(this.transform(path)).getBytes()
+    public XML transform(final XML xml) throws IOException {
+        return new Xsline(
+            new TrDefault<>(new StClasspath("/org/eolang/speco/clear.xsl")))
+            .pass(
+                new Xsline(
+                    new TrDefault<Shift>().with(
+                        new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
+                    )
+                ).pass(this.origin.transform(xml))
             );
-        }
     }
 
-    @Override
-    public String transform(final Path path) throws IOException {
-        return new Xsline(this.train()).pass(
-            new Xsline(
-                new TrDefault<Shift>().with(
-                    new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
-                )
-            ).pass(new XMLDocument(Files.readString(path)))
-        ).toString();
-    }
-
-    @Override
-    public Train<Shift> train() {
-        return this.origin.train().with(new StClasspath("/org/eolang/speco/clear.xsl"));
-    }
-
-    @Override
-    public Path input() throws IOException {
-        return this.origin.input();
-    }
-
-    @Override
-    public Path output() {
-        return this.origin.output();
-    }
-
-    @Override
-    public String format(final String content) {
-        return this.origin.format(content);
-    }
 }

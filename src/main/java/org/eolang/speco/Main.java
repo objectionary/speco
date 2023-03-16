@@ -42,21 +42,21 @@ public final class Main implements Callable<Integer> {
     /**
      * Relative path to the directory with input files.
      */
-    @CommandLine.Option(names = { "--source" },
+    @CommandLine.Option(names = {"--source"},
         description = "Directory with input .xmir files.")
     private Path input;
 
     /**
      * Relative path to the directory with output files.
      */
-    @CommandLine.Option(names = { "--target" },
+    @CommandLine.Option(names = {"--target"},
         description = "Directory for modified .xmir files.")
     private Path output;
 
     /**
      * Flag indicating whether the input files is EO-program.
      */
-    @CommandLine.Option(names = { "--eo" },
+    @CommandLine.Option(names = {"--eo"},
         defaultValue = "false",
         description = "If the input program is in EO")
     private boolean eolang;
@@ -64,21 +64,24 @@ public final class Main implements Callable<Integer> {
     /**
      * Flag indicating whether the temporary tags should be deleted.
      */
-    @CommandLine.Option(names = { "--clear-xmir" },
+    @CommandLine.Option(names = {"--clear-xmir"},
         defaultValue = "false",
         description = "If delete temporary tags")
     private boolean clearxmir;
 
     @Override
     public Integer call() throws IOException {
-        Speco speco = new DefaultSpeco(this.input, this.output);
-        if (this.eolang) {
-            speco = new EolangSpeco(speco);
-        }
+        Speco speco = new DefaultSpeco();
         if (this.clearxmir) {
             speco = new ClearXmirSpeco(speco);
         }
-        speco.exec();
+        final Walk walk;
+        if (this.eolang) {
+            walk = new EoWalk(this.input, this.output, speco);
+        } else {
+            walk = new XmirWalk(this.input, this.output, speco);
+        }
+        walk.exec();
         return 0;
     }
 
