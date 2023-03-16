@@ -80,20 +80,9 @@ public final class EoWalk implements Walk {
         for (final Path path : Files.newDirectoryStream(EoWalk.parse(this.input))) {
             Files.write(
                 this.output.resolve(path.getFileName()),
-                new XMIR(this.speco.transform(EoWalk.toXml(path))).toEO().getBytes()
+                new XMIR(this.speco.transform(Walk.toXml(path))).toEO().getBytes()
             );
         }
-    }
-
-    /**
-     * Read XML from file.
-     *
-     * @param path Path to input file.
-     * @return Read XML
-     * @throws IOException In case of errors when reading from file
-     */
-    static XML toXml(final Path path) throws IOException {
-        return new XMLDocument(Files.readString(path));
     }
 
     /**

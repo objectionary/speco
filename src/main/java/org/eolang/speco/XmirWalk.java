@@ -73,19 +73,8 @@ public final class XmirWalk implements Walk {
         for (final Path path : Files.newDirectoryStream(this.input)) {
             Files.write(
                 this.output.resolve(path.getFileName()),
-                this.speco.transform(XmirWalk.toXml(path)).toString().getBytes()
+                this.speco.transform(Walk.toXml(path)).toString().getBytes()
             );
         }
-    }
-
-    /**
-     * Read XML from file.
-     *
-     * @param path Path to input file.
-     * @return Read XML
-     * @throws IOException In case of errors when reading from file
-     */
-    static XML toXml(final Path path) throws IOException {
-        return new XMLDocument(Files.readString(path));
     }
 }
