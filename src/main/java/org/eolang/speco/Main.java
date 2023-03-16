@@ -71,14 +71,17 @@ public final class Main implements Callable<Integer> {
 
     @Override
     public Integer call() throws IOException {
-        Speco speco = new DefaultSpeco(this.input, this.output);
-        if (this.eolang) {
-            speco = new EolangSpeco(speco);
-        }
+        Speco speco = new DefaultSpeco();
         if (this.clearxmir) {
             speco = new ClearXmirSpeco(speco);
         }
-        speco.exec();
+        final Walk walk;
+        if (this.eolang) {
+            walk = new EoWalk(this.input, this.output, speco);
+        } else {
+            walk = new XmirWalk(this.input, this.output, speco);
+        }
+        walk.exec();
         return 0;
     }
 

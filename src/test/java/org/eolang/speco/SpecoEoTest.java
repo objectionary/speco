@@ -118,8 +118,10 @@ class SpecoEoTest {
             script.get("before").toString(),
             StandardOpenOption.CREATE
         );
-        new EolangSpeco(
-            new DefaultSpeco(input, output)
+        new EoWalk(
+            input,
+            output,
+            new DefaultSpeco()
         ).exec();
         return output;
     }

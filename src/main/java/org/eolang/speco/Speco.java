@@ -23,10 +23,8 @@
  */
 package org.eolang.speco;
 
-import com.yegor256.xsline.Shift;
-import com.yegor256.xsline.Train;
+import com.jcabi.xml.XML;
 import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * The interface encapsulating specialization logic.
@@ -35,48 +33,11 @@ import java.nio.file.Path;
  */
 public interface Speco {
     /**
-     * Starts the specialization process.
-     *
-     * @throws IOException In case of errors when working with files or parsing a document
-     */
-    void exec() throws IOException;
-
-    /**
      * Applies XSL-transformations to file.
      *
      * @param path Path to source xml file
      * @return String Representation of transfromed xml
      * @throws IOException In case of errors when reading from file
      */
-    String transform(Path path) throws IOException;
-
-    /**
-     * Train of XSL-transformations.
-     *
-     * @return Train of transformations
-     */
-    Train<Shift> train();
-
-    /**
-     * Formats the transformed XMLs.
-     *
-     * @param content String
-     * @return Path
-     */
-    String format(String content);
-
-    /**
-     * Absolute path to the directory with input files.
-     *
-     * @return Path
-     * @throws IOException In case of errors when prepare input
-     */
-    Path input() throws IOException;
-
-    /**
-     * Absolute path to the directory with output files.
-     *
-     * @return Path
-     */
-    Path output();
+    XML transform(XML path) throws IOException;
 }

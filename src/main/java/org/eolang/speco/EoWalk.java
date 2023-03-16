@@ -23,8 +23,8 @@
  */
 package org.eolang.speco;
 
-import com.yegor256.xsline.Shift;
-import com.yegor256.xsline.Train;
+import com.jcabi.xml.XML;
+import com.jcabi.xml.XMLDocument;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,60 +37,63 @@ import org.eolang.parser.XMIR;
 import org.objectionary.aoi.launch.LauncherKt;
 
 /**
- * The class encapsulating specialization logic for eo programs.
+ * The interface encapsulating applying of specialization to EO.
  *
  * @since 0.0.3
  */
-final class EolangSpeco implements Speco {
+public final class EoWalk implements Walk {
+    /**
+     * Absolute path to the directory with input files.
+     */
+    private final Path input;
 
     /**
-     * Encapsulated speco.
+     * Absolute path to the directory with output files.
      */
-    private final Speco origin;
+    private final Path output;
+
+    /**
+     * Origin speco.
+     */
+    private final Speco speco;
 
     /**
      * Ctor.
      *
-     * @param origin Encapsulated speco.
+     * @param input Absolute path to the directory with input files
+     * @param output Absolute path to the directory with output files
+     * @param speco Origin speco
      */
-    EolangSpeco(final Speco origin) {
-        this.origin = origin;
+    public EoWalk(
+        final Path input,
+        final Path output,
+        final Speco speco
+    ) {
+        this.input = input;
+        this.output = output;
+        this.speco = speco;
     }
 
     @Override
     public void exec() throws IOException {
-        Files.createDirectories(this.output());
-        for (final Path path : Files.newDirectoryStream(this.input())) {
+        Files.createDirectories(this.output);
+        for (final Path path : Files.newDirectoryStream(EoWalk.parse(this.input))) {
             Files.write(
-                this.output().resolve(path.getFileName()),
-                new XMIR(this.transform(path)).toEO().getBytes()
+                this.output.resolve(path.getFileName()),
+                new XMIR(this.speco.transform(EoWalk.toXml(path))).toEO().getBytes()
             );
         }
     }
 
-    @Override
-    public String transform(final Path path) throws IOException {
-        return this.origin.transform(path);
-    }
-
-    @Override
-    public Train<Shift> train() {
-        return this.origin.train();
-    }
-
-    @Override
-    public Path input() throws IOException {
-        return parse(this.origin.input());
-    }
-
-    @Override
-    public Path output() {
-        return this.origin.output();
-    }
-
-    @Override
-    public String format(final String content) {
-        return new XMIR(this.origin.format(content)).toEO();
+    /**
+     * Read XML from file.
+     *
+     * @param path Path to input file.
+     * @return Read XML
+     * @throws IOException In case of errors when reading from file
+     */
+    static XML toXml(final Path path) throws IOException {
+        return new XMLDocument(Files.readString(path));
     }
 
     /**

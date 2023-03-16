@@ -23,44 +23,18 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
-import com.yegor256.xsline.Shift;
-import com.yegor256.xsline.StClasspath;
-import com.yegor256.xsline.TrDefault;
-import com.yegor256.xsline.Xsline;
 import java.io.IOException;
 
 /**
- * The class encapsulating specialization logic with the clearing of the resulting xmir.
+ * The interface encapsulating applying of specialization.
  *
  * @since 0.0.3
  */
-final class ClearXmirSpeco implements Speco {
-
+public interface Walk {
     /**
-     * Encapsulated speco.
-     */
-    private final Speco origin;
-
-    /**
-     * Ctor.
+     * Starts the specialization process.
      *
-     * @param origin Encapsulated speco.
+     * @throws IOException In case of errors when working with files or parsing a document
      */
-    ClearXmirSpeco(final Speco origin) {
-        this.origin = origin;
-    }
-
-    @Override
-    public XML transform(final XML xml) throws IOException {
-        return new Xsline(
-            new TrDefault<>(new StClasspath("/org/eolang/speco/clear.xsl"))
-            ).pass(
-                new Xsline(
-                    new TrDefault<Shift>().with(
-                        new StClasspath("/org/eolang/parser/wrap-method-calls.xsl")
-                    )
-                ).pass(this.origin.transform(xml))
-            );
-    }
+    void exec() throws IOException;
 }
