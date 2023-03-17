@@ -23,8 +23,6 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
-import com.jcabi.xml.XMLDocument;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,7 +35,7 @@ import org.eolang.parser.XMIR;
 import org.objectionary.aoi.launch.LauncherKt;
 
 /**
- * The interface encapsulating applying of specialization to EO.
+ * The class encapsulating applying of specialization to EO.
  *
  * @since 0.0.3
  */

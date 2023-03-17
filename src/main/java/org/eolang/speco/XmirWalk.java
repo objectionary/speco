@@ -23,14 +23,12 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
-import com.jcabi.xml.XMLDocument;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * The interface encapsulating applying of specialization to XMIR.
+ * The class encapsulating applying of specialization to XMIR.
  *
  * @since 0.0.3
  */

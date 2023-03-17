@@ -33,7 +33,7 @@ import java.io.IOException;
  */
 public interface Speco {
     /**
-     * Applies XSL-transformations to file.
+     * Applies XSL-transformations to XML.
      *
      * @param path Path to source xml file
      * @return String Representation of transfromed xml
