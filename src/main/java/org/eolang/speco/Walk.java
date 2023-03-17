@@ -33,6 +33,9 @@ import java.nio.file.Path;
  * The interface encapsulating applying of specialization.
  *
  * @since 0.0.3
+ * @todo #39:60min refactor this interface and classes EoWalk and XmirWalk implementing it,
+ *  to avoid code duplication. In particular, in the fields (input, output and speco),
+ *  constructor and exec method.
  */
 public interface Walk {
     /**
