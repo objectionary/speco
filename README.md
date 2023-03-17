@@ -14,7 +14,7 @@
 
 Specialization of objects in EO programs.
 
-SPECO is a tool that is aimed to be launched on the EO program converted to a collection of .xmir files,
+**Speco** is a tool that is aimed to be launched on the EO program converted to a collection of .xmir files,
 which has undergone modifications performed by [AOI](https://github.com/objectionary/aoi) tool.
 
 Consider the following EO program:
@@ -75,21 +75,21 @@ It does not give any hints on what object `x` may be in this context.
 </o>
 ```
 
-SPECO makes it obvious what `x` is in the provided context. For example, it will turn object `pet1`
-into these two declarations of objects `pet1_spec_x=cat` and `pet1_spec_x=dog`, which are specific
+**Speco** makes it obvious what `x` is in the provided context. For example, it will turn object `pet1`
+into these two declarations of objects `pet1_spec_x_cat` and `pet1_spec_x_dog`, which are specific
 for `cat` and `dog` correspondingly.
 
 ```
-<o abstract="" line="20" name="pet1_spec_x=cat" pos="0">
-   <o line="20" name="x" pos="1" spec="cat"/>
+<o abstract="" line="20" name="pet1_spec_x_cat" pos="0" spec="pet1">
+   <o line="20" name="x" pos="1"/>
    <o base="x" line="21" pos="2"/>
    <o base=".talk" line="21" name="@" pos="3"/>
 </o>
 ```
 
 ```
-<o abstract="" line="20" name="pet1_spec_x=dog" pos="0">
-   <o line="20" name="x" pos="1" spec="dog"/>
+<o abstract="" line="20" name="pet1_spec_x_dog" pos="0" spec="pet1">
+   <o line="20" name="x" pos="1"/>
    <o base="x" line="21" pos="2"/>
    <o base=".talk" line="21" name="@" pos="3"/>
 </o>
@@ -114,10 +114,20 @@ To run a transformation:
 $ java -jar speco.jar --source=<input> --target=<output>
 ```
 
-or use make command:
+or use make command for `.xmir`:
 ```bash
 $ make trans
 ```
+
+## How it works
+
+### Transformations
+
+TODO: specification of each transformation
+
+### Project Structure
+
+TODO: about classes and functions (if it is developer guide, then there are good comments, if user guide, then it should be in Usage)
 
 ## How to Contribute
 
