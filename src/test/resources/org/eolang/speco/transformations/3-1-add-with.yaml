@@ -7,42 +7,17 @@ document:
     <errors/>
     <sheets/>
     <objects>
-      <o abstract="" name="foo">
-        <o name="x"/>
-        <o base=".boom" name="@">
-          <o base="x"/>
-        </o>
-      </o>
-      <o abstract="" name="foo_spec_x_first" spec="foo">
-        <o name="x"/>
-        <o base=".boom" name="@">
-          <o base="x"/>
-        </o>
-      </o>
-      <o abstract="" name="foo_spec_x_second" spec="foo">
-        <o name="x"/>
-        <o base=".boom" name="@">
-          <o base="x"/>
-        </o>
-      </o>
+      <o abstract="" name="foo"/>
+      <o abstract="" name="foo_spec_x_first" spec="foo"/>
+      <o abstract="" name="foo_spec_x_second" spec="foo"/>
     </objects>
     <aoi/>
     <speco>
       <version name="foo" spec="first" var="x">
-        <o abstract="" name="foo_spec_x_first" spec="foo">
-          <o name="x"/>
-          <o base=".boom" name="@">
-            <o base="x"/>
-          </o>
-        </o>
+        <o abstract="" name="foo_spec_x_first" spec="foo"/>
       </version>
       <version name="foo" spec="second" var="x">
-        <o abstract="" name="foo_spec_x_second" spec="foo">
-          <o name="x"/>
-          <o base=".boom" name="@">
-            <o base="x"/>
-          </o>
-        </o>
+        <o abstract="" name="foo_spec_x_second" spec="foo"/>
       </version>
     </speco>
   </program>

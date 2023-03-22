@@ -21,20 +21,10 @@ document:
     <aoi/>
     <speco>
       <version name="foo" spec="first" var="x">
-        <o abstract="" name="foo_spec_x_first">
-          <o name="x"/>
-          <o base=".boom" name="@">
-            <o base="x"/>
-          </o>
-        </o>
+        <o abstract="" name="foo_spec_x_first"/>
       </version>
       <version name="foo" spec="second" var="x">
-        <o abstract="" name="foo_spec_x_second">
-          <o name="x"/>
-          <o base=".boom" name="@">
-            <o base="x"/>
-          </o>
-        </o>
+        <o abstract="" name="foo_spec_x_second"/>
       </version>
     </speco>
   </program>
