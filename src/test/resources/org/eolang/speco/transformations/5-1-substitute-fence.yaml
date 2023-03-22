@@ -7,30 +7,30 @@ document:
     <errors/>
     <sheets/>
     <objects>
-      <o abstract="" line="1" name="counter" pos="0">
+      <o abstract="" name="counter">
         <o abstract="" fence="next" name="next_as_tuple"/>
       </o>
-      <o abstract="" line="15" name="app" pos="0">
-        <o base="counter" line="16" name="c" pos="2" ref="1">
-          <o base="int" data="bytes" line="17" pos="4">00 00 00 00 00 00 00 00</o>
+      <o abstract="" name="app">
+        <o base="counter" name="c">
+          <o base="int" data="bytes">00 00 00 00 00 00 00 00</o>
         </o>
-        <o base="c" line="18" pos="2" ref="16"/>
-        <o base=".next" line="19" method="" name="x1" pos="2"/>
-        <o base="c" line="20" pos="2" ref="16"/>
-        <o base=".next" line="21" method="" name="x2" pos="2"/>
-        <o base="c" line="22" pos="2" ref="16"/>
-        <o base=".next" line="23" method="" name="x3" pos="2"/>
-        <o base="seq" line="24" name="@" pos="2">
-          <o base="QQ" line="25" pos="4"/>
-          <o base=".io" line="26" method="" pos="4"/>
-          <o base=".stdout" line="27" method="" pos="4">
-            <o base="QQ" line="28" pos="6"/>
-            <o base=".txt" line="29" method="" pos="6"/>
-            <o base=".sprintf" line="30" method="" pos="6">
-              <o base="string" data="bytes" line="31" pos="8">46 69 72 73 74 3A 20 25 64 0A 53 65 63 6F 6E 64 3A 20 25 64 0A 54 68 69 72 64 3A 20 25 64 0A</o>
-              <o base="x1" line="32" pos="8" ref="19"/>
-              <o base="x2" line="33" pos="8" ref="21"/>
-              <o base="x3" line="34" pos="8" ref="23"/>
+        <o base="c"/>
+        <o base=".next" method="" name="x1"/>
+        <o base="c"/>
+        <o base=".next" method="" name="x2"/>
+        <o base="c"/>
+        <o base=".next" method="" name="x3"/>
+        <o base="seq" name="@">
+          <o base="QQ"/>
+          <o base=".io" method=""/>
+          <o base=".stdout" method="">
+            <o base="QQ"/>
+            <o base=".txt" method=""/>
+            <o base=".sprintf" method="">
+              <o base="string" data="bytes">46 69 72 73 74 3A 20 25 64 0A 53 65 63 6F 6E 64 3A 20 25 64 0A 54 68 69 72 64 3A 20 25 64 0A</o>
+              <o base="x1"/>
+              <o base="x2"/>
+              <o base="x3"/>
             </o>
           </o>
         </o>

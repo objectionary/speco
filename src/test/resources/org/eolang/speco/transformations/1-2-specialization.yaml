@@ -7,10 +7,10 @@ document:
     <errors/>
     <sheets/>
     <objects>
-      <o abstract="" line="9" name="foo" pos="0">
-        <o line="9" name="x" pos="1"/>
-        <o base=".boom" line="10" name="@" pos="3">
-          <o base="x" line="10" pos="2" ref="9"/>
+      <o abstract="" name="foo">
+        <o name="x"/>
+        <o base=".boom" name="@">
+          <o base="x"/>
         </o>
       </o>
     </objects>
