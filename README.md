@@ -42,7 +42,7 @@ Consider the following EO program:
     x.eat
 ```
 
-The following block in the .xmir file of this program will be generated after AOI launch:
+The following block in the `.xmir` file of this program will be generated after AOI launch:
 
 ```
 <aoi>
@@ -95,7 +95,7 @@ for `cat` and `dog` correspondingly.
 </o>
 ```
 
-It will generate a collection of modified .xmir files as an output.
+It will generate a collection of modified `.xmir` files as an output.
 
 ## Usage
 
@@ -114,20 +114,36 @@ To run a transformation:
 $ java -jar speco.jar --source=<input> --target=<output>
 ```
 
-or use make command for `.xmir`:
+or use make command:
 ```bash
 $ make trans
 ```
 
+TODO: add flags docs
+
 ## How it works
 
-### Transformations
+The tool works according to an algorithm consisting of 7 transformation rules.
 
-TODO: specification of each transformation
+Rule 1:
+* Create a `<speco/>` node consisting of specialized `<versions/>` nodes for all objects inferred by AOI;
+* Each node has attributes:
+  * `@name` -- name of the polymorphic object,
+  * `@var` -- name of the polymorphic attribute of this object,
+  * `@spec` -- name of the object that specializes this attribute;
+* Each node consists of a single object copied from the `<objects/>` node by name `@name`, but also changed attributes:
+  * `@name` replaced by `@name_spec_@var_@spec`
+  * `@spec` equal `version@spec`
+* Copy all specialized objects (content of the `<version/>` node) to the `<objects/>` node.
 
-### Project Structure
+Rule 2:
+* For all applications: if there is a polymorphic base object and a specialized version is uniquely determined, then a replacement to determined version occurs.
 
-TODO: about classes and functions (if it is developer guide, then there are good comments, if user guide, then it should be in Usage)
+Rule 3:
+* For each object, for each of its specialized/polymorphic versions, create a `with-*` attribute that would returns a new object for the current version. The current state of the object should be deeply copied into the new object.
+
+Rule 4:
+
 
 ## How to Contribute
 
