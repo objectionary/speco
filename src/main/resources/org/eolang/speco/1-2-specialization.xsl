@@ -67,7 +67,7 @@ SOFTWARE.
   <!--
     Copies the contents of the corresponding objects from the <objects/> node.
   -->
-  <xsl:template match="@*|node()" name="specialize">
+  <xsl:template match="@*|node()" name="specialize" mode="call-template">
     <xsl:param name="name"/>
     <xsl:param name="var"/>
     <xsl:param name="spec"/>
@@ -93,7 +93,7 @@ SOFTWARE.
   <!--
     Modifies the name of the specialized version.
   -->
-  <xsl:template match="@*|node()" name="format">
+  <xsl:template match="@*|node()" name="format" mode="call-template">
     <xsl:param name="name"/>
     <xsl:param name="spec"/>
     <xsl:copy>
