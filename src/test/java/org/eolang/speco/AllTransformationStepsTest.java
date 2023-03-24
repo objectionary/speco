@@ -43,7 +43,6 @@ class AllTransformationStepsTest {
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
     void appliesTransformationsToXmir(final String pack) {
-        Logger.debug(this, "Started test appliesTransformationsToXmir");
         MatcherAssert.assertThat(
             new XaxStory(pack),
             Matchers.is(true)

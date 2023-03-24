@@ -67,7 +67,6 @@ class SpecoEoTest {
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
-        Logger.debug(this, "Started test convertsFromEo");
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected transformation result",
@@ -92,11 +91,10 @@ class SpecoEoTest {
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     void compilesFromEo(final String pack, @TempDir final Path temp)
         throws IOException, InterruptedException {
-        Logger.debug(this, "Started test compilesFromEo");
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected execution result",
-            SpecoEoTest.dataize(SpecoEoTest.run(script, temp).toString()),
+            this.dataize(SpecoEoTest.run(script, temp).toString()),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
@@ -132,7 +130,7 @@ class SpecoEoTest {
      * @return List of lines in output
      * @throws IOException Iff IO error
      */
-    private static String[] dataize(final String target) throws IOException, InterruptedException {
+    private String[] dataize(final String target) throws IOException, InterruptedException {
         final String executor;
         final String flag;
         if (SystemUtils.IS_OS_WINDOWS) {
@@ -142,12 +140,14 @@ class SpecoEoTest {
             executor = "bash";
             flag = "-c";
         }
+        Logger.debug(this, "Started compilation for ".concat(target));
         final Process process = new ProcessBuilder(
             executor,
             flag,
             String.format("eoc link -s %s && eoc --alone dataize app && eoc clean", target)
         ).start();
         process.waitFor();
+        Logger.debug(this, "Finished compilation for ".concat(target));
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer, Charset.defaultCharset());
         process.getInputStream().close();
