@@ -23,6 +23,7 @@
  */
 package org.eolang.speco;
 
+import com.jcabi.log.Logger;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -66,6 +67,7 @@ class SpecoEoTest {
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     void convertsFromEo(final String pack, @TempDir final Path temp) throws IOException {
+        Logger.debug(this, "Started test convertsFromEo");
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected transformation result",
@@ -90,6 +92,7 @@ class SpecoEoTest {
     @ClasspathSource(value = "org/eolang/speco/packs", glob = "**.yaml")
     void compilesFromEo(final String pack, @TempDir final Path temp)
         throws IOException, InterruptedException {
+        Logger.debug(this, "Started test compilesFromEo");
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected execution result",
