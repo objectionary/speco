@@ -140,20 +140,27 @@ class SpecoEoTest {
             executor = "bash";
             flag = "-c";
         }
-        Logger.debug(this, "Started compilation for ".concat(target));
+        Logger.debug(this, String.format("Started compilation for %s", target));
         final Process process = new ProcessBuilder(
             executor,
             flag,
             String.format("eoc link -s %s && eoc --alone dataize app && eoc clean", target)
         ).start();
         process.waitFor();
-        Logger.debug(this, "Finished compilation for ".concat(target));
         final StringWriter writer = new StringWriter();
         IOUtils.copy(process.getInputStream(), writer, Charset.defaultCharset());
         process.getInputStream().close();
         process.destroy();
         final String[] output = writer.toString().split("\\r?\\n");
         writer.close();
+        Logger.debug(
+            this,
+            String.format(
+                "Finished compilation for %s and got %d lines of output",
+                target,
+                output.length
+            )
+        );
         return Arrays.copyOfRange(output, SpecoEoTest.INTENT, output.length - 1);
     }
 }
