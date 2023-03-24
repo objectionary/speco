@@ -23,6 +23,7 @@
  */
 package org.eolang.speco;
 
+import com.jcabi.log.Logger;
 import org.eolang.jucs.ClasspathSource;
 import org.eolang.xax.XaxStory;
 import org.hamcrest.MatcherAssert;
@@ -42,6 +43,7 @@ class AllTransformationStepsTest {
     @ParameterizedTest
     @ClasspathSource(value = "org/eolang/speco/transformations", glob = "**.yaml")
     void appliesTransformationsToXmir(final String pack) {
+        Logger.debug(this, "Started test convertsFromXmir");
         MatcherAssert.assertThat(
             new XaxStory(pack),
             Matchers.is(true)

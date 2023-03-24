@@ -23,6 +23,7 @@
  */
 package org.eolang.speco;
 
+import com.jcabi.log.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,6 +46,7 @@ class SpecoXmirTest {
     @ParameterizedTest
     @ValueSource(strings = "simple")
     void convertsFromXmir(final String title, @TempDir final Path out) throws IOException {
+        Logger.debug(this, "Started test convertsFromXmir");
         final Path base = Path.of(
             "src", "test", "resources",
             "org", "eolang", "speco",
