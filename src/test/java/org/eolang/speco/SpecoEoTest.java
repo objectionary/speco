@@ -57,6 +57,11 @@ class SpecoEoTest {
     private static final int INTENT = 11;
 
     /**
+     * The number of lines to define the test context.
+     */
+    private static final int HEAD = 20;
+
+    /**
      * Integration test for conversation from EO.
      * @param pack Pack this test data
      * @param temp Temporary test dir
@@ -94,7 +99,10 @@ class SpecoEoTest {
         final Map<String, Object> script = new Yaml().load(pack);
         MatcherAssert.assertThat(
             "Unexpected execution result",
-            this.dataize(SpecoEoTest.run(script, temp).toString()),
+            this.dataize(
+                SpecoEoTest.run(script, temp).toString(),
+                pack.substring(0, Math.min(pack.length(), SpecoEoTest.HEAD))
+            ),
             Matchers.equalTo(
                 script.get("result").toString().split("\\r?\\n")
             )
@@ -127,10 +135,12 @@ class SpecoEoTest {
      * Compiles and dataize EO program.
      *
      * @param target Path to the dir with target EO program
+     * @param context Information about the test being run, the head of the input data
      * @return List of lines in output
      * @throws IOException Iff IO error
      */
-    private String[] dataize(final String target) throws IOException, InterruptedException {
+    private String[] dataize(final String target, final String context)
+        throws IOException, InterruptedException {
         final String executor;
         final String flag;
         if (SystemUtils.IS_OS_WINDOWS) {
@@ -140,7 +150,10 @@ class SpecoEoTest {
             executor = "bash";
             flag = "-c";
         }
-        Logger.debug(this, String.format("Started compilation for %s", target));
+        Logger.debug(
+            this,
+            String.format("Started compilation for %s with test head: %s.", target, context)
+        );
         final Process process = new ProcessBuilder(
             executor,
             flag,
