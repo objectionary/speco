@@ -57,9 +57,9 @@ class SpecoEoTest {
     private static final int INTENT = 11;
 
     /**
-     * The number of lines from the beginning of the test to identify the context.
+     * The number of symbols from the beginning of the test to identify the context.
      */
-    private static final int HEAD = 20;
+    private static final int HEAD = 100;
 
     /**
      * Integration test for conversation from EO.
@@ -152,7 +152,7 @@ class SpecoEoTest {
         }
         Logger.debug(
             this,
-            String.format("Started compilation for %s with test head: %s.", target, context)
+            String.format("Started compilation for %s with test head:\n%s", target, context)
         );
         final Process process = new ProcessBuilder(
             executor,
