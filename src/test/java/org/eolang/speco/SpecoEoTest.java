@@ -57,7 +57,7 @@ class SpecoEoTest {
     private static final int INTENT = 11;
 
     /**
-     * The number of lines to define the test context.
+     * The number of lines from the beginning of the test to identify the context.
      */
     private static final int HEAD = 20;
 
