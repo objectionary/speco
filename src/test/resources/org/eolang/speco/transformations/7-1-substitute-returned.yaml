@@ -7,24 +7,24 @@ document:
     <errors/>
     <sheets/>
     <objects>
-      <o abstract="" line="1" name="counter" pos="0">
+      <o abstract="" name="counter">
         <o abstract="" name="with_counter"/>
         <o abstract="" fence="next" name="next_as_tuple">
-          <o base="seq" line="5" name="@" pos="4">
-            <o base=".write" line="8" pos="6">
-              <o base=".k" line="7" pos="6">
-                <o base="^" line="6" pos="6"/>
+          <o base="seq" name="@">
+            <o base=".write">
+              <o base=".k">
+                <o base="^"/>
               </o>
-              <o base=".plus" line="11" pos="8">
-                <o base=".k" line="10" pos="8">
-                  <o base="^" line="9" pos="8"/>
+              <o base=".plus">
+                <o base=".k">
+                  <o base="^"/>
                 </o>
-                <o base="int" data="bytes" line="12" pos="10">00 00 00 00 00 00 00 01</o>
+                <o base="int" data="bytes">00 00 00 00 00 00 00 01</o>
               </o>
             </o>
             <o base="tuple" data="tuple">
-              <o base=".k" line="14" pos="6">
-                <o base="^" line="13" pos="6"/>
+              <o base=".k">
+                <o base="^"/>
               </o>
               <o base="^"/>
             </o>
