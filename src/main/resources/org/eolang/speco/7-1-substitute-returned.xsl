@@ -36,6 +36,7 @@ SOFTWARE.
   -->
   <xsl:template match="/program/objects//o[../../@fence and @base='tuple']/o[1]">
     <xsl:for-each select="../../o[@base='.write']/o[1]">
+      <xsl:variable name="name" select="../../../../@name"/>
       <xsl:copy>
         <xsl:attribute name="base">
           <xsl:value-of select="concat(substring-after(@base, '.'), '.')"/>
@@ -43,7 +44,7 @@ SOFTWARE.
         <xsl:apply-templates select="@* except @base"/>
         <xsl:element name="o">
           <xsl:attribute name="base">
-            <xsl:value-of select="concat('.', ../../../../o[starts-with(@name, 'with_')][1]/@name)"/>
+            <xsl:value-of select="concat('.', ../../../../o[starts-with(@name, 'with_') and o/@base=$name or @name=concat('with_', $name)]/@name)"/>
           </xsl:attribute>
           <xsl:attribute name="name">
             <xsl:value-of select="'tmp'"/>

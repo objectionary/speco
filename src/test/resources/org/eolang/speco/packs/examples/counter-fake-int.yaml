@@ -1,4 +1,5 @@
 before: |
+  [x] > fake_int
   [s] > counter
     memory > k
       s
@@ -35,6 +36,20 @@ before: |
           x3
 
 after: |
+  [x] > fake_int
+    [x] > with_fake_int
+      fake_int_spec_x_fake_int > @
+        x
+    [x] > with_counter
+      fake_int_spec_x_counter > @
+        x
+    [x] > with_counter_next
+      fake_int_spec_x_counter_next > @
+        x
+    [x] > with_app
+      fake_int_spec_x_app > @
+        x
+  
   [s] > counter
     memory > k
       s
@@ -49,6 +64,9 @@ after: |
             1
         ^
         .k
+    [s] > with_fake_int
+      counter_spec_s_fake_int > @
+        s
     [s] > with_counter
       counter_spec_s_counter > @
         s
@@ -105,6 +123,101 @@ after: |
           x2
           x3
   
+  [x] > fake_int_spec_x_fake_int
+    [x] > with_fake_int
+      fake_int_spec_x_fake_int > @
+        x
+    [x] > with_counter
+      fake_int_spec_x_counter > @
+        x
+    [x] > with_counter_next
+      fake_int_spec_x_counter_next > @
+        x
+    [x] > with_app
+      fake_int_spec_x_app > @
+        x
+  
+  [x] > fake_int_spec_x_counter
+    [x] > with_fake_int
+      fake_int_spec_x_fake_int > @
+        x
+    [x] > with_counter
+      fake_int_spec_x_counter > @
+        x
+    [x] > with_counter_next
+      fake_int_spec_x_counter_next > @
+        x
+    [x] > with_app
+      fake_int_spec_x_app > @
+        x
+  
+  [x] > fake_int_spec_x_counter_next
+    [x] > with_fake_int
+      fake_int_spec_x_fake_int > @
+        x
+    [x] > with_counter
+      fake_int_spec_x_counter > @
+        x
+    [x] > with_counter_next
+      fake_int_spec_x_counter_next > @
+        x
+    [x] > with_app
+      fake_int_spec_x_app > @
+        x
+  
+  [x] > fake_int_spec_x_app
+    [x] > with_fake_int
+      fake_int_spec_x_fake_int > @
+        x
+    [x] > with_counter
+      fake_int_spec_x_counter > @
+        x
+    [x] > with_counter_next
+      fake_int_spec_x_counter_next > @
+        x
+    [x] > with_app
+      fake_int_spec_x_app > @
+        x
+  
+  [s] > counter_spec_s_fake_int
+    memory > k
+      s
+    [] > next
+      seq > @
+        ^
+        .k
+        .write
+          ^
+          .k
+          .plus
+            1
+        ^
+        .k
+    [s] > with_fake_int
+      counter_spec_s_fake_int > @
+        s
+    [s] > with_counter
+      counter_spec_s_counter > @
+        s
+    [s] > with_counter_next
+      counter_spec_s_counter_next > @
+        s
+    [s] > with_app
+      counter_spec_s_app > @
+        s
+    [] > next_as_tuple
+      seq > @
+        TRUE
+        *
+          k.
+            ^
+            .with_fake_int > tmp
+              ^
+              .k
+              .plus
+                1
+          tmp
+  
   [s] > counter_spec_s_counter
     memory > k
       s
@@ -119,6 +232,9 @@ after: |
             1
         ^
         .k
+    [s] > with_fake_int
+      counter_spec_s_fake_int > @
+        s
     [s] > with_counter
       counter_spec_s_counter > @
         s
@@ -155,6 +271,9 @@ after: |
             1
         ^
         .k
+    [s] > with_fake_int
+      counter_spec_s_fake_int > @
+        s
     [s] > with_counter
       counter_spec_s_counter > @
         s
@@ -191,6 +310,9 @@ after: |
             1
         ^
         .k
+    [s] > with_fake_int
+      counter_spec_s_fake_int > @
+        s
     [s] > with_counter
       counter_spec_s_counter > @
         s
