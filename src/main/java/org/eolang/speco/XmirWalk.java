@@ -23,21 +23,56 @@
  */
 package org.eolang.speco;
 
-import com.jcabi.xml.XML;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
- * The interface encapsulating specialization logic.
+ * The class encapsulating applying of specialization to XMIR.
  *
  * @since 0.0.3
  */
-public interface Speco {
+public final class XmirWalk implements Walk {
     /**
-     * Applies XSL-transformations to XML.
-     *
-     * @param path Path to source xml file
-     * @return String Representation of transfromed xml
-     * @throws IOException In case of errors when reading from file
+     * Absolute path to the directory with input files.
      */
-    XML transform(XML path) throws IOException;
+    private final Path input;
+
+    /**
+     * Absolute path to the directory with output files.
+     */
+    private final Path output;
+
+    /**
+     * Origin speco.
+     */
+    private final Speco speco;
+
+    /**
+     * Ctor.
+     *
+     * @param input Absolute path to the directory with input files
+     * @param output Absolute path to the directory with output files
+     * @param speco Origin speco
+     */
+    public XmirWalk(
+        final Path input,
+        final Path output,
+        final Speco speco
+    ) {
+        this.input = input;
+        this.output = output;
+        this.speco = speco;
+    }
+
+    @Override
+    public void exec() throws IOException {
+        Files.createDirectories(this.output);
+        for (final Path path : Files.newDirectoryStream(this.input)) {
+            Files.write(
+                this.output.resolve(path.getFileName()),
+                this.speco.transform(Walk.toXml(path)).toString().getBytes()
+            );
+        }
+    }
 }

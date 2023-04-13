@@ -24,20 +24,35 @@
 package org.eolang.speco;
 
 import com.jcabi.xml.XML;
+import com.jcabi.xml.XMLDocument;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
- * The interface encapsulating specialization logic.
+ * The interface encapsulating applying of specialization.
  *
  * @since 0.0.3
+ * @todo #39:60min refactor this interface and classes EoWalk and XmirWalk implementing it,
+ *  to avoid code duplication. In particular, in the fields (input, output and speco),
+ *  constructor and exec method.
  */
-public interface Speco {
+public interface Walk {
     /**
-     * Applies XSL-transformations to XML.
+     * Starts the specialization process.
      *
-     * @param path Path to source xml file
-     * @return String Representation of transfromed xml
+     * @throws IOException In case of errors when working with files or parsing a document
+     */
+    void exec() throws IOException;
+
+    /**
+     * Read XML from file.
+     *
+     * @param path Path to input file.
+     * @return Read XML
      * @throws IOException In case of errors when reading from file
      */
-    XML transform(XML path) throws IOException;
+    static XML toXml(final Path path) throws IOException {
+        return new XMLDocument(Files.readString(path));
+    }
 }

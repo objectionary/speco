@@ -61,9 +61,27 @@ public final class Main implements Callable<Integer> {
         description = "If the input program is in EO")
     private boolean eolang;
 
+    /**
+     * Flag indicating whether the temporary tags should be deleted.
+     */
+    @CommandLine.Option(names = { "--clear-xmir" },
+        defaultValue = "false",
+        description = "If delete temporary tags")
+    private boolean clearxmir;
+
     @Override
     public Integer call() throws IOException {
-        new Speco(this.input, this.output, this.eolang).exec();
+        Speco speco = new DefaultSpeco();
+        if (this.clearxmir) {
+            speco = new ClearXmirSpeco(speco);
+        }
+        final Walk walk;
+        if (this.eolang) {
+            walk = new EoWalk(this.input, this.output, speco);
+        } else {
+            walk = new XmirWalk(this.input, this.output, speco);
+        }
+        walk.exec();
         return 0;
     }
 

@@ -127,7 +127,11 @@ class SpecoEoTest {
             script.get("before").toString(),
             StandardOpenOption.CREATE
         );
-        new Speco(input, output, true).exec();
+        new EoWalk(
+            input,
+            output,
+            new DefaultSpeco()
+        ).exec();
         return output;
     }
 

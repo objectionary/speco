@@ -51,7 +51,11 @@ class SpecoXmirTest {
             "org", "eolang", "speco",
             "xmir", title
         );
-        new Speco(base.resolve("in"), out, false).exec();
+        new XmirWalk(
+            base.resolve("in"),
+            out,
+            new DefaultSpeco()
+        ).exec();
         final Path expected = base.resolve("out");
         for (final Path path : Files.newDirectoryStream(expected)) {
             MatcherAssert.assertThat(
