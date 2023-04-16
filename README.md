@@ -145,7 +145,7 @@ Rule 4:
 * Create copies of these attributes, modifying them so that tuple with the object it returned before and the "parent" object is returned.
 
 Rule 5:
-* Replace accessing the parent object with creating an intermediate tuple object and getting its first element.
+* Replace accessing the "parent" object with creating an intermediate tuple object and getting its first element.
 
 Rule 6:
 * Replace calls of the "parent" object (all except the first one) with calls of the second elements of intermediate tuples in the order in the program. Later this should be replaced by using EOG.
