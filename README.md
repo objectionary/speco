@@ -119,8 +119,6 @@ or use make command:
 $ make trans
 ```
 
-TODO: add flags docs
-
 ## How it works
 
 The tool works according to an algorithm consisting of 7 transformation rules.
@@ -143,7 +141,17 @@ Rule 3:
 * For each object, for each of its specialized/polymorphic versions, create a `with-*` attribute that would returns a new object for the current version. The current state of the object should be deeply copied into the new object.
 
 Rule 4:
+* Search for all fence attributes, that reference to the `memory` wrapper object;
+* Create copies of these attributes, modifying them so that tuple with the object it returned before and the "parent" object is returned.
 
+Rule 5:
+* Replace accessing the parent object with creating an intermediate tuple object and getting its first element.
+
+Rule 6:
+* Replace calls of the "parent" object (all except the first one) with calls of the second elements of intermediate tuples in the order in the program. Later this should be replaced by using EOG.
+
+Rule 7:
+* Modify the `*-as-tuple` attribute so that it returns a new object instead of changing itself by using the `with-*` attribute.
 
 ## How to Contribute
 
