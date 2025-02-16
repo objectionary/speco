@@ -70,7 +70,7 @@ after: |
               .plus
                 1
           tmp
-  
+
   [] > app
     counter > c
       0
@@ -104,7 +104,7 @@ after: |
           x1
           x2
           x3
-  
+
   [s] > counter_spec_s_counter
     memory > k
       s
@@ -140,7 +140,7 @@ after: |
               .plus
                 1
           tmp
-  
+
   [s] > counter_spec_s_counter_next
     memory > k
       s
@@ -176,7 +176,7 @@ after: |
               .plus
                 1
           tmp
-  
+
   [s] > counter_spec_s_app
     memory > k
       s

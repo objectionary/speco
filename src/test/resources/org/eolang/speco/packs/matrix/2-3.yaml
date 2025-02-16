@@ -5,28 +5,28 @@ before: |
       .io
       .stdout > @
         "1\n"
-  
+
   [] > second
     [] > bar
       QQ
       .io
       .stdout > @
         "2\n"
-  
+
   [] > third
     [] > bar
       QQ
       .io
       .stdout > @
         "3\n"
-  
+
   [x y] > foo
     seq > @
       x
       .bar
       y
       .bar
-  
+
   [] > app
     seq > @
       foo
@@ -49,21 +49,21 @@ after: |
       .io
       .stdout > @
         "1\n"
-  
+
   [] > second
     [] > bar
       QQ
       .io
       .stdout > @
         "2\n"
-  
+
   [] > third
     [] > bar
       QQ
       .io
       .stdout > @
         "3\n"
-  
+
   [x y] > foo
     seq > @
       x
@@ -106,7 +106,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [] > app
     seq > @
       foo_spec_x_first_spec_y_first
@@ -121,7 +121,7 @@ after: |
       foo_spec_x_third_spec_y_second
         third
         second
-  
+
   [x y] > foo_spec_x_first_spec_y_first
     seq > @
       x
@@ -164,7 +164,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_first_spec_y_second
     seq > @
       x
@@ -207,7 +207,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_first_spec_y_third
     seq > @
       x
@@ -250,7 +250,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_second_spec_y_first
     seq > @
       x
@@ -293,7 +293,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_second_spec_y_second
     seq > @
       x
@@ -336,7 +336,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_second_spec_y_third
     seq > @
       x
@@ -379,7 +379,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_third_spec_y_first
     seq > @
       x
@@ -422,7 +422,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_third_spec_y_second
     seq > @
       x
@@ -465,7 +465,7 @@ after: |
       foo_spec_x_third_spec_y_third > @
         x
         y
-  
+
   [x y] > foo_spec_x_third_spec_y_third
     seq > @
       x

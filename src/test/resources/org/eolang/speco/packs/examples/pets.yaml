@@ -5,7 +5,7 @@ before: |
       .io
       .stdout > @
         "Meow!\n"
-  
+
   [] > dog
     [] > talk
       QQ
@@ -17,18 +17,18 @@ before: |
       .io
       .stdout > @
         "smth\n"
-  
+
   [x] > some_object
     x
     .talk > @
-  
+
   [x] > other_object
     seq > @
       x
       .talk
       x
       .smth
-  
+
   [] > app
     seq > @
       some_object
@@ -43,7 +43,7 @@ after: |
       .io
       .stdout > @
         "Meow!\n"
-  
+
   [] > dog
     [] > talk
       QQ
@@ -55,7 +55,7 @@ after: |
       .io
       .stdout > @
         "smth\n"
-  
+
   [x] > some_object
     x
     .talk > @
@@ -65,7 +65,7 @@ after: |
     [x] > with_dog
       some_object_spec_x_dog > @
         x
-  
+
   [x] > other_object
     seq > @
       x
@@ -75,14 +75,14 @@ after: |
     [x] > with_dog
       other_object_spec_x_dog > @
         x
-  
+
   [] > app
     seq > @
       some_object_spec_x_cat
         cat
       other_object_spec_x_dog
         dog
-  
+
   [x] > some_object_spec_x_cat
     x
     .talk > @
@@ -92,7 +92,7 @@ after: |
     [x] > with_dog
       some_object_spec_x_dog > @
         x
-  
+
   [x] > some_object_spec_x_dog
     x
     .talk > @
@@ -102,7 +102,7 @@ after: |
     [x] > with_dog
       some_object_spec_x_dog > @
         x
-  
+
   [x] > other_object_spec_x_dog
     seq > @
       x
