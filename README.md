@@ -9,7 +9,6 @@
 [![codecov](https://codecov.io/gh/objectionary/speco/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/speco)
 [![Maven Central](https://img.shields.io/maven-central/v/org.eolang/speco.svg)](https://maven-badges.herokuapp.com/maven-central/org.eolang/speco)
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/speco)](https://hitsofcode.com/view/github/objectionary/speco)
-![Lines of code](https://img.shields.io/tokei/lines/github/objectionary/speco)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/objectionary/speco/blob/master/LICENSE.txt)
 
 Specialization of objects in EO programs.
