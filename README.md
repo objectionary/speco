@@ -1,11 +1,11 @@
 <img alt="logo" src="https://www.objectionary.com/cactus.svg" height="100px" />
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![DevOps By Rultor.com](http://www.rultor.com/b/objectionary/speco)](http://www.rultor.com/p/objectionary/speco)
+[![DevOps By Rultor.com](https://www.rultor.com/b/objectionary/speco)](https://www.rultor.com/p/objectionary/speco)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![mvn](https://github.com/objectionary/speco/actions/workflows/mvn.yml/badge.svg?branch=master)](https://github.com/objectionary/speco/actions/workflows/mvn.yml)
-[![PDD status](http://www.0pdd.com/svg?name=objectionary/speco)](http://www.0pdd.com/p?name=objectionary/speco)
+[![PDD status](https://www.0pdd.com/svg?name=objectionary/speco)](https://www.0pdd.com/p?name=objectionary/speco)
 [![codecov](https://codecov.io/gh/objectionary/speco/branch/master/graph/badge.svg)](https://codecov.io/gh/objectionary/speco)
 [![Maven Central](https://img.shields.io/maven-central/v/org.eolang/speco.svg)](https://maven-badges.herokuapp.com/maven-central/org.eolang/speco)
 [![Hits-of-Code](https://hitsofcode.com/github/objectionary/speco)](https://hitsofcode.com/view/github/objectionary/speco)
