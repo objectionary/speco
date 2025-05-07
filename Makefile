@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2022 Objectionary
+# SPDX-License-Identifier: MIT
+
 dep-tree: ##@Help Draws the maven dependency tree
 	mvn dependency:tree
 

@@ -1,12 +1,12 @@
-*.eoc
-*.iml
-.DS_Store
 .classpath
+.DS_Store
 .idea
 .idea/
 .project
 .recommenders
 .settings
+*.eoc
+*.iml
 node_modules/
 speco.jar
 target/
