@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022 Objectionary
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 name: typos
 'on':
   push:
